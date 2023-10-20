@@ -11,7 +11,11 @@ public class GameController {
     private TextField txtInput;
     @FXML
     private Label label;
-    private final World world = new World();
+    private World world;
+
+    public void initialize() {
+        world = new World();
+    }
     @FXML
     public void handleClick(ActionEvent event) {
         label.setText(txtInput.getText());

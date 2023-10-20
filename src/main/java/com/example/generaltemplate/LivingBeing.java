@@ -1,11 +1,10 @@
 package com.example.generaltemplate;
 
 abstract public class LivingBeing {
-    private final int health;
-    private final int strength;
-    private final int defense;
-    private final int awesomeness;
-
+    private int health;
+    private int strength;
+    private int defense;
+    private int awesomeness;
     public LivingBeing(int health, int strength, int defense, int awesomeness) {
         this.health = health;
         this.strength = strength;
@@ -28,4 +27,6 @@ abstract public class LivingBeing {
     public int getAwesomeness() {
         return awesomeness;
     }
+
+    abstract public String getStats();
 }
