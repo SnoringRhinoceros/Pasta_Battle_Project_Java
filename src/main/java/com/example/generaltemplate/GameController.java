@@ -4,11 +4,12 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
 public class GameController {
     @FXML
-    private TextField txtInput;
+    public TextArea battleResultTxtArea;
     @FXML
     private Label label;
     private World world;
@@ -18,7 +19,7 @@ public class GameController {
     }
     @FXML
     public void handleClick(ActionEvent event) {
-        label.setText(txtInput.getText());
+
     }
 
 }
