@@ -19,7 +19,7 @@ public class GameController {
     }
     @FXML
     public void handleClick(ActionEvent event) {
-
+        battleResultTxtArea.setText(world.handleBattle());
     }
 
 }

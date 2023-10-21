@@ -10,12 +10,14 @@ public class BattleHandler {
         StringBuilder result = new StringBuilder();
         curBeing = player;
         while (player.getHealth() > 0 && enemy.getHealth() > 0) {
-            int healthToAdd = -curBeing.getStrength()+getOpp(curBeing).getDefense();
-            if (healthToAdd >= 0) {
-                result.append("\n " + getOpp(curBeing).getName() + " did no damage");
+            int dmgDealt = curBeing.getStrength()+getOpp(curBeing).getDefense();
+            if (dmgDealt <= 0) {
+                result.append("\n " + curBeing.getName() + " did no damage.");
             } else {
-                getOpp(curBeing).addHealth(healthToAdd);
+                result.append("\n " + curBeing.getName() + " attacked for " + dmgDealt + " damage.");
+                getOpp(curBeing).addHealth(-dmgDealt);
             }
+            curBeing = getOpp(curBeing);
         }
         return result.toString();
     }
