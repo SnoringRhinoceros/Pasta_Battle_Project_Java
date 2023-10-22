@@ -7,6 +7,9 @@ import java.util.ArrayList;
 public class Land {
     ImageView img;
     ArrayList<Enemy> enemies = new ArrayList<>();
+    public Land() {
+
+    }
     public Land(ImageView img) {
         this.img = img;
     }
