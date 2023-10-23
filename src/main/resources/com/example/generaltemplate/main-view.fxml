@@ -5,9 +5,9 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.generaltemplate.GameController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Button fx:id="idahoBtn" layoutX="33.0" layoutY="27.0" mnemonicParsing="false" onMouseClicked="#handleSceneSwitchBtnClick">
+      <Button fx:id="idahoBtn" layoutX="33.0" layoutY="27.0" mnemonicParsing="false" onMouseClicked="#handleIdahoBtnClick">
          <graphic>
             <ImageView fx:id="idahoImg" fitHeight="110.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -16,7 +16,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button fx:id="bakeryBtn" layoutX="241.0" layoutY="27.0" mnemonicParsing="false" onMouseClicked="#handleSceneSwitchBtnClick">
+      <Button fx:id="bakeryBtn" layoutX="241.0" layoutY="27.0" mnemonicParsing="false" onMouseClicked="#handleBakeryBtnClick">
          <graphic>
             <ImageView fx:id="bakeryImg" fitHeight="110.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -25,7 +25,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button fx:id="riceFieldsBtn" layoutX="435.0" layoutY="27.0" mnemonicParsing="false" onMouseClicked="#handleSceneSwitchBtnClick">
+      <Button fx:id="riceFieldsBtn" layoutX="435.0" layoutY="27.0" mnemonicParsing="false" onMouseClicked="#handleRiceFieldsBtnClick">
          <graphic>
             <ImageView fx:id="riceFieldsImg" fitHeight="110.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -34,7 +34,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button fx:id="questionMarkBtn" layoutX="241.0" layoutY="200.0" mnemonicParsing="false" onMouseClicked="#handleSceneSwitchBtnClick">
+      <Button fx:id="questionMarkBtn" layoutX="241.0" layoutY="200.0" mnemonicParsing="false" onMouseClicked="#handleQuestionMarkBtnClick">
          <graphic>
             <ImageView fx:id="questionMarkImg" fitHeight="110.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
                <image>

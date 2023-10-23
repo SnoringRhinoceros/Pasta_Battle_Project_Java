@@ -7,6 +7,8 @@ import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
+import java.io.IOException;
+
 public class GameController {
     @FXML
     public TextArea battleResultTxtArea;
@@ -15,30 +17,28 @@ public class GameController {
     @FXML
     public Button idahoBtn, bakeryBtn, riceFieldsBtn, questionMarkBtn;
     private World world;
-    private SceneSwitcher sceneSwitcher;
-    private int constructed = 0;
+    private ScreenController screenController;
 
-    @FXML
-    public void initialize() {
-        if (constructed == 0) {
-            world = new World(idahoImg, bakeryImg, riceFieldsImg, questionMarkImg);
-            sceneSwitcher = new SceneSwitcher();
-            if (questionMarkBtn != null) {
-                questionMarkBtn.setDisable(true);
-            }
-            if (!(idahoBtn == null) && !(bakeryBtn == null) && !(riceFieldsBtn == null) && !(questionMarkBtn == null)) {
-                sceneSwitcher.addSceneSwitch(idahoBtn, "idaho-view.fxml");
-                sceneSwitcher.addSceneSwitch(bakeryBtn, "bakery-view.fxml");
-                sceneSwitcher.addSceneSwitch(riceFieldsBtn, "riceFields-view.fxml");
-                sceneSwitcher.addSceneSwitch(questionMarkBtn, "questionMark-view.fxml");
-            }
-            constructed++;
-        }
+    public void setScreenController(ScreenController screenController) {
+        this.screenController = screenController;
     }
 
     @FXML
-    public void handleSceneSwitchBtnClick(MouseEvent event) throws Exception {
-        sceneSwitcher.handleSwitch(event);
+    public void initialize() {
+        world = new World(idahoImg, bakeryImg, riceFieldsImg, questionMarkImg);
+        if (questionMarkBtn != null) {
+            questionMarkBtn.setDisable(true);
+        }
+    }
+
+    public GameController() {
+
+    }
+
+    public GameController(GameController another) {
+        this.battleResultTxtArea = another.battleResultTxtArea;
+        this.world = another.world;
+        this.screenController = another.screenController;
     }
 
     @FXML
@@ -46,7 +46,32 @@ public class GameController {
         battleResultTxtArea.setText(world.handleBattle());
     }
 
-    public void goBack(ActionEvent actionEvent) throws Exception {
-        sceneSwitcher.switchToMain();
+    private void handleSceneSwitchBtnClick(String name) throws IOException {
+        screenController.activate(name);
+    }
+
+    @FXML
+    public void handleIdahoBtnClick(MouseEvent mouseEvent) throws IOException {
+        handleSceneSwitchBtnClick("idaho");
+    }
+
+    @FXML
+    public void handleBakeryBtnClick(MouseEvent mouseEvent) throws IOException {
+        handleSceneSwitchBtnClick("bakery");
+    }
+
+    @FXML
+    public void handleRiceFieldsBtnClick(MouseEvent mouseEvent) throws IOException {
+        handleSceneSwitchBtnClick("riceFields");
+    }
+
+    @FXML
+    public void handleQuestionMarkBtnClick(MouseEvent mouseEvent) throws IOException {
+        handleSceneSwitchBtnClick("questionMark");
+    }
+
+    @FXML
+    public void goBack(MouseEvent mouseEvent) throws IOException {
+        handleSceneSwitchBtnClick("main");
     }
 }
