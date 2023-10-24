@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label fx:id="battleOutcomeLbl" layoutX="272.0" layoutY="149.0" text="Label" />
+      <TextArea fx:id="enemyStatsTextArea" layoutX="319.0" layoutY="21.0" prefHeight="109.0" prefWidth="97.0" />
+      <Button layoutX="270.0" layoutY="274.0" mnemonicParsing="false" onAction="#doActionBtn" text="Do" />
+      <TextArea fx:id="playerStatsTxtArea" layoutX="14.0" layoutY="149.0" prefHeight="151.0" prefWidth="107.0" />
+   </children>
+</AnchorPane>

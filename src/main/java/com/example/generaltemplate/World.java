@@ -10,18 +10,17 @@ public class World {
     private final Land riceFields;
     private final Land questionMark;
 
-    World(ImageView idahoImg, ImageView bakeryImg, ImageView riceFieldsImg, ImageView questionMarkImg) {
+    World() {
         battleHandler = new BattleHandler();
-        idaho = new Land(idahoImg);
-        bakery = new Land(bakeryImg);
-        riceFields = new Land(riceFieldsImg);
-        questionMark = new Land(questionMarkImg);
+        idaho = new Land();
+        bakery = new Land();
+        riceFields = new Land();
+        questionMark = new Land();
         player = new PC("player", CharacterType.SPAGHETTI, 15, 2, 1, 1);
     }
 
     public String handleBattle() {
-//        Enemy basic1 = new Enemy("potato", 5, 1, 0, 0);
-//        return battleHandler.getBattleOutcome(player, basic1);
-        return "";
+        Enemy basic1 = new Enemy("potato", 5, 1, 0, 0);
+        return battleHandler.getBattleOutcome(player, basic1);
     }
 }

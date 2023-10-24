@@ -23,24 +23,9 @@ public class GameController {
         this.screenController = screenController;
     }
 
-    public GameController() {
-
-    }
-
-    public GameController(GameController another) {
-        this.battleResultTxtArea = another.battleResultTxtArea;
-        this.world = another.world;
-        this.screenController = another.screenController;
-    }
-
     public void myOwnInit() {
-        world = new World(idahoImg, bakeryImg, riceFieldsImg, questionMarkImg);
+        world = new World();
         questionMarkBtn.setDisable(true);
-    }
-
-    @FXML
-    public void handleBattleButtonClick(ActionEvent event) {
-        battleResultTxtArea.setText(world.handleBattle());
     }
 
     private void handleSceneSwitchBtnClick(String name) throws IOException {
@@ -70,5 +55,10 @@ public class GameController {
     @FXML
     public void goBack(MouseEvent mouseEvent) throws IOException {
         handleSceneSwitchBtnClick("main");
+    }
+
+    @FXML
+    public void doActionBtn(ActionEvent actionEvent) {
+        world.handleBattle();
     }
 }

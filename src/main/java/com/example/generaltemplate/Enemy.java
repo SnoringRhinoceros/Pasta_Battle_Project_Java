@@ -4,7 +4,7 @@ import javafx.scene.image.ImageView;
 
 public class Enemy extends LivingBeing{
     private ImageView img;
-    public Enemy(String name, ImageView img, int health, int strength, int defense, int awesomeness) {
+    public Enemy(String name, int health, int strength, int defense, int awesomeness) {
         super(name, health, strength, defense, awesomeness);
         this.img = img;
     }

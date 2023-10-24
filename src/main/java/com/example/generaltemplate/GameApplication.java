@@ -9,7 +9,6 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 public class GameApplication extends Application {
-    GameController controller;
     @Override
     public void start(Stage stage) throws Exception {
         ScreenController screenController = new ScreenController(stage);
