@@ -23,14 +23,6 @@ public class GameController {
         this.screenController = screenController;
     }
 
-    @FXML
-    public void initialize() {
-        world = new World(idahoImg, bakeryImg, riceFieldsImg, questionMarkImg);
-        if (questionMarkBtn != null) {
-            questionMarkBtn.setDisable(true);
-        }
-    }
-
     public GameController() {
 
     }
@@ -39,6 +31,11 @@ public class GameController {
         this.battleResultTxtArea = another.battleResultTxtArea;
         this.world = another.world;
         this.screenController = another.screenController;
+    }
+
+    public void myOwnInit() {
+        world = new World(idahoImg, bakeryImg, riceFieldsImg, questionMarkImg);
+        questionMarkBtn.setDisable(true);
     }
 
     @FXML

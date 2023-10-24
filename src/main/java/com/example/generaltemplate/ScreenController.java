@@ -23,6 +23,7 @@ public class ScreenController {
         loader.setController(gameController);
         Parent root = loader.load();
         stage.setScene(new Scene(root));
+        gameController.myOwnInit();
         stage.show();
     }
 }
