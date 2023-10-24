@@ -25,11 +25,15 @@ public class GameController {
         this.screenController = screenController;
     }
 
-    public void myOwnInit() {
-        world = new World();
-        questionMarkBtn.setDisable(true);
-        playerStatsTextArea.setDisable(true);
-        enemyStatsTextArea.setDisable(true);
+    public void myOwnInit(String fxmlName) {
+        if (fxmlName.equals("main")) {
+            world = new World();
+            questionMarkBtn.setDisable(true);
+        }
+//        else if (fxmlName.equals("battle")) {
+//            playerStatsTextArea.setDisable(true);
+//            enemyStatsTextArea.setDisable(true);
+//        }
     }
 
     private void handleSceneSwitchBtnClick(String name) throws IOException {
@@ -64,7 +68,6 @@ public class GameController {
     private void initBattle(Enemy enemy) throws IOException {
         screenController.activate("battle");
         world.createBattle(enemy);
-        // start working
     }
 
     @FXML
@@ -75,6 +78,6 @@ public class GameController {
 
     @FXML
     public void doActionBtn(MouseEvent mouseEvent) throws IOException {
-        // TODO
+        battleOutcomeLbl.setText(world.getCurBattle().runTurn("attack"));
     }
 }

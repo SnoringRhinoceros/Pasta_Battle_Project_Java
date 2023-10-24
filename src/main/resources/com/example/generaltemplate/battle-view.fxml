@@ -12,7 +12,7 @@
    <children>
       <Label fx:id="battleOutcomeLbl" layoutX="272.0" layoutY="149.0" text="Label" />
       <TextArea fx:id="enemyStatsTextArea" layoutX="331.0" layoutY="14.0" prefHeight="125.0" prefWidth="116.0" />
-      <Button layoutX="270.0" layoutY="352.0" mnemonicParsing="false" onAction="#doActionBtn" text="Do" />
+      <Button layoutX="270.0" layoutY="352.0" mnemonicParsing="false" onMouseClicked="#doActionBtn" text="Do" />
       <TextArea fx:id="playerStatsTxtArea" layoutX="14.0" layoutY="149.0" prefHeight="151.0" prefWidth="107.0" />
       <ListView layoutX="143.0" layoutY="206.0" prefHeight="100.0" prefWidth="107.0" />
       <ListView layoutX="258.0" layoutY="206.0" prefHeight="133.0" prefWidth="107.0" />

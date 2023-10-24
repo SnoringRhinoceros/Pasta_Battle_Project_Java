@@ -19,4 +19,8 @@ public class World {
     public void createBattle(Enemy enemy) {
         curBattle = new Battle(player, enemy);
     }
+
+    public Battle getCurBattle() {
+        return curBattle;
+    }
 }

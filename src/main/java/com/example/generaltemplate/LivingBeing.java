@@ -38,5 +38,7 @@ abstract public class LivingBeing {
         return awesomeness;
     }
 
+    public boolean isDead() {return health <= 0;}
+
     abstract public String getStats();
 }
