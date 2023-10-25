@@ -12,12 +12,23 @@ import javafx.scene.text.Text;
 import java.io.IOException;
 
 public class GameController {
+
+    /*
+
+
+    https://stackoverflow.com/questions/14187963/passing-parameters-javafx-fxml
+
+
+
+     */
     @FXML
     public Button idahoBtn, bakeryBtn, riceFieldsBtn, questionMarkBtn;
     @FXML
     public Label battleOutcomeLbl;
     @FXML
     public TextArea playerStatsTextArea, enemyStatsTextArea;
+    @FXML
+    public Button goBackBtn;
     private World world;
     private ScreenController screenController;
 
@@ -67,6 +78,10 @@ public class GameController {
 
     private void initBattle(Enemy enemy) throws IOException {
         screenController.activate("battle");
+        playerStatsTextArea.setDisable(true);
+        enemyStatsTextArea.setDisable(true);
+        playerStatsTextArea.setText(world.getPlayer().getStats());
+        enemyStatsTextArea.setText(enemy.getStats());
         world.createBattle(enemy);
     }
 

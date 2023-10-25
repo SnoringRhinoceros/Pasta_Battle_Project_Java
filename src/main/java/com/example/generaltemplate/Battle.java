@@ -6,6 +6,7 @@ public class Battle {
     private LivingBeing curBeing;
     private int turnNum = 1;
     private String result;
+    private LivingBeing winner;
 
     public Battle(PC player, Enemy enemy) {
         this.player = player;
@@ -15,10 +16,13 @@ public class Battle {
 
     public String runTurn(String chosenAction) {
         result = "";
-        doDmg();
-        endTurn();
-        doDmg();
-        endTurn();
+        for (int i = 0; i < 2; i++) {
+            doDmg();
+            if (battleDone()) {
+                return result;
+            }
+            endTurn();
+        }
         return result;
     }
 
@@ -27,6 +31,17 @@ public class Battle {
         getOpp(curBeing).addHealth(-dmgDealt);
         result += getDmgText(dmgDealt);
         return result;
+    }
+
+    private boolean battleDone() {
+        if (curBeing.isDead()) {
+            winner = getOpp(curBeing);
+            return true;
+        } else if (getOpp(curBeing).isDead()) {
+            winner = curBeing;
+            return true;
+        }
+        return false;
     }
 
     private void endTurn() {

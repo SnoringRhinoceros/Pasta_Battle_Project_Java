@@ -12,6 +12,7 @@ import java.util.LinkedHashMap;
 public class ScreenController {
     private GameController gameController;
     private Stage stage;
+    private boolean firstTime = true;
     public ScreenController(Stage stage) {
         this.stage = stage;
         gameController = new GameController();
@@ -23,6 +24,7 @@ public class ScreenController {
         loader.setController(gameController);
         Parent root = loader.load();
         stage.setScene(new Scene(root));
+        firstTime = false;
         gameController.myOwnInit(name);
         stage.show();
     }

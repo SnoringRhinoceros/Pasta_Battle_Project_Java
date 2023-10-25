@@ -23,4 +23,8 @@ public class World {
     public Battle getCurBattle() {
         return curBattle;
     }
+
+    public PC getPlayer() {
+        return player;
+    }
 }
