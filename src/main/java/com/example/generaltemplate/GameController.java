@@ -3,6 +3,7 @@ package com.example.generaltemplate;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.input.MouseEvent;
 
@@ -16,6 +17,12 @@ public class GameController {
     public Label battleOutcomeLbl;
     @FXML
     public TextArea enemyStatsTextArea, playerStatsTxtArea;
+    @FXML
+    public ListView actionGroupingsListView, specificActionListView;
+    @FXML
+    public TextArea itemDescriptionTextArea;
+    @FXML
+    public Button doActionBtn;
     FakeScreenController fakeScreenController;
     World world;
 
@@ -52,6 +59,10 @@ public class GameController {
         playerStatsTxtArea.setEditable(false);
         battleView.addFXMLElement(enemyStatsTextArea);
         enemyStatsTextArea.setEditable(false);
+        battleView.addFXMLElement(actionGroupingsListView);
+        battleView.addFXMLElement(specificActionListView);
+        battleView.addFXMLElement(itemDescriptionTextArea);
+        battleView.addFXMLElement(doActionBtn);
         fakeScreenController.add(battleView);
 
         fakeScreenController.activate(mainMap.getName());
