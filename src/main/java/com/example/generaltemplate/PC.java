@@ -1,5 +1,4 @@
 package com.example.generaltemplate;
-
 public class PC extends LivingBeing {
     private final CharacterType characterType;
 
