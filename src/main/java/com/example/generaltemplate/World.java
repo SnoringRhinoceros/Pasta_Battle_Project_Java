@@ -4,8 +4,8 @@ public class World {
     private final PC player;
     private Battle curBattle;
 
-    World() {
-        player = new PC("player", CharacterType.SPAGHETTI, 15, 2, 1, 1);
+    World(PC player) {
+        this.player = player;
     }
 
     public void createBattle(Enemy enemy) {
