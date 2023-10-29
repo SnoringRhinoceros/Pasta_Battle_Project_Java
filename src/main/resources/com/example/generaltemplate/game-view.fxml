@@ -62,7 +62,7 @@
       </Button>
 
 
-      <Label fx:id="battleOutcomeLbl" layoutX="218.0" layoutY="251.0" prefHeight="20.0" prefWidth="470.0" text="Label" textAlignment="CENTER">
+      <Label fx:id="battleOutcomeLbl" alignment="CENTER" contentDisplay="CENTER" layoutX="218.0" layoutY="251.0" prefHeight="20.0" prefWidth="470.0" text="Label" textAlignment="CENTER">
          <font>
             <Font size="14.0" />
          </font></Label>
@@ -73,14 +73,87 @@
          </font></Button>
       <ListView fx:id="actionGroupingsListView" layoutX="167.0" layoutY="301.0" onMouseClicked="#handleActionGroupingsListViewClick" prefHeight="118.0" prefWidth="117.0" />
       <ListView fx:id="specificActionListView" layoutX="311.0" layoutY="301.0" onMouseClicked="#handleSpecificActionListViewClick" prefHeight="195.0" prefWidth="178.0" />
-      <TextArea fx:id="itemDescriptionTextArea" layoutX="510.0" layoutY="301.0" prefHeight="195.0" prefWidth="201.0" />
+      <TextArea fx:id="itemDescriptionTextArea" layoutX="510.0" layoutY="301.0" prefHeight="195.0" prefWidth="227.0" />
       <TextArea fx:id="playerStatsTxtArea" layoutX="14.0" layoutY="215.0" prefHeight="364.0" prefWidth="110.0" />
-      <ImageView fx:id="playerImg" fitHeight="195.0" fitWidth="110.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../generaltemplate/img/Player/playerImg.png" />
-         </image></ImageView>
+      <ImageView fx:id="playerImg" fitHeight="195.0" fitWidth="110.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="enemyBattleImg" fitHeight="185.0" fitWidth="220.0" layoutX="289.0" layoutY="54.0" pickOnBounds="true" preserveRatio="true" />
       <ProgressBar fx:id="enemyBattleHealthBar" layoutX="300.0" layoutY="39.0" prefWidth="200.0" progress="0.0" />
       <Label fx:id="enemyBattleHPLbl" layoutX="309.0" layoutY="22.0" text="HP:" />
+      <AnchorPane fx:id="characterSelectPane" prefHeight="600.0" prefWidth="800.0">
+         <children>
+            <Label layoutX="138.0" layoutY="14.0" text="Choose your Pasta :)">
+               <font>
+                  <Font size="64.0" />
+               </font>
+            </Label>
+            <Button fx:id="Spaghetti" layoutX="51.0" layoutY="146.0" mnemonicParsing="false" onAction="#chooseCharacterBtnClick">
+               <graphic>
+                  <ImageView fitHeight="300.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../generaltemplate/img/Player/Spaghetti.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="Rotini" layoutX="550.0" layoutY="145.0" mnemonicParsing="false" onAction="#chooseCharacterBtnClick">
+               <graphic>
+                  <ImageView fitHeight="300.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../generaltemplate/img/Player/Rotini.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="Ravioli" layoutX="304.0" layoutY="146.0" mnemonicParsing="false" onAction="#chooseCharacterBtnClick">
+               <graphic>
+                  <ImageView fitHeight="300.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@img/Player/Ravioli.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Label layoutX="99.0" layoutY="107.0" text="Spaghetti">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Label>
+            <Label layoutX="364.0" layoutY="107.0" text="Ravioli">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Label>
+            <Label layoutX="611.0" layoutY="107.0" text="Rotini">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Label>
+            <Label layoutX="51.0" layoutY="462.0" prefHeight="30.0" prefWidth="200.0" text="Just your average Joe">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="329.0" layoutY="462.0" prefHeight="30.0" prefWidth="136.0" text="Basically a tank">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="561.0" layoutY="462.0" prefHeight="30.0" prefWidth="165.0" text="Looks cool I guess">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="109.0" layoutY="492.0" text="(Beginner)">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="615.0" layoutY="492.0" text="(Advanced)">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>

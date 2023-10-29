@@ -1,20 +1,15 @@
 package com.example.generaltemplate;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.EnumSet;
-import java.util.List;
-import java.util.Objects;
-
-import static com.example.generaltemplate.PossibleActions.getPossibleAction;
 
 public class GameController {
 
@@ -28,6 +23,8 @@ public class GameController {
     public TextArea enemyStatsTextArea, playerStatsTxtArea;
     @FXML
     public ListView actionGroupingsListView, specificActionListView;
+    @FXML
+    public AnchorPane characterSelectPane;
     private ActionGroupings selectedActionGrouping;
     private PossibleActions selectedSpecificAction;
     @FXML
@@ -46,6 +43,11 @@ public class GameController {
     @FXML
     public void initialize() {
         fakeScreenController = new FakeScreenController();
+
+        FakeScreen characterSelectView = new FakeScreen("characterSelectView");
+        characterSelectView.addFXMLElement(characterSelectPane);
+        fakeScreenController.add(characterSelectView);
+
         FakeScreen mainView = new FakeScreen("mainView");
         mainView.addFXMLElement(idahoBtn);
         mainView.addFXMLElement(bakeryBtn);
@@ -101,10 +103,10 @@ public class GameController {
         battleView.addFXMLElement(enemyBattleHPLbl);
         fakeScreenController.add(battleView);
 
-        fakeScreenController.activate(mainView.getName());
+        fakeScreenController.activate(characterSelectView.getName());
 
-        world = new World(new PC("player", "mainMap", CharacterType.SPAGHETTI, 15, 2, 1, 1));
-        playerStatsTxtArea.setText(world.getPlayer().getStats());
+//        world = new World(new PC("player", "mainMap", PastaType.SPAGHETTI, 15, 2, 1, 1));
+//
     }
 
     private void playerTravelTo(String place) {
@@ -164,8 +166,8 @@ public class GameController {
     }
 
     private void updateBattleView(String result) {
-        updateBattleView();
         battleOutcomeLbl.setText(result);
+        updateBattleView();
     }
 
     private void updateBattleView() {
@@ -206,7 +208,9 @@ public class GameController {
     public void doActionBtn(MouseEvent mouseEvent) {
         BattleState battleState = world.getCurBattle().getState();
         if (battleState.equals(BattleState.PLAYER_TURN)) {
-            updateBattleView(world.getCurBattle().runTurn("nonsense"));
+            String result = world.getCurBattle().runTurn("nonsense");
+            System.out.println(result);
+            updateBattleView(result);
         } else if (battleState.equals(BattleState.ENEMY_TURN)) {
             updateBattleView(world.getCurBattle().runTurn());
         } else if (battleState.equals(BattleState.BATTLE_OVER)) {
@@ -238,6 +242,17 @@ public class GameController {
         if (selectedSpecificActionTxt != null) {
             selectedSpecificAction = PossibleActions.getPossibleAction(selectedSpecificActionTxt);
             updateBattleView();
+        }
+    }
+
+    public void chooseCharacterBtnClick(ActionEvent actionEvent) {
+        for (PastaType pastaType: PastaType.values()) {
+            if (actionEvent.getSource().toString().contains(pastaType.getName())) {
+                world = new World(new PC("player", pastaType));
+                playerStatsTxtArea.setText(world.getPlayer().getStats());
+                displayImage(playerImg, "Player/" + pastaType.getName() + ".png");
+                fakeScreenController.activate("mainView");
+            }
         }
     }
 }

@@ -1,12 +1,23 @@
 package com.example.generaltemplate;
 
-import java.util.ArrayList;
-
 public class PC extends LivingBeing {
-    private final CharacterType characterType;
-    public PC(String name, String loc, CharacterType characterType, int maxHealth, int strength, int defense, int awesomeness) {
-        super(name, loc, maxHealth, strength, defense, awesomeness);
-        this.characterType = characterType;
+    private final PastaType pastaType;
+
+    public PC(String name, PastaType pastaType) {
+        // default sets the base stats as that of spaghetti
+        super(name, "mainMap", 40, 10, 10, 0);
+        this.pastaType = pastaType;
+        if (pastaType.equals(PastaType.RAVIOLI)) {
+            setMaxHealth(100);
+            setStrength(1);
+            setDefense(25);
+            setAwesomeness(0);
+        } else if (pastaType.equals(PastaType.ROTINI)) {
+            setMaxHealth(20);
+            setStrength(0);
+            setDefense(0);
+            setAwesomeness(69);
+        }
         getActions().add(new Action(PossibleActions.FISTS));
     }
 

@@ -61,6 +61,22 @@ abstract public class LivingBeing {
         return actions;
     }
 
+    public void setMaxHealth(int maxHealth) {
+        this.maxHealth = maxHealth;
+    }
+
+    public void setStrength(int strength) {
+        this.strength = strength;
+    }
+
+    public void setDefense(int defense) {
+        this.defense = defense;
+    }
+
+    public void setAwesomeness(int awesomeness) {
+        this.awesomeness = awesomeness;
+    }
+
     public boolean isDead() {return curHealth <= 0;}
 
     public void travelTo(String place) {

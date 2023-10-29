@@ -17,8 +17,9 @@ public class Battle {
 
     public String runTurn(String chosenAction) {
         result = "";
-        doDmg();
-        if (battleDone()) {
+        doDmg(chosenAction);
+        winner = getWinner();
+        if (winner != null) {
             state = BattleState.BATTLE_OVER;
             return result;
         }
@@ -30,22 +31,20 @@ public class Battle {
         return runTurn("Enemy turn");
     }
 
-    private String doDmg() {
+    private String doDmg(String chosenAction) {
         int dmgDealt = getDmgDealt();
         getOpp(curBeing).loseHealth(dmgDealt);
         result += getDmgText(dmgDealt);
         return result;
     }
 
-    private boolean battleDone() {
+    private LivingBeing getWinner() {
         if (curBeing.isDead()) {
-            winner = getOpp(curBeing);
-            return true;
+            return getOpp(curBeing);
         } else if (getOpp(curBeing).isDead()) {
-            winner = curBeing;
-            return true;
+            return curBeing;
         }
-        return false;
+        return null;
     }
 
     private void endTurn() {
@@ -74,7 +73,7 @@ public class Battle {
             result.append(curBeing.getName() + " attacked for " + dmgDealt + " damage.");
         }
         if (getOpp(curBeing).isDead()) {
-            result.append("\n" + getOpp(curBeing).getName() + " is dead. " + curBeing.getName() + " wins");
+            result.append(" " + getOpp(curBeing).getName() + " is dead. " + curBeing.getName() + " wins");
         }
         return result.toString();
     }
