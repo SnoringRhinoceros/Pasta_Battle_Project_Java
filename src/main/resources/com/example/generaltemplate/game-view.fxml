@@ -7,10 +7,11 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.generaltemplate.GameController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.generaltemplate.GameController">
    <children>
-      <Button fx:id="idahoBtn" layoutX="33.0" layoutY="27.0" mnemonicParsing="false" onMouseClicked="#handleIdahoBtnClick">
+      <Button fx:id="idahoBtn" layoutX="346.0" layoutY="85.0" mnemonicParsing="false" onMouseClicked="#handleIdahoBtnClick">
          <graphic>
             <ImageView fitHeight="110.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -19,7 +20,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button fx:id="bakeryBtn" layoutX="241.0" layoutY="27.0" mnemonicParsing="false" onMouseClicked="#handleBakeryBtnClick">
+      <Button fx:id="bakeryBtn" layoutX="480.0" layoutY="226.0" mnemonicParsing="false" onMouseClicked="#handleBakeryBtnClick">
          <graphic>
             <ImageView fitHeight="110.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -28,7 +29,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button fx:id="riceFieldsBtn" layoutX="435.0" layoutY="27.0" mnemonicParsing="false" onMouseClicked="#handleRiceFieldsBtnClick">
+      <Button fx:id="riceFieldsBtn" layoutX="539.0" layoutY="85.0" mnemonicParsing="false" onMouseClicked="#handleRiceFieldsBtnClick">
          <graphic>
             <ImageView fitHeight="110.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -37,7 +38,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button fx:id="questionMarkBtn" layoutX="241.0" layoutY="200.0" mnemonicParsing="false" onMouseClicked="#handleQuestionMarkBtnClick">
+      <Button fx:id="questionMarkBtn" layoutX="588.0" layoutY="412.0" mnemonicParsing="false" onMouseClicked="#handleQuestionMarkBtnClick">
          <graphic>
             <ImageView fitHeight="110.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -48,8 +49,8 @@
       </Button>
 
 
-      <Button fx:id="goBackBtn" layoutX="22.0" layoutY="80.0" mnemonicParsing="false" onMouseClicked="#goBack" text="Go Back" />
-      <Button fx:id="militaryPotatoBtn" layoutX="183.0" layoutY="69.0" mnemonicParsing="false" onMouseClicked="#fightMilitaryPotato" prefHeight="96.0" prefWidth="0.0">
+      <Button fx:id="goBackBtn" layoutX="152.0" layoutY="36.0" mnemonicParsing="false" onMouseClicked="#goBack" text="Go Back" />
+      <Button fx:id="militaryPotatoBtn" layoutX="226.0" layoutY="75.0" mnemonicParsing="false" onMouseClicked="#fightMilitaryPotato" prefHeight="96.0" prefWidth="0.0">
          <graphic>
             <ImageView fitHeight="88.0" fitWidth="88.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -60,13 +61,20 @@
       </Button>
 
 
-      <Label fx:id="battleOutcomeLbl" layoutX="272.0" layoutY="149.0" text="Label" />
-      <TextArea fx:id="enemyStatsTextArea" layoutX="331.0" layoutY="14.0" prefHeight="125.0" prefWidth="116.0" />
-      <Button fx:id="doActionBtn" layoutX="270.0" layoutY="352.0" mnemonicParsing="false" onMouseClicked="#doActionBtn" text="Do" />
-      <TextArea fx:id="playerStatsTxtArea" layoutX="14.0" layoutY="149.0" prefHeight="151.0" prefWidth="107.0" />
-      <ListView fx:id="actionGroupingsListView" layoutX="143.0" layoutY="206.0" prefHeight="100.0" prefWidth="107.0" />
-      <ListView fx:id="specificActionListView" layoutX="258.0" layoutY="206.0" prefHeight="133.0" prefWidth="107.0" />
-      <ImageView fitHeight="110.0" fitWidth="110.0" layoutX="217.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true" />
-      <TextArea fx:id="itemDescriptionTextArea" layoutX="377.0" layoutY="209.0" prefHeight="134.0" prefWidth="104.0" />
+      <Label fx:id="battleOutcomeLbl" layoutX="218.0" layoutY="226.0" prefHeight="20.0" prefWidth="470.0" text="Label" textAlignment="CENTER">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <TextArea fx:id="enemyStatsTextArea" layoutX="521.0" layoutY="28.0" prefHeight="185.0" prefWidth="145.0" />
+      <Button fx:id="doActionBtn" layoutX="384.0" layoutY="492.0" mnemonicParsing="false" onMouseClicked="#doActionBtn" text="Do" />
+      <ListView fx:id="actionGroupingsListView" layoutX="167.0" layoutY="276.0" prefHeight="118.0" prefWidth="117.0" />
+      <ListView fx:id="specificActionListView" layoutX="311.0" layoutY="276.0" prefHeight="195.0" prefWidth="178.0" />
+      <TextArea fx:id="itemDescriptionTextArea" layoutX="510.0" layoutY="276.0" prefHeight="195.0" prefWidth="201.0" />
+      <TextArea fx:id="playerStatsTxtArea" layoutX="14.0" layoutY="215.0" prefHeight="364.0" prefWidth="110.0" />
+      <ImageView fx:id="playerImg" fitHeight="195.0" fitWidth="110.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../generaltemplate/img/Player/playerImg.png" />
+         </image></ImageView>
+      <ImageView fx:id="enemyBattleImg" fitHeight="185.0" fitWidth="220.0" layoutX="289.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true" />
    </children>
 </AnchorPane>

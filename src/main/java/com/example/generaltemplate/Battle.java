@@ -76,4 +76,8 @@ public class Battle {
         }
         return player;
     }
+
+    public Enemy getEnemy() {
+        return enemy;
+    }
 }

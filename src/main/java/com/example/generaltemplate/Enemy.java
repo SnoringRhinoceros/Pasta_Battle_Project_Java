@@ -3,18 +3,28 @@ package com.example.generaltemplate;
 import javafx.scene.image.ImageView;
 
 public class Enemy extends LivingBeing{
-    private ImageView img;
-    public Enemy(String name, int health, int strength, int defense, int awesomeness) {
+    private String imgPath;
+    private String entryText;
+    public Enemy(String name, String imgPath, String entryText, int health, int strength, int defense, int awesomeness) {
         super(name, health, strength, defense, awesomeness);
-        this.img = img;
+        this.imgPath = imgPath;
+        this.entryText = entryText;
     }
 
     @Override
     public String getStats() {
-        return getName() + " stats:" + "\n"
-                + "health, " + getHealth() + "\n"
-                + "strength, " + getStrength() + "\n"
-                + "defense, " + getDefense() + "\n"
-                + "awesomeness, " + getAwesomeness() + "\n";
+        return getName() + "'s stats:" + "\n"
+                + "Health, " + getHealth() + "\n"
+                + "Strength, " + getStrength() + "\n"
+                + "Defense, " + getDefense() + "\n"
+                + "Awesomeness, " + getAwesomeness() + "\n";
+    }
+
+    public String getImgPath() {
+        return imgPath;
+    }
+
+    public String getEntryText() {
+        return entryText;
     }
 }

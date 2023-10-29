@@ -9,10 +9,10 @@ public class PC extends LivingBeing {
 
     @Override
     public String getStats() {
-        return characterType.name().toLowerCase() + " " + getName() + " " + "stats:" + "\n"
-                + "health, " + getHealth() + "\n"
-                + "strength, " + getStrength() + "\n"
-                + "defense, " + getDefense() + "\n"
-                + "awesomeness, " + getAwesomeness() + "\n";
+        return "Your stats:" + "\n"
+                + "Health, " + getHealth() + "\n"
+                + "Strength, " + getStrength() + "\n"
+                + "Defense, " + getDefense() + "\n"
+                + "Awesomeness, " + getAwesomeness() + "\n";
     }
 }
