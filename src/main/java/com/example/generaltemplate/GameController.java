@@ -1,16 +1,14 @@
 package com.example.generaltemplate;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.util.Objects;
 
 public class GameController {
 
@@ -30,21 +28,25 @@ public class GameController {
     public Button doActionBtn;
     @FXML
     public ImageView playerImg, enemyBattleImg;
+    @FXML
+    public ProgressBar enemyBattleHealthBar;
+    @FXML
+    public Label enemyBattleHPLbl;
     FakeScreenController fakeScreenController;
     World world;
 
     @FXML
     public void initialize() {
         fakeScreenController = new FakeScreenController();
-        FakeScreen mainMap = new FakeScreen("mainView");
-        mainMap.addFXMLElement(idahoBtn);
-        mainMap.addFXMLElement(bakeryBtn);
-        mainMap.addFXMLElement(riceFieldsBtn);
-        mainMap.addFXMLElement(questionMarkBtn);
-        mainMap.addFXMLElement(playerImg);
-        mainMap.addFXMLElement(playerStatsTxtArea);
+        FakeScreen mainView = new FakeScreen("mainView");
+        mainView.addFXMLElement(idahoBtn);
+        mainView.addFXMLElement(bakeryBtn);
+        mainView.addFXMLElement(riceFieldsBtn);
+        mainView.addFXMLElement(questionMarkBtn);
+        mainView.addFXMLElement(playerImg);
+        mainView.addFXMLElement(playerStatsTxtArea);
         questionMarkBtn.setDisable(true);
-        fakeScreenController.add(mainMap);
+        fakeScreenController.add(mainView);
 
         FakeScreen idahoView = new FakeScreen("idahoView");
         idahoView.addFXMLElement(goBackBtn);
@@ -86,37 +88,44 @@ public class GameController {
         battleView.addFXMLElement(itemDescriptionTextArea);
         battleView.addFXMLElement(doActionBtn);
         battleView.addFXMLElement(enemyBattleImg);
+        battleView.addFXMLElement(enemyBattleHealthBar);
+        battleView.addFXMLElement(enemyBattleHPLbl);
         fakeScreenController.add(battleView);
 
-        fakeScreenController.activate(mainMap.getName());
+        fakeScreenController.activate(mainView.getName());
 
-        world = new World(new PC("player", CharacterType.SPAGHETTI, 15, 2, 1, 1));
+        world = new World(new PC("player", "mainMap", CharacterType.SPAGHETTI, 15, 2, 1, 1));
         playerStatsTxtArea.setText(world.getPlayer().getStats());
+    }
+
+    private void playerTravelTo(String place) {
+        world.getPlayer().travelTo(place);
+        fakeScreenController.activate(place);
     }
 
     @FXML
     public void handleIdahoBtnClick(MouseEvent mouseEvent) {
-        fakeScreenController.activate("idahoView");
+        playerTravelTo("idahoView");
     }
 
     @FXML
     public void handleBakeryBtnClick(MouseEvent mouseEvent) {
-        fakeScreenController.activate("bakeryView");
+        playerTravelTo("bakeryView");
     }
 
     @FXML
     public void handleRiceFieldsBtnClick(MouseEvent mouseEvent) {
-        fakeScreenController.activate("riceFieldsView");
+        playerTravelTo("riceFieldsView");
     }
 
     @FXML
     public void handleQuestionMarkBtnClick(MouseEvent mouseEvent) {
-        fakeScreenController.activate("questionMarkView");
+        playerTravelTo("questionMarkView");
     }
 
     @FXML
     public void goBack(MouseEvent mouseEvent) {
-        fakeScreenController.activate("mainView");
+        playerTravelTo("mainView");
     }
 
     private static void displayImage(ImageView imageView, String imgPath) {
@@ -134,11 +143,20 @@ public class GameController {
         enemyStatsTextArea.setText(world.getCurBattle().getEnemy().getStats());
         displayImage(enemyBattleImg, world.getCurBattle().getEnemy().getImgPath());
         battleOutcomeLbl.setText(world.getCurBattle().getEnemy().getEntryText());
+        updateEnemyBattleHealthBar();
+        doActionBtn.setText("Do");
+    }
+
+    private void updateEnemyBattleHealthBar() {
+        Enemy curEnemy =  world.getCurBattle().getEnemy();
+        enemyBattleHealthBar.setProgress((double) curEnemy.getCurHealth() / (double) curEnemy.getMaxHealth());
+        enemyBattleHPLbl.setText("HP: " + curEnemy.getCurHealth() + "/" + curEnemy.getMaxHealth());
     }
 
     private void updateBattleView(String result) {
         playerStatsTxtArea.setText(world.getPlayer().getStats());
         enemyStatsTextArea.setText(world.getCurBattle().getEnemy().getStats());
+        updateEnemyBattleHealthBar();
         battleOutcomeLbl.setText(result);
         BattleState battleState = world.getCurBattle().getState();
         if (battleState.equals(BattleState.PLAYER_TURN)) {
@@ -149,7 +167,6 @@ public class GameController {
             doActionBtn.setText("Leave battle");
         }
     }
-
 
     @FXML
     public void fightMilitaryPotato(MouseEvent mouseEvent) {
@@ -166,7 +183,7 @@ public class GameController {
         } else if (battleState.equals(BattleState.ENEMY_TURN)) {
             updateBattleView(world.getCurBattle().runTurn());
         } else if (battleState.equals(BattleState.BATTLE_OVER)) {
-            // change scene back to original location
+            fakeScreenController.activate(world.getPlayer().getLoc());
         }
     }
 }

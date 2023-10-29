@@ -15,6 +15,7 @@ public class World {
     public Enemy createNewEnemy(EnemyType enemyType) {
         if (enemyType.equals(EnemyType.MILITARY_POTATO)) {
             return new Enemy("Joe", "Idaho/militaryPotato.png",
+                    "idahoView",
                     "You encountered a random potato named Joe",
                     5, 1, 0, 0);
         }

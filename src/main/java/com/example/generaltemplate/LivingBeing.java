@@ -7,17 +7,23 @@ abstract public class LivingBeing {
     private int defense;
     private int awesomeness;
     private int curHealth;
-    public LivingBeing(String name, int maxHealth, int strength, int defense, int awesomeness) {
+    private String loc;
+    public LivingBeing(String name, String loc, int maxHealth, int strength, int defense, int awesomeness) {
         this.name = name;
         this.maxHealth = maxHealth;
         curHealth = maxHealth;
         this.strength = strength;
         this.defense = defense;
         this.awesomeness = awesomeness;
+        this.loc = loc;
     }
 
     public String getName() {
         return name;
+    }
+
+    public String getLoc() {
+        return loc;
     }
 
     public int getMaxHealth() {
@@ -25,7 +31,11 @@ abstract public class LivingBeing {
     }
 
     public void loseHealth(int amount) {
-        curHealth -= amount;
+        if (curHealth - amount <= 0) {
+            curHealth = 0;
+        } else {
+            curHealth -= amount;
+        }
     }
 
     public int getStrength() {
@@ -45,6 +55,10 @@ abstract public class LivingBeing {
     }
 
     public boolean isDead() {return curHealth <= 0;}
+
+    public void travelTo(String place) {
+        loc = place;
+    }
 
     abstract public String getStats();
 }
