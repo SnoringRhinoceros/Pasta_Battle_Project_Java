@@ -16,8 +16,15 @@ public class Battle {
     }
 
     public String runTurn(PossibleActions chosenAction) {
+        player.passTick();
         result = "";
-        doDmg(chosenAction);
+        if (chosenAction.getGrouping().equals(ActionGroupings.SPELLS)) {
+            curBeing.getStatModifiersOwned().addStatModif(new StatModifier(chosenAction.getStatModifier()));
+            result = curBeing.getName() + " casts a " + chosenAction.getStrName() + " spell";
+        } else {
+            doDmg(chosenAction);
+            curBeing.getStatModifiersOwned().clearFinishedStats();
+        }
         winner = getWinner();
         if (winner != null) {
             state = BattleState.BATTLE_OVER;
@@ -39,7 +46,7 @@ public class Battle {
     }
 
     private int getDmgDealt(PossibleActions chosenAction) {
-        curBeing.getStatModifiersOwned().addStatModif(chosenAction.getStatModifier(), true);
+        curBeing.getStatModifiersOwned().addStatModif(new StatModifier(chosenAction.getStatModifier(), 0));
         Stats curBeingModifiedStats = curBeing.getStatModifiersOwned().getTotalStatModif(curBeing.getStats());
         int dmgDealt = curBeingModifiedStats.getStrength();
         Stats oppBeingModifiedStats = getOpp(curBeing).getStatModifiersOwned().getTotalStatModif(getOpp(curBeing).getStats());
@@ -48,7 +55,6 @@ public class Battle {
         if (dmgDealt <= 0) {
             dmgDealt = 0;
         }
-        curBeing.getStatModifiersOwned().clearTempStats();
         return dmgDealt;
     }
 

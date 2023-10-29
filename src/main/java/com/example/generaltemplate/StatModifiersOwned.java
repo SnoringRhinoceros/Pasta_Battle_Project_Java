@@ -1,18 +1,20 @@
 package com.example.generaltemplate;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 
 public class StatModifiersOwned {
     private ArrayList<StatModifier> statModifiers = new ArrayList<>();
-    private ArrayList<Integer> tempModifiers = new ArrayList<>();
 
-    public void addStatModif(StatModifier statModifier, boolean temporary) {
-        statModifiers.add(statModifier);
-        if (temporary) {
-            tempModifiers.add(statModifiers.size()-1);
+    public void addStatModif(StatModifier newStatModifier) {
+        if (newStatModifier.getDuration() > 0) {
+            for (StatModifier statModifier: statModifiers) {
+                if (newStatModifier.getReason().equals(statModifier.getReason())) {
+                    statModifier.addDuration(newStatModifier.getDuration());
+                    return;
+                }
+            }
         }
+        statModifiers.add(newStatModifier);
     }
 
     public Stats getTotalStatModif(Stats stat) {
@@ -23,14 +25,29 @@ public class StatModifiersOwned {
         return modifiedStat;
     }
 
-    public void clearTempStats() {
-        if (!tempModifiers.isEmpty()) {
-            Collections.sort(tempModifiers);
-            Collections.reverse(tempModifiers);
-            for (Integer tempModifierInd: tempModifiers) {
-                statModifiers.remove((int) tempModifierInd);
+    public void clearFinishedStats() {
+        for (int i = statModifiers.size()-1; i >= 0; i--) {
+            if (statModifiers.get(i).getDuration() <= 0) {
+                statModifiers.remove(i);
             }
-            tempModifiers.clear();
         }
+    }
+
+    public void decrementStatDurations() {
+        for (StatModifier statModifier : statModifiers) {
+            statModifier.decrementDuration();
+        }
+    }
+
+    public String getAllStatModifierText() {
+        if (statModifiers.size() > 0) {
+            StringBuilder result = new StringBuilder();
+            result.append("Modifiers:");
+            for (StatModifier statmodifier: statModifiers) {
+                result.append("\n").append(statmodifier.getText());
+            }
+            return result.toString();
+        }
+         return "";
     }
 }

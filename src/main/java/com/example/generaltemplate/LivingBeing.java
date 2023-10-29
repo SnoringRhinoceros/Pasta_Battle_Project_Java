@@ -46,4 +46,9 @@ abstract public class LivingBeing {
     public Stats getStats() {return stats;}
 
     abstract public String getStatsText();
+
+    public void passTick() {
+        getStatModifiersOwned().decrementStatDurations();
+        getStatModifiersOwned().clearFinishedStats();
+    }
 }

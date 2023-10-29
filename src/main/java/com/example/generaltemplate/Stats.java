@@ -1,5 +1,7 @@
 package com.example.generaltemplate;
 
+import java.util.ArrayList;
+
 public class Stats {
     private int maxHealth;
     private int strength;
@@ -13,6 +15,14 @@ public class Stats {
         this.defense = defense;
         this.awesomeness = awesomeness;
         this.curHealth = curHealth;
+    }
+
+    public Stats(Stats stat) {
+        this.maxHealth = stat.getMaxHealth();
+        this.strength = stat.getStrength();
+        this.defense = stat.getDefense();
+        this.awesomeness = stat.getAwesomeness();
+        this.curHealth = stat.getCurHealth();
     }
 
     public int getMaxHealth() {

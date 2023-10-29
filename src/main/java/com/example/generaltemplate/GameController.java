@@ -169,6 +169,7 @@ public class GameController {
 
     private void updateBattleView() {
         playerStatsTxtArea.setText(world.getPlayer().getStatsText());
+        playerStatsTxtArea.appendText("\n" + world.getPlayer().getStatModifiersOwned().getAllStatModifierText());
         enemyStatsTextArea.setText(world.getCurBattle().getEnemy().getStatsText());
         updateEnemyBattleHealthBar();
         BattleState battleState = world.getCurBattle().getState();
@@ -192,6 +193,8 @@ public class GameController {
         } else if (battleState.equals(BattleState.BATTLE_OVER)) {
             doActionBtn.setText("Leave battle");
         }
+        playerStatsTxtArea.setText(world.getPlayer().getStatsText());
+        playerStatsTxtArea.appendText("\n" + world.getPlayer().getStatModifiersOwned().getAllStatModifierText());
     }
 
     @FXML

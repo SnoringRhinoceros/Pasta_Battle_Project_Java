@@ -2,17 +2,17 @@ package com.example.generaltemplate;
 
 public enum PossibleActions {
     FISTS ("Fists", ActionGroupings.WEAPONS,
-            new StatModifier("Fists", 0,0,0,0,0),
+            new StatModifier("Fists", new Stats(0,0,0,0,0)),
             "Fists always work\nHowever, they only do your base damage"),
     BASIC_SWORD ("Basic sword", ActionGroupings.WEAPONS,
-            new StatModifier("Basic sword", 0,5,0,0,0),
+            new StatModifier("Basic sword", new Stats(0,5,0,0,0)),
             "Simple sword for a simple pasta\n +5 damage"),
     BASIC_HAMMER ("Basic hammer", ActionGroupings.WEAPONS,
-            new StatModifier("Basic shield", 0, 0, 5, 0, 0),
+            new StatModifier("Basic shield", new Stats(0, 10, 0, 0, 0)),
             "Slow but strong\n+10 damage"),
     BASIC_SAUCE ("Basic sauce", ActionGroupings.SPELLS,
-            new StatModifier("Basic Sauce", 0,0,0,0,0),
-            "A beginner rotini's first spell\n+5 to sauce dmg");
+            new StatModifier("Basic Sauce", 5, new Stats(0,5,0,0,0)),
+            "The letters ABC in a baby rotini's alphabet\n+5 to sauce dmg");
 
     private final String strName;
     private final String description;
