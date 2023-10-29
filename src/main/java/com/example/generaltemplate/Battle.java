@@ -15,7 +15,7 @@ public class Battle {
         curBeing = this.player;
     }
 
-    public String runTurn(String chosenAction) {
+    public String runTurn(PossibleActions chosenAction) {
         result = "";
         doDmg(chosenAction);
         winner = getWinner();
@@ -28,14 +28,22 @@ public class Battle {
     }
 
     public String runTurn() {
-        return runTurn("Enemy turn");
+        return runTurn(PossibleActions.FISTS);
     }
 
-    private String doDmg(String chosenAction) {
-        int dmgDealt = getDmgDealt();
+    private String doDmg(PossibleActions chosenAction) {
+        int dmgDealt = getDmgDealt(chosenAction);
         getOpp(curBeing).loseHealth(dmgDealt);
         result += getDmgText(dmgDealt);
         return result;
+    }
+
+    private int getDmgDealt(PossibleActions chosenAction) {
+        int dmgDealt = curBeing.getStrength()+chosenAction.getStatModifier().strengthModif()-getOpp(curBeing).getDefense();
+        if (dmgDealt <= 0) {
+            dmgDealt = 0;
+        }
+        return dmgDealt;
     }
 
     private LivingBeing getWinner() {
@@ -57,14 +65,6 @@ public class Battle {
         turnNum++;
     }
 
-    private int getDmgDealt() {
-        int dmgDealt = curBeing.getStrength()-getOpp(curBeing).getDefense();
-        if (dmgDealt <= 0) {
-            dmgDealt = 0;
-        }
-        return dmgDealt;
-    }
-
     private String getDmgText(int dmgDealt) {
         StringBuilder result = new StringBuilder();
         if (dmgDealt == 0) {
@@ -73,7 +73,7 @@ public class Battle {
             result.append(curBeing.getName() + " attacked for " + dmgDealt + " damage.");
         }
         if (getOpp(curBeing).isDead()) {
-            result.append(" " + getOpp(curBeing).getName() + " is dead. " + curBeing.getName() + " wins");
+            result.append(" " + curBeing.getName() + " wins!");
         }
         return result.toString();
     }

@@ -77,6 +77,10 @@ abstract public class LivingBeing {
         this.awesomeness = awesomeness;
     }
 
+    public void setCurHealth(int curHealth) {
+        this.curHealth = curHealth;
+    }
+
     public boolean isDead() {return curHealth <= 0;}
 
     public void travelTo(String place) {

@@ -208,8 +208,7 @@ public class GameController {
     public void doActionBtn(MouseEvent mouseEvent) {
         BattleState battleState = world.getCurBattle().getState();
         if (battleState.equals(BattleState.PLAYER_TURN)) {
-            String result = world.getCurBattle().runTurn("nonsense");
-            System.out.println(result);
+            String result = world.getCurBattle().runTurn(selectedSpecificAction);
             updateBattleView(result);
         } else if (battleState.equals(BattleState.ENEMY_TURN)) {
             updateBattleView(world.getCurBattle().runTurn());
