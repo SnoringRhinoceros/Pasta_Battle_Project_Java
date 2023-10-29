@@ -8,37 +8,37 @@ public class PC extends LivingBeing {
         super(name, "mainMap", 0, 0, 0, 0);
         this.pastaType = pastaType;
         if (pastaType.equals(PastaType.SPAGHETTI)) {
-            setMaxHealth(40);
-            setCurHealth(40);
-            setStrength(5);
-            setDefense(5);
-            setAwesomeness(5);
+            getStats().setMaxHealth(40);
+            getStats().setCurHealth(40);
+            getStats().setStrength(5);
+            getStats().setDefense(5);
+            getStats().setAwesomeness(5);
             getActions().add(new Action(PossibleActions.BASIC_SWORD));
         } else if (pastaType.equals(PastaType.RAVIOLI)) {
-            setMaxHealth(100);
-            setCurHealth(100);
-            setStrength(1);
-            setDefense(15);
-            setAwesomeness(0);
-            getActions().add(new Action(PossibleActions.BASIC_SHIELD));
+            getStats().setMaxHealth(100);
+            getStats().setCurHealth(100);
+            getStats().setStrength(1);
+            getStats().setDefense(15);
+            getStats().setAwesomeness(0);
+            getActions().add(new Action(PossibleActions.BASIC_HAMMER));
         } else if (pastaType.equals(PastaType.ROTINI)) {
-            setMaxHealth(20);
-            setCurHealth(20);
-            setStrength(0);
-            setDefense(0);
-            setAwesomeness(69);
+            getStats().setMaxHealth(20);
+            getStats().setCurHealth(20);
+            getStats().setStrength(0);
+            getStats().setDefense(0);
+            getStats().setAwesomeness(69);
             getActions().add(new Action(PossibleActions.BASIC_SAUCE));
         }
         getActions().add(new Action(PossibleActions.FISTS));
     }
 
     @Override
-    public String getStats() {
+    public String getStatsText() {
         return "Your stats:" + "\n"
-                + "Health, " + getCurHealth() + "/" + getMaxHealth() + "\n"
-                + "Strength, " + getStrength() + "\n"
-                + "Defense, " + getDefense() + "\n"
-                + "Awesomeness, " + getAwesomeness() + "\n";
+                + "Health, " + getStats().getCurHealth() + "/" + getStats().getMaxHealth() + "\n"
+                + "Strength, " + getStats().getStrength() + "\n"
+                + "Defense, " + getStats().getDefense() + "\n"
+                + "Awesomeness, " + getStats().getAwesomeness() + "\n";
     }
 
     public PastaType getPastaType() {

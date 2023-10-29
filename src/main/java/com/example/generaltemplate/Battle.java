@@ -39,10 +39,16 @@ public class Battle {
     }
 
     private int getDmgDealt(PossibleActions chosenAction) {
-        int dmgDealt = curBeing.getStrength()+chosenAction.getStatModifier().strengthModif()-getOpp(curBeing).getDefense();
+        curBeing.getStatModifiersOwned().addStatModif(chosenAction.getStatModifier(), true);
+        Stats curBeingModifiedStats = curBeing.getStatModifiersOwned().getTotalStatModif(curBeing.getStats());
+        int dmgDealt = curBeingModifiedStats.getStrength();
+        Stats oppBeingModifiedStats = getOpp(curBeing).getStatModifiersOwned().getTotalStatModif(getOpp(curBeing).getStats());
+        int dmgOpposed = oppBeingModifiedStats.getDefense();
+        dmgDealt = dmgDealt - dmgOpposed;
         if (dmgDealt <= 0) {
             dmgDealt = 0;
         }
+        curBeing.getStatModifiersOwned().clearTempStats();
         return dmgDealt;
     }
 

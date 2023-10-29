@@ -10,12 +10,12 @@ public class Enemy extends LivingBeing{
     }
 
     @Override
-    public String getStats() {
+    public String getStatsText() {
         return getName() + "'s stats:" + "\n"
-                + "Health, " + getCurHealth() + "/" + getMaxHealth() + "\n"
-                + "Strength, " + getStrength() + "\n"
-                + "Defense, " + getDefense() + "\n"
-                + "Awesomeness, " + getAwesomeness() + "\n";
+                + "Health, " + getStats().getCurHealth() + "/" + getStats().getMaxHealth() + "\n"
+                + "Strength, " + getStats().getStrength() + "\n"
+                + "Defense, " + getStats().getDefense() + "\n"
+                + "Awesomeness, " + getStats().getAwesomeness() + "\n";
     }
 
     public String getImgPath() {

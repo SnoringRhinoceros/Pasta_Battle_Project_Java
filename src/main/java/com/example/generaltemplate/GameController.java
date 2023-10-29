@@ -104,9 +104,6 @@ public class GameController {
         fakeScreenController.add(battleView);
 
         fakeScreenController.activate(characterSelectView.getName());
-
-//        world = new World(new PC("player", "mainMap", PastaType.SPAGHETTI, 15, 2, 1, 1));
-//
     }
 
     private void playerTravelTo(String place) {
@@ -150,8 +147,8 @@ public class GameController {
     }
 
     private void initBattleScreen() {
-        playerStatsTxtArea.setText(world.getPlayer().getStats());
-        enemyStatsTextArea.setText(world.getCurBattle().getEnemy().getStats());
+        playerStatsTxtArea.setText(world.getPlayer().getStatsText());
+        enemyStatsTextArea.setText(world.getCurBattle().getEnemy().getStatsText());
         displayImage(enemyBattleImg, world.getCurBattle().getEnemy().getImgPath());
         battleOutcomeLbl.setText(world.getCurBattle().getEnemy().getEntryText());
         updateEnemyBattleHealthBar();
@@ -161,8 +158,8 @@ public class GameController {
 
     private void updateEnemyBattleHealthBar() {
         Enemy curEnemy =  world.getCurBattle().getEnemy();
-        enemyBattleHealthBar.setProgress((double) curEnemy.getCurHealth() / (double) curEnemy.getMaxHealth());
-        enemyBattleHPLbl.setText("HP: " + curEnemy.getCurHealth() + "/" + curEnemy.getMaxHealth());
+        enemyBattleHealthBar.setProgress((double) curEnemy.getStats().getCurHealth() / (double) curEnemy.getStats().getMaxHealth());
+        enemyBattleHPLbl.setText("HP: " + curEnemy.getStats().getCurHealth() + "/" + curEnemy.getStats().getMaxHealth());
     }
 
     private void updateBattleView(String result) {
@@ -171,8 +168,8 @@ public class GameController {
     }
 
     private void updateBattleView() {
-        playerStatsTxtArea.setText(world.getPlayer().getStats());
-        enemyStatsTextArea.setText(world.getCurBattle().getEnemy().getStats());
+        playerStatsTxtArea.setText(world.getPlayer().getStatsText());
+        enemyStatsTextArea.setText(world.getCurBattle().getEnemy().getStatsText());
         updateEnemyBattleHealthBar();
         BattleState battleState = world.getCurBattle().getState();
         specificActionListView.getItems().clear();
@@ -213,6 +210,9 @@ public class GameController {
         } else if (battleState.equals(BattleState.ENEMY_TURN)) {
             updateBattleView(world.getCurBattle().runTurn());
         } else if (battleState.equals(BattleState.BATTLE_OVER)) {
+            if (world.getPlayer().isDead()) {
+                // handle that
+            }
             fakeScreenController.activate(world.getPlayer().getLoc());
         }
     }
@@ -248,7 +248,7 @@ public class GameController {
         for (PastaType pastaType: PastaType.values()) {
             if (actionEvent.getSource().toString().contains(pastaType.getName())) {
                 world = new World(new PC("player", pastaType));
-                playerStatsTxtArea.setText(world.getPlayer().getStats());
+                playerStatsTxtArea.setText(world.getPlayer().getStatsText());
                 displayImage(playerImg, "Player/" + pastaType.getName() + ".png");
                 fakeScreenController.activate("mainView");
             }

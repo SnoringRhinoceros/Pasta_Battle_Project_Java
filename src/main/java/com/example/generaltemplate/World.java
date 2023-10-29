@@ -17,7 +17,7 @@ public class World {
             return new Enemy("Joe", "Idaho/militaryPotato.png",
                     "idahoView",
                     "You encountered a random potato named Joe",
-                    5, 1, 0, 0);
+                    20, 5, 0, 0);
         }
         throw new RuntimeException("Invalid enemy type");
     }
