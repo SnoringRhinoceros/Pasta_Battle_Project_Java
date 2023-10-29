@@ -7,6 +7,7 @@ public class Battle {
     private int turnNum = 1;
     private String result;
     private LivingBeing winner;
+    private BattleState state = BattleState.PLAYER_TURN;
 
     public Battle(PC player, Enemy enemy) {
         this.player = player;
@@ -16,19 +17,22 @@ public class Battle {
 
     public String runTurn(String chosenAction) {
         result = "";
-        for (int i = 0; i < 2; i++) {
-            doDmg();
-            if (battleDone()) {
-                return result;
-            }
-            endTurn();
+        doDmg();
+        if (battleDone()) {
+            state = BattleState.BATTLE_OVER;
+            return result;
         }
+        endTurn();
         return result;
+    }
+
+    public String runTurn() {
+        return runTurn("Enemy turn");
     }
 
     private String doDmg() {
         int dmgDealt = getDmgDealt();
-        getOpp(curBeing).addHealth(-dmgDealt);
+        getOpp(curBeing).loseHealth(dmgDealt);
         result += getDmgText(dmgDealt);
         return result;
     }
@@ -46,6 +50,11 @@ public class Battle {
 
     private void endTurn() {
         curBeing = getOpp(curBeing);
+        if (curBeing.equals(player)) {
+            state = BattleState.PLAYER_TURN;
+        } else if (curBeing.equals(enemy)) {
+            state = BattleState.ENEMY_TURN;
+        }
         turnNum++;
     }
 
@@ -77,7 +86,15 @@ public class Battle {
         return player;
     }
 
+    public int getTurnNum() {
+        return turnNum;
+    }
+
     public Enemy getEnemy() {
         return enemy;
+    }
+
+    public BattleState getState() {
+        return state;
     }
 }

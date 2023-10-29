@@ -136,14 +136,37 @@ public class GameController {
         battleOutcomeLbl.setText(world.getCurBattle().getEnemy().getEntryText());
     }
 
+    private void updateBattleView(String result) {
+        playerStatsTxtArea.setText(world.getPlayer().getStats());
+        enemyStatsTextArea.setText(world.getCurBattle().getEnemy().getStats());
+        battleOutcomeLbl.setText(result);
+        BattleState battleState = world.getCurBattle().getState();
+        if (battleState.equals(BattleState.PLAYER_TURN)) {
+            doActionBtn.setText("Do");
+        } else if (battleState.equals(BattleState.ENEMY_TURN)) {
+            doActionBtn.setText("Enemy attacks");
+        } else if (battleState.equals(BattleState.BATTLE_OVER)) {
+            doActionBtn.setText("Leave battle");
+        }
+    }
+
+
     @FXML
     public void fightMilitaryPotato(MouseEvent mouseEvent) {
         fakeScreenController.activate("battleView");
-        world.createBattle(world.createNewEnemy(EnemyTypes.MILITARY_POTATO));
+        world.createBattle(world.createNewEnemy(EnemyType.MILITARY_POTATO));
         initBattleScreen();
     }
 
     @FXML
     public void doActionBtn(MouseEvent mouseEvent) {
+        BattleState battleState = world.getCurBattle().getState();
+        if (battleState.equals(BattleState.PLAYER_TURN)) {
+            updateBattleView(world.getCurBattle().runTurn("nonsense"));
+        } else if (battleState.equals(BattleState.ENEMY_TURN)) {
+            updateBattleView(world.getCurBattle().runTurn());
+        } else if (battleState.equals(BattleState.BATTLE_OVER)) {
+            // change scene back to original location
+        }
     }
 }

@@ -12,8 +12,8 @@ public class World {
         curBattle = new Battle(player, enemy);
     }
 
-    public Enemy createNewEnemy(EnemyTypes enemyType) {
-        if (enemyType.equals(EnemyTypes.MILITARY_POTATO)) {
+    public Enemy createNewEnemy(EnemyType enemyType) {
+        if (enemyType.equals(EnemyType.MILITARY_POTATO)) {
             return new Enemy("Joe", "Idaho/militaryPotato.png",
                     "You encountered a random potato named Joe",
                     5, 1, 0, 0);

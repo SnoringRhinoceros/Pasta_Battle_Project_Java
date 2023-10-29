@@ -1,7 +1,5 @@
 package com.example.generaltemplate;
 
-import javafx.scene.image.ImageView;
-
 public class Enemy extends LivingBeing{
     private String imgPath;
     private String entryText;
@@ -14,7 +12,7 @@ public class Enemy extends LivingBeing{
     @Override
     public String getStats() {
         return getName() + "'s stats:" + "\n"
-                + "Health, " + getHealth() + "\n"
+                + "Health, " + getCurHealth() + "/" + getMaxHealth() + "\n"
                 + "Strength, " + getStrength() + "\n"
                 + "Defense, " + getDefense() + "\n"
                 + "Awesomeness, " + getAwesomeness() + "\n";

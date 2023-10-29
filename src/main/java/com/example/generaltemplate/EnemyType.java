@@ -1,5 +1,5 @@
 package com.example.generaltemplate;
 
-public enum EnemyTypes {
+public enum EnemyType {
     MILITARY_POTATO;
 }
