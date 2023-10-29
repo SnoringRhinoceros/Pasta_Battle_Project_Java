@@ -1,5 +1,7 @@
 package com.example.generaltemplate;
 
+import java.util.ArrayList;
+
 abstract public class LivingBeing {
     private String name;
     private int maxHealth;
@@ -8,6 +10,7 @@ abstract public class LivingBeing {
     private int awesomeness;
     private int curHealth;
     private String loc;
+    private final ArrayList<Action> actions = new ArrayList<>();
     public LivingBeing(String name, String loc, int maxHealth, int strength, int defense, int awesomeness) {
         this.name = name;
         this.maxHealth = maxHealth;
@@ -52,6 +55,10 @@ abstract public class LivingBeing {
 
     public int getCurHealth() {
         return curHealth;
+    }
+
+    public ArrayList<Action> getActions() {
+        return actions;
     }
 
     public boolean isDead() {return curHealth <= 0;}

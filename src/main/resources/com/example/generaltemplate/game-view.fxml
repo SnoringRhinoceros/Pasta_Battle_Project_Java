@@ -71,8 +71,8 @@
          <font>
             <Font size="15.0" />
          </font></Button>
-      <ListView fx:id="actionGroupingsListView" layoutX="167.0" layoutY="301.0" prefHeight="118.0" prefWidth="117.0" />
-      <ListView fx:id="specificActionListView" layoutX="311.0" layoutY="301.0" prefHeight="195.0" prefWidth="178.0" />
+      <ListView fx:id="actionGroupingsListView" layoutX="167.0" layoutY="301.0" onMouseClicked="#handleActionGroupingsListViewClick" prefHeight="118.0" prefWidth="117.0" />
+      <ListView fx:id="specificActionListView" layoutX="311.0" layoutY="301.0" onMouseClicked="#handleSpecificActionListViewClick" prefHeight="195.0" prefWidth="178.0" />
       <TextArea fx:id="itemDescriptionTextArea" layoutX="510.0" layoutY="301.0" prefHeight="195.0" prefWidth="201.0" />
       <TextArea fx:id="playerStatsTxtArea" layoutX="14.0" layoutY="215.0" prefHeight="364.0" prefWidth="110.0" />
       <ImageView fx:id="playerImg" fitHeight="195.0" fitWidth="110.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">

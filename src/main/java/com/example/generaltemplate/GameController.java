@@ -1,6 +1,7 @@
 package com.example.generaltemplate;
 
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -8,7 +9,12 @@ import javafx.scene.input.MouseEvent;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.EnumSet;
+import java.util.List;
 import java.util.Objects;
+
+import static com.example.generaltemplate.PossibleActions.getPossibleAction;
 
 public class GameController {
 
@@ -22,6 +28,8 @@ public class GameController {
     public TextArea enemyStatsTextArea, playerStatsTxtArea;
     @FXML
     public ListView actionGroupingsListView, specificActionListView;
+    private ActionGroupings selectedActionGrouping;
+    private PossibleActions selectedSpecificAction;
     @FXML
     public TextArea itemDescriptionTextArea;
     @FXML
@@ -83,9 +91,10 @@ public class GameController {
         actionGroupingsListView.getItems().add("Weapons");
         actionGroupingsListView.getItems().add("Items");
         actionGroupingsListView.getItems().add("Spells");
-        actionGroupingsListView.getItems().add("Misc.");
+        actionGroupingsListView.getItems().add("Misc");
         battleView.addFXMLElement(specificActionListView);
         battleView.addFXMLElement(itemDescriptionTextArea);
+        itemDescriptionTextArea.setEditable(false);
         battleView.addFXMLElement(doActionBtn);
         battleView.addFXMLElement(enemyBattleImg);
         battleView.addFXMLElement(enemyBattleHealthBar);
@@ -145,6 +154,7 @@ public class GameController {
         battleOutcomeLbl.setText(world.getCurBattle().getEnemy().getEntryText());
         updateEnemyBattleHealthBar();
         doActionBtn.setText("Do");
+        doActionBtn.setDisable(true);
     }
 
     private void updateEnemyBattleHealthBar() {
@@ -154,12 +164,29 @@ public class GameController {
     }
 
     private void updateBattleView(String result) {
+        updateBattleView();
+        battleOutcomeLbl.setText(result);
+    }
+
+    private void updateBattleView() {
         playerStatsTxtArea.setText(world.getPlayer().getStats());
         enemyStatsTextArea.setText(world.getCurBattle().getEnemy().getStats());
         updateEnemyBattleHealthBar();
-        battleOutcomeLbl.setText(result);
         BattleState battleState = world.getCurBattle().getState();
+        specificActionListView.getItems().clear();
+        itemDescriptionTextArea.clear();
         if (battleState.equals(BattleState.PLAYER_TURN)) {
+            if (selectedActionGrouping != null) {
+                for (Action action: world.getPlayer().getActions()) {
+                    if (action.getGrouping().getName().equals(selectedActionGrouping.getName())) {
+                        specificActionListView.getItems().add(action.getName());
+                    }
+                }
+                if (selectedSpecificAction != null ) {
+                    itemDescriptionTextArea.setText(selectedSpecificAction.getDescription());
+                }
+            }
+            doActionBtn.setDisable(selectedActionGrouping == null || selectedSpecificAction == null);
             doActionBtn.setText("Do");
         } else if (battleState.equals(BattleState.ENEMY_TURN)) {
             doActionBtn.setText("Enemy attacks");
@@ -184,6 +211,33 @@ public class GameController {
             updateBattleView(world.getCurBattle().runTurn());
         } else if (battleState.equals(BattleState.BATTLE_OVER)) {
             fakeScreenController.activate(world.getPlayer().getLoc());
+        }
+    }
+
+    private static String getSelectedItemFromListView(ListView listView) {
+        Object selectedItem = listView.getSelectionModel().getSelectedItem();
+        if (selectedItem != null) {
+            return selectedItem.toString();
+        }
+        return null;
+    }
+
+    @FXML
+    public void handleActionGroupingsListViewClick(MouseEvent mouseEvent) {
+        String selectedActionGroupingTxt = getSelectedItemFromListView(actionGroupingsListView);
+        if (selectedActionGroupingTxt != null) {
+            selectedActionGrouping = ActionGroupings.getActionGrouping(selectedActionGroupingTxt);
+            updateBattleView();
+        }
+
+    }
+
+    @FXML
+    public void handleSpecificActionListViewClick(MouseEvent mouseEvent) {
+        String selectedSpecificActionTxt = getSelectedItemFromListView(specificActionListView);
+        if (selectedSpecificActionTxt != null) {
+            selectedSpecificAction = PossibleActions.getPossibleAction(selectedSpecificActionTxt);
+            updateBattleView();
         }
     }
 }
