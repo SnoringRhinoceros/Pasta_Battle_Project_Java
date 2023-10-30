@@ -12,73 +12,6 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.generaltemplate.GameController">
    <children>
-      <Button fx:id="idahoBtn" layoutX="346.0" layoutY="85.0" mnemonicParsing="false" onMouseClicked="#handleIdahoBtnClick">
-         <graphic>
-            <ImageView fitHeight="110.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../generaltemplate/img/Idaho/idaho.png" />
-               </image>
-            </ImageView>
-         </graphic>
-      </Button>
-      <Button fx:id="bakeryBtn" layoutX="480.0" layoutY="226.0" mnemonicParsing="false" onMouseClicked="#handleBakeryBtnClick">
-         <graphic>
-            <ImageView fitHeight="110.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../generaltemplate/img/Bakery/bakery.png" />
-               </image>
-            </ImageView>
-         </graphic>
-      </Button>
-      <Button fx:id="riceFieldsBtn" layoutX="539.0" layoutY="85.0" mnemonicParsing="false" onMouseClicked="#handleRiceFieldsBtnClick">
-         <graphic>
-            <ImageView fitHeight="110.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../generaltemplate/img/Rice_Fields/ricefields.png" />
-               </image>
-            </ImageView>
-         </graphic>
-      </Button>
-      <Button fx:id="questionMarkBtn" layoutX="588.0" layoutY="412.0" mnemonicParsing="false" onMouseClicked="#handleQuestionMarkBtnClick">
-         <graphic>
-            <ImageView fitHeight="110.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../generaltemplate/img/Question_Mark/questionmark.png" />
-               </image>
-            </ImageView>
-         </graphic>
-      </Button>
-
-
-      <Button fx:id="goBackBtn" layoutX="152.0" layoutY="36.0" mnemonicParsing="false" onMouseClicked="#goBack" text="Go Back" />
-      <Button fx:id="militaryPotatoBtn" layoutX="226.0" layoutY="75.0" mnemonicParsing="false" onMouseClicked="#fightMilitaryPotato" prefHeight="96.0" prefWidth="0.0">
-         <graphic>
-            <ImageView fitHeight="88.0" fitWidth="88.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../generaltemplate/img/Idaho/militaryPotato.png" />
-               </image>
-            </ImageView>
-         </graphic>
-      </Button>
-
-
-      <Label fx:id="battleOutcomeLbl" alignment="CENTER" contentDisplay="CENTER" layoutX="218.0" layoutY="251.0" prefHeight="20.0" prefWidth="470.0" text="Label" textAlignment="CENTER">
-         <font>
-            <Font size="14.0" />
-         </font></Label>
-      <TextArea fx:id="enemyStatsTextArea" layoutX="521.0" layoutY="53.0" prefHeight="185.0" prefWidth="145.0" />
-      <Button fx:id="doActionBtn" layoutX="318.0" layoutY="512.0" mnemonicParsing="false" onMouseClicked="#doActionBtn" prefHeight="36.0" prefWidth="136.0" text="Do">
-         <font>
-            <Font size="15.0" />
-         </font></Button>
-      <ListView fx:id="actionGroupingsListView" layoutX="167.0" layoutY="301.0" onMouseClicked="#handleActionGroupingsListViewClick" prefHeight="118.0" prefWidth="117.0" />
-      <ListView fx:id="specificActionListView" layoutX="311.0" layoutY="301.0" onMouseClicked="#handleSpecificActionListViewClick" prefHeight="195.0" prefWidth="178.0" />
-      <TextArea fx:id="itemDescriptionTextArea" layoutX="510.0" layoutY="301.0" prefHeight="195.0" prefWidth="227.0" />
-      <TextArea fx:id="playerStatsTxtArea" layoutX="14.0" layoutY="215.0" prefHeight="364.0" prefWidth="110.0" />
-      <ImageView fx:id="playerImg" fitHeight="195.0" fitWidth="110.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="enemyBattleImg" fitHeight="185.0" fitWidth="220.0" layoutX="289.0" layoutY="54.0" pickOnBounds="true" preserveRatio="true" />
-      <ProgressBar fx:id="enemyBattleHealthBar" layoutX="300.0" layoutY="39.0" prefWidth="200.0" progress="0.0" />
-      <Label fx:id="enemyBattleHPLbl" layoutX="309.0" layoutY="22.0" text="HP:" />
       <AnchorPane fx:id="characterSelectPane" prefHeight="600.0" prefWidth="800.0">
          <children>
             <Label layoutX="138.0" layoutY="14.0" text="Choose your Pasta :)">
@@ -155,5 +88,107 @@
             </Label>
          </children>
       </AnchorPane>
+      <AnchorPane fx:id="idahoViewPane" prefHeight="600.0" prefWidth="800.0">
+         <children>
+            <Button fx:id="MILITARY_POTATOBtn1" layoutX="236.0" layoutY="69.0" mnemonicParsing="false" onMouseClicked="#fightEnemy" prefHeight="96.0" prefWidth="0.0">
+               <graphic>
+                  <ImageView fitHeight="88.0" fitWidth="88.0" pickOnBounds="true" preserveRatio="true" />
+               </graphic>
+            </Button>
+            <Button fx:id="MILITARY_POTATOBtnA1" layoutX="435.0" layoutY="69.0" mnemonicParsing="false" onMouseClicked="#fightEnemy" prefHeight="96.0" prefWidth="0.0">
+               <graphic>
+                  <ImageView fitHeight="88.0" fitWidth="88.0" pickOnBounds="true" preserveRatio="true" />
+               </graphic>
+            </Button>
+            <Button fx:id="MILITARY_POTATOBtnB1" layoutX="230.0" layoutY="228.0" mnemonicParsing="false" onMouseClicked="#fightEnemy" prefHeight="96.0" prefWidth="0.0">
+               <graphic>
+                  <ImageView fitHeight="88.0" fitWidth="88.0" pickOnBounds="true" preserveRatio="true" />
+               </graphic>
+            </Button>
+            <Button fx:id="MILITARY_POTATOBtnA3" layoutX="443.0" layoutY="318.0" mnemonicParsing="false" onMouseClicked="#fightEnemy" prefHeight="96.0" prefWidth="0.0">
+               <graphic>
+                  <ImageView fitHeight="88.0" fitWidth="88.0" pickOnBounds="true" preserveRatio="true" />
+               </graphic>
+            </Button>
+            <Button fx:id="MILITARY_POTATOBtnA4" layoutX="296.0" layoutY="414.0" mnemonicParsing="false" onMouseClicked="#fightEnemy" prefHeight="96.0" prefWidth="0.0">
+               <graphic>
+                  <ImageView fitHeight="88.0" fitWidth="88.0" pickOnBounds="true" preserveRatio="true" />
+               </graphic>
+            </Button>
+            <Button fx:id="MILITARY_POTATOBtn2" layoutX="359.0" layoutY="204.0" mnemonicParsing="false" onMouseClicked="#fightEnemy" prefHeight="96.0" prefWidth="0.0">
+               <graphic>
+                  <ImageView fitHeight="88.0" fitWidth="88.0" pickOnBounds="true" preserveRatio="true" />
+               </graphic>
+            </Button>
+            <Button fx:id="MILITARY_POTATOBtnA5" layoutX="611.0" layoutY="404.0" mnemonicParsing="false" onMouseClicked="#fightEnemy" prefHeight="96.0" prefWidth="0.0">
+               <graphic>
+                  <ImageView fitHeight="88.0" fitWidth="88.0" pickOnBounds="true" preserveRatio="true" />
+               </graphic>
+            </Button>
+            <Button fx:id="MILITARY_POTATOBtnA2" layoutX="547.0" layoutY="142.0" mnemonicParsing="false" onMouseClicked="#fightEnemy" prefHeight="96.0" prefWidth="0.0">
+               <graphic>
+                  <ImageView fitHeight="88.0" fitWidth="88.0" pickOnBounds="true" preserveRatio="true" />
+               </graphic>
+            </Button>
+         </children>
+      </AnchorPane>
+      <Button fx:id="idahoBtn" layoutX="346.0" layoutY="85.0" mnemonicParsing="false" onMouseClicked="#handleIdahoBtnClick">
+         <graphic>
+            <ImageView fitHeight="110.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../generaltemplate/img/Idaho/idaho.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button fx:id="bakeryBtn" layoutX="480.0" layoutY="226.0" mnemonicParsing="false" onMouseClicked="#handleBakeryBtnClick">
+         <graphic>
+            <ImageView fitHeight="110.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../generaltemplate/img/Bakery/bakery.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button fx:id="riceFieldsBtn" layoutX="539.0" layoutY="85.0" mnemonicParsing="false" onMouseClicked="#handleRiceFieldsBtnClick">
+         <graphic>
+            <ImageView fitHeight="110.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../generaltemplate/img/Rice_Fields/ricefields.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button fx:id="questionMarkBtn" layoutX="588.0" layoutY="412.0" mnemonicParsing="false" onMouseClicked="#handleQuestionMarkBtnClick">
+         <graphic>
+            <ImageView fitHeight="110.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../generaltemplate/img/Question_Mark/questionmark.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+
+
+      <Button fx:id="goBackBtn" layoutX="152.0" layoutY="36.0" mnemonicParsing="false" onMouseClicked="#goBack" text="Go Back" />
+
+
+      <Label fx:id="battleOutcomeLbl" alignment="CENTER" contentDisplay="CENTER" layoutX="218.0" layoutY="251.0" prefHeight="20.0" prefWidth="470.0" text="Label" textAlignment="CENTER">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <TextArea fx:id="enemyStatsTextArea" layoutX="521.0" layoutY="53.0" prefHeight="185.0" prefWidth="145.0" />
+      <Button fx:id="doActionBtn" layoutX="318.0" layoutY="512.0" mnemonicParsing="false" onMouseClicked="#doActionBtn" prefHeight="36.0" prefWidth="136.0" text="Do">
+         <font>
+            <Font size="15.0" />
+         </font></Button>
+      <ListView fx:id="actionGroupingsListView" layoutX="167.0" layoutY="301.0" onMouseClicked="#handleActionGroupingsListViewClick" prefHeight="118.0" prefWidth="117.0" />
+      <ListView fx:id="specificActionListView" layoutX="311.0" layoutY="301.0" onMouseClicked="#handleSpecificActionListViewClick" prefHeight="195.0" prefWidth="178.0" />
+      <TextArea fx:id="itemDescriptionTextArea" layoutX="510.0" layoutY="301.0" prefHeight="195.0" prefWidth="227.0" />
+      <TextArea fx:id="playerStatsTxtArea" layoutX="14.0" layoutY="215.0" prefHeight="364.0" prefWidth="110.0" />
+      <ImageView fx:id="playerImg" fitHeight="195.0" fitWidth="110.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="enemyBattleImg" fitHeight="185.0" fitWidth="220.0" layoutX="289.0" layoutY="54.0" pickOnBounds="true" preserveRatio="true" />
+      <ProgressBar fx:id="enemyBattleHealthBar" layoutX="300.0" layoutY="39.0" prefWidth="200.0" progress="0.0" />
+      <Label fx:id="enemyBattleHPLbl" layoutX="309.0" layoutY="22.0" text="HP:" />
    </children>
 </AnchorPane>

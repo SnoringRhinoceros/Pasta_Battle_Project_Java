@@ -1,6 +1,7 @@
 package com.example.generaltemplate;
 
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
@@ -10,23 +11,27 @@ import javafx.scene.layout.AnchorPane;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class GameController {
 
     @FXML
     public Button idahoBtn, bakeryBtn, riceFieldsBtn, questionMarkBtn, goBackBtn;
     @FXML
-    public Button militaryPotatoBtn;
+    public Button MILITARY_POTATOBtn1, MILITARY_POTATOBtnA1, MILITARY_POTATOBtnB1, MILITARY_POTATOBtnA3,
+            MILITARY_POTATOBtnA4, MILITARY_POTATOBtn2, MILITARY_POTATOBtnA5, MILITARY_POTATOBtnA2;
+    ArrayList<Button> idahoViewBattleBtns;
     @FXML
     public Label battleOutcomeLbl;
     @FXML
     public TextArea enemyStatsTextArea, playerStatsTxtArea;
     @FXML
     public ListView actionGroupingsListView, specificActionListView;
-    @FXML
-    public AnchorPane characterSelectPane;
     private ActionGroupings selectedActionGrouping;
     private PossibleActions selectedSpecificAction;
+    @FXML
+    public AnchorPane characterSelectPane, idahoViewPane;
     @FXML
     public TextArea itemDescriptionTextArea;
     @FXML
@@ -60,10 +65,15 @@ public class GameController {
 
         FakeScreen idahoView = new FakeScreen("idahoView");
         idahoView.addFXMLElement(goBackBtn);
-        idahoView.addFXMLElement(militaryPotatoBtn);
+        idahoView.addFXMLElement(idahoViewPane);
         idahoView.addFXMLElement(playerImg);
         idahoView.addFXMLElement(playerStatsTxtArea);
         fakeScreenController.add(idahoView);
+        idahoViewBattleBtns = new ArrayList<>(Arrays.asList(MILITARY_POTATOBtn1, MILITARY_POTATOBtnA1, MILITARY_POTATOBtnB1, MILITARY_POTATOBtnA3,
+                MILITARY_POTATOBtnA4, MILITARY_POTATOBtn2, MILITARY_POTATOBtnA5, MILITARY_POTATOBtnA2));
+        for (Button button: idahoViewBattleBtns) {
+            displayImage((ImageView) button.getGraphic(), "/Idaho/" + getEnemyType(button.getId()) + "/" + getEnemyDifficulty(button.getId()) + "/" + getEnemyType(button.getId()) + ".png");
+        }
 
         FakeScreen bakeryView = new FakeScreen("bakeryView");
         bakeryView.addFXMLElement(goBackBtn);
@@ -197,10 +207,29 @@ public class GameController {
         playerStatsTxtArea.appendText("\n" + world.getPlayer().getStatModifiersOwned().getAllStatModifierText());
     }
 
+    private static String getIdOfButton(Event event) {
+        return ((Control) event.getSource()).getId();
+    }
+
+    private String getEnemyType(String idOfBtn) {
+        return idOfBtn.substring(0, idOfBtn.indexOf("Btn"));
+    }
+
+    private int getEnemyDifficulty(String idOfEnemy) {
+        for (int i = idOfEnemy.length()-1; i >= 0; i--) {
+            if (!Character.isDigit(idOfEnemy.charAt(i))) {
+                return Integer.parseInt(idOfEnemy.substring(i+1));
+            }
+        }
+        throw new RuntimeException("Enemy Difficulty not properly specified in id. " +
+                "Should be in the format of type+Btn+uniqueIdentifier+difficultyNum (ex. MILITARY_POTATOBtnA1");
+    }
+
     @FXML
-    public void fightMilitaryPotato(MouseEvent mouseEvent) {
+    public void fightEnemy(MouseEvent mouseEvent) {
         fakeScreenController.activate("battleView");
-        world.createBattle(world.createNewEnemy(EnemyType.MILITARY_POTATO));
+        String idOfBtn = getIdOfButton(mouseEvent);
+        world.createBattle(world.createNewEnemy(EnemyType.getEnemyType(getEnemyType(idOfBtn)), getEnemyDifficulty(idOfBtn)));
         initBattleScreen();
     }
 
@@ -249,7 +278,7 @@ public class GameController {
 
     public void chooseCharacterBtnClick(ActionEvent actionEvent) {
         for (PastaType pastaType: PastaType.values()) {
-            if (actionEvent.getSource().toString().contains(pastaType.getName())) {
+            if (getIdOfButton(actionEvent).equals(pastaType.getName())) {
                 world = new World(new PC("player", pastaType));
                 playerStatsTxtArea.setText(world.getPlayer().getStatsText());
                 displayImage(playerImg, "Player/" + pastaType.getName() + ".png");

@@ -25,7 +25,7 @@ public class PC extends LivingBeing {
             getStats().setMaxHealth(20);
             getStats().setCurHealth(20);
             getStats().setStrength(0);
-            getStats().setDefense(2180937);
+            getStats().setDefense(0);
             getStats().setAwesomeness(69);
             getActions().add(new Action(PossibleActions.BASIC_SAUCE));
         }
