@@ -7,6 +7,7 @@ public class Battle {
     private int turnNum = 1;
     private String result;
     private LivingBeing winner;
+    private BattleState state = BattleState.PLAYER_TURN;
 
     public Battle(PC player, Enemy enemy) {
         this.player = player;
@@ -14,47 +15,66 @@ public class Battle {
         curBeing = this.player;
     }
 
-    public String runTurn(String chosenAction) {
+    public String runTurn(PossibleActions chosenAction) {
+        player.passTick();
         result = "";
-        for (int i = 0; i < 2; i++) {
-            doDmg();
-            if (battleDone()) {
-                return result;
-            }
-            endTurn();
+        if (chosenAction.getGrouping().equals(ActionGroupings.SPELLS)) {
+            curBeing.getStatModifiersOwned().addStatModif(new StatModifier(chosenAction.getStatModifier()));
+            result = curBeing.getName() + " casts a " + chosenAction.getStrName() + " spell";
+        } else {
+            doDmg(chosenAction);
+            curBeing.getStatModifiersOwned().clearFinishedStats();
         }
+        winner = getWinner();
+        if (winner != null) {
+            state = BattleState.BATTLE_OVER;
+            return result;
+        }
+        endTurn();
         return result;
     }
 
-    private String doDmg() {
-        int dmgDealt = getDmgDealt();
-        getOpp(curBeing).addHealth(-dmgDealt);
+    public String runTurn() {
+        return runTurn(PossibleActions.FISTS);
+    }
+
+    private String doDmg(PossibleActions chosenAction) {
+        int dmgDealt = getDmgDealt(chosenAction);
+        getOpp(curBeing).loseHealth(dmgDealt);
         result += getDmgText(dmgDealt);
         return result;
     }
 
-    private boolean battleDone() {
-        if (curBeing.isDead()) {
-            winner = getOpp(curBeing);
-            return true;
-        } else if (getOpp(curBeing).isDead()) {
-            winner = curBeing;
-            return true;
-        }
-        return false;
-    }
-
-    private void endTurn() {
-        curBeing = getOpp(curBeing);
-        turnNum++;
-    }
-
-    private int getDmgDealt() {
-        int dmgDealt = curBeing.getStrength()-getOpp(curBeing).getDefense();
+    private int getDmgDealt(PossibleActions chosenAction) {
+        curBeing.getStatModifiersOwned().addStatModif(new StatModifier(chosenAction.getStatModifier(), 0));
+        Stats curBeingModifiedStats = curBeing.getStatModifiersOwned().getTotalStatModif(curBeing.getStats());
+        int dmgDealt = curBeingModifiedStats.getStrength();
+        Stats oppBeingModifiedStats = getOpp(curBeing).getStatModifiersOwned().getTotalStatModif(getOpp(curBeing).getStats());
+        int dmgOpposed = oppBeingModifiedStats.getDefense();
+        dmgDealt = dmgDealt - dmgOpposed;
         if (dmgDealt <= 0) {
             dmgDealt = 0;
         }
         return dmgDealt;
+    }
+
+    private LivingBeing getWinner() {
+        if (curBeing.isDead()) {
+            return getOpp(curBeing);
+        } else if (getOpp(curBeing).isDead()) {
+            return curBeing;
+        }
+        return null;
+    }
+
+    private void endTurn() {
+        curBeing = getOpp(curBeing);
+        if (curBeing.equals(player)) {
+            state = BattleState.PLAYER_TURN;
+        } else if (curBeing.equals(enemy)) {
+            state = BattleState.ENEMY_TURN;
+        }
+        turnNum++;
     }
 
     private String getDmgText(int dmgDealt) {
@@ -65,7 +85,7 @@ public class Battle {
             result.append(curBeing.getName() + " attacked for " + dmgDealt + " damage.");
         }
         if (getOpp(curBeing).isDead()) {
-            result.append("\n" + getOpp(curBeing).getName() + " is dead. " + curBeing.getName() + " wins");
+            result.append(" " + curBeing.getName() + " wins!");
         }
         return result.toString();
     }
@@ -75,5 +95,17 @@ public class Battle {
             return enemy;
         }
         return player;
+    }
+
+    public int getTurnNum() {
+        return turnNum;
+    }
+
+    public Enemy getEnemy() {
+        return enemy;
+    }
+
+    public BattleState getState() {
+        return state;
     }
 }
