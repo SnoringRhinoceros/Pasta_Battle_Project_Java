@@ -3,10 +3,12 @@ package com.example.generaltemplate;
 public class Enemy extends LivingBeing{
     private String imgPath;
     private String entryText;
+    private PossibleDrops possibleDrops;
     public Enemy(String name, String imgPath, String loc, String entryText, int health, int strength, int defense, int awesomeness) {
         super(name, loc, health, strength, defense, awesomeness);
         this.imgPath = imgPath;
         this.entryText = entryText;
+        possibleDrops = new PossibleDrops();
     }
 
     @Override
@@ -24,5 +26,9 @@ public class Enemy extends LivingBeing{
 
     public String getEntryText() {
         return entryText;
+    }
+
+    public PossibleDrops getPossibleDrops() {
+        return possibleDrops;
     }
 }
