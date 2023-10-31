@@ -14,10 +14,12 @@ public class World {
 
     public Enemy createNewEnemy(EnemyType enemyType, int enemyDifficulty) {
         if (enemyType.equals(EnemyType.MILITARY_POTATO)) {
-            return new Enemy("Military Potato", "Idaho/MILITARY_POTATO/" + enemyDifficulty + "/MILITARY_POTATO.png",
+            return new Enemy(EnemyType.MILITARY_POTATO, EnemyType.MILITARY_POTATO.getName(),
+                    "Idaho/MILITARY_POTATO/" + enemyDifficulty + "/MILITARY_POTATO.png",
                     "idahoView",
                     "You encountered a random military potato named Joe",
-                    20*enemyDifficulty, 5*enemyDifficulty, 5*enemyDifficulty, 5*enemyDifficulty);
+                    20*enemyDifficulty, 5*enemyDifficulty,
+                    5*enemyDifficulty, 5*enemyDifficulty);
         }
         throw new RuntimeException("Invalid enemy type");
     }

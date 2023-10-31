@@ -8,6 +8,7 @@ public class Battle {
     private String result;
     private LivingBeing winner;
     private BattleState state = BattleState.PLAYER_TURN;
+    private PossibleDrop enemyDrop;
 
     public Battle(PC player, Enemy enemy) {
         this.player = player;
@@ -28,6 +29,8 @@ public class Battle {
         winner = getWinner();
         if (winner != null) {
             state = BattleState.BATTLE_OVER;
+            enemyDrop = enemy.getRandDrop();
+            result += "enemy dropped " + enemyDrop.amount() + " " + enemyDrop.drop().getStrName() + " (" + enemyDrop.dropChance() + "%)";
             return result;
         }
         endTurn();

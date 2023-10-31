@@ -3,12 +3,17 @@ package com.example.generaltemplate;
 public class Enemy extends LivingBeing{
     private String imgPath;
     private String entryText;
-    private PossibleDrops possibleDrops;
-    public Enemy(String name, String imgPath, String loc, String entryText, int health, int strength, int defense, int awesomeness) {
+    private final PossibleDrops possibleDrops;
+    private EnemyType enemyType;
+    public Enemy(EnemyType enemyType, String name, String imgPath, String loc, String entryText, int health, int strength, int defense, int awesomeness) {
         super(name, loc, health, strength, defense, awesomeness);
+        this.enemyType = enemyType;
         this.imgPath = imgPath;
         this.entryText = entryText;
         possibleDrops = new PossibleDrops();
+        for (PossibleDrop possibleDrop: enemyType.getPossibleDrops()) {
+            possibleDrops.addDrop(possibleDrop);
+        }
     }
 
     @Override
@@ -20,6 +25,7 @@ public class Enemy extends LivingBeing{
                 + "Awesomeness, " + getStats().getAwesomeness() + "\n";
     }
 
+    public EnemyType getEnemyType() {return enemyType;}
     public String getImgPath() {
         return imgPath;
     }
@@ -28,7 +34,7 @@ public class Enemy extends LivingBeing{
         return entryText;
     }
 
-    public PossibleDrops getPossibleDrops() {
-        return possibleDrops;
+    public PossibleDrop getRandDrop() {
+        return possibleDrops.getRandDrop();
     }
 }
