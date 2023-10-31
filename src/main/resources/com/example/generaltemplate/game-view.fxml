@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.generaltemplate.GameController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.generaltemplate.GameController">
    <children>
       <AnchorPane fx:id="characterSelectPane" prefHeight="600.0" prefWidth="800.0">
          <children>
@@ -130,6 +130,13 @@
                   <ImageView fitHeight="88.0" fitWidth="88.0" pickOnBounds="true" preserveRatio="true" />
                </graphic>
             </Button>
+      
+      
+            <Label fx:id="battleOutcomeLbl" alignment="CENTER" contentDisplay="CENTER" layoutX="221.0" layoutY="197.0" prefHeight="96.0" prefWidth="470.0" text="Label" textAlignment="CENTER">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
       <Button fx:id="idahoBtn" layoutX="346.0" layoutY="85.0" mnemonicParsing="false" onMouseClicked="#handleIdahoBtnClick">
@@ -171,12 +178,6 @@
 
 
       <Button fx:id="goBackBtn" layoutX="152.0" layoutY="36.0" mnemonicParsing="false" onMouseClicked="#goBack" text="Go Back" />
-
-
-      <Label fx:id="battleOutcomeLbl" alignment="CENTER" contentDisplay="CENTER" layoutX="218.0" layoutY="251.0" prefHeight="20.0" prefWidth="470.0" text="Label" textAlignment="CENTER">
-         <font>
-            <Font size="14.0" />
-         </font></Label>
       <TextArea fx:id="enemyStatsTextArea" layoutX="521.0" layoutY="53.0" prefHeight="185.0" prefWidth="145.0" />
       <Button fx:id="doActionBtn" layoutX="318.0" layoutY="512.0" mnemonicParsing="false" onMouseClicked="#doActionBtn" prefHeight="36.0" prefWidth="136.0" text="Do">
          <font>

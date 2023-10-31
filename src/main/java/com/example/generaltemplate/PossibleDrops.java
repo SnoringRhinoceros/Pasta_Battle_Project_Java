@@ -7,10 +7,6 @@ import java.util.ArrayList;
 public class PossibleDrops {
     private final ArrayList<PossibleDrop> drops = new ArrayList<>();
 
-    public PossibleDrops() {
-
-    }
-
     public PossibleDrops(PossibleDrop ... inputtedPossibleDrop) {
         for (PossibleDrop drop: inputtedPossibleDrop) {
             addDrop(drop);

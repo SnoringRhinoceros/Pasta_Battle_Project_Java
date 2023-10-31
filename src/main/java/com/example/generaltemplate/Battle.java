@@ -29,8 +29,10 @@ public class Battle {
         winner = getWinner();
         if (winner != null) {
             state = BattleState.BATTLE_OVER;
-            enemyDrop = enemy.getRandDrop();
-            result += "enemy dropped " + enemyDrop.amount() + " " + enemyDrop.drop().getStrName() + " (" + enemyDrop.dropChance() + "%)";
+            if (winner.equals(player)) {
+                enemyDrop = enemy.getRandDrop();
+                result += System.lineSeparator() + "enemy dropped " + enemyDrop.amount() + " " + enemyDrop.drop().getStrName() + " (" + enemyDrop.dropChance() + "%)";
+            }
             return result;
         }
         endTurn();
