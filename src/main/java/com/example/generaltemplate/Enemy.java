@@ -11,18 +11,29 @@ public class Enemy extends LivingBeing{
         this.imgPath = imgPath;
         this.entryText = entryText;
         possibleDrops = new PossibleDrops();
-        for (PossibleDrop possibleDrop: enemyType.getPossibleDrops()) {
-            possibleDrops.addDrop(possibleDrop);
+        for (Drop drop : enemyType.getPossibleDrops()) {
+            possibleDrops.addDrop(drop);
         }
     }
 
     @Override
     public String getStatsText() {
-        return getName() + "'s stats:" + "\n"
+        return getNormalName() + "'s stats:" + "\n"
                 + "Health, " + getStats().getCurHealth() + "/" + getStats().getMaxHealth() + "\n"
                 + "Strength, " + getStats().getStrength() + "\n"
                 + "Defense, " + getStats().getDefense() + "\n"
                 + "Awesomeness, " + getStats().getAwesomeness() + "\n";
+    }
+
+    public String getNormalName() {
+        String[] nameArray = getName().split("_");
+        StringBuilder result = new StringBuilder();
+        for (String word: nameArray) {
+            result.append(word.toLowerCase());
+            result.append(" ");
+        }
+        // removes the last space at the end
+        return result.substring(0, result.length()-1);
     }
 
     public EnemyType getEnemyType() {return enemyType;}
@@ -34,7 +45,7 @@ public class Enemy extends LivingBeing{
         return entryText;
     }
 
-    public PossibleDrop getRandDrop() {
+    public Drop getRandDrop() {
         return possibleDrops.getRandDrop();
     }
 }

@@ -8,7 +8,7 @@ public class Battle {
     private String result;
     private LivingBeing winner;
     private BattleState state = BattleState.PLAYER_TURN;
-    private PossibleDrop enemyDrop;
+    private Drop enemyDrop;
 
     public Battle(PC player, Enemy enemy) {
         this.player = player;
@@ -112,5 +112,9 @@ public class Battle {
 
     public BattleState getState() {
         return state;
+    }
+
+    public Drop getEnemyDrop() {
+        return enemyDrop;
     }
 }

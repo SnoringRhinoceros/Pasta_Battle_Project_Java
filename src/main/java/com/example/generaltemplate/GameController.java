@@ -21,9 +21,9 @@ public class GameController {
     @FXML
     public Button MILITARY_POTATOBtn1, MILITARY_POTATOBtnA1, MILITARY_POTATOBtnB1, MILITARY_POTATOBtnA3,
             MILITARY_POTATOBtnA4, MILITARY_POTATOBtn2, MILITARY_POTATOBtnA5, MILITARY_POTATOBtnA2;
-    ArrayList<Button> idahoViewBattleBtns;
     @FXML
-    public Label battleOutcomeLbl;
+    public TextArea battleOutcomeTextArea;
+    ArrayList<Button> idahoViewBattleBtns;
     @FXML
     public TextArea enemyStatsTextArea, playerStatsTxtArea;
     @FXML
@@ -93,7 +93,8 @@ public class GameController {
         fakeScreenController.add(questionMarkView);
 
         FakeScreen battleView = new FakeScreen("battleView");
-        battleView.addFXMLElement(battleOutcomeLbl);
+        battleView.addFXMLElement(battleOutcomeTextArea);
+        battleOutcomeTextArea.setEditable(false);
         battleView.addFXMLElement(playerImg);
         battleView.addFXMLElement(playerStatsTxtArea);
         playerStatsTxtArea.setEditable(false);
@@ -160,7 +161,7 @@ public class GameController {
         playerStatsTxtArea.setText(world.getPlayer().getStatsText());
         enemyStatsTextArea.setText(world.getCurBattle().getEnemy().getStatsText());
         displayImage(enemyBattleImg, world.getCurBattle().getEnemy().getImgPath());
-        battleOutcomeLbl.setText(world.getCurBattle().getEnemy().getEntryText());
+        battleOutcomeTextArea.setText(world.getCurBattle().getEnemy().getEntryText());
         updateEnemyBattleHealthBar();
         doActionBtn.setText("Do");
         doActionBtn.setDisable(true);
@@ -173,7 +174,7 @@ public class GameController {
     }
 
     private void updateBattleView(String result) {
-        battleOutcomeLbl.setText(result);
+        battleOutcomeTextArea.setText(result);
         updateBattleView();
     }
 
@@ -201,6 +202,9 @@ public class GameController {
         } else if (battleState.equals(BattleState.ENEMY_TURN)) {
             doActionBtn.setText("Enemy attacks");
         } else if (battleState.equals(BattleState.BATTLE_OVER)) {
+            if (world.getCurBattle().getEnemyDrop() != null) {
+                // change
+            }
             doActionBtn.setText("Leave battle");
         }
         playerStatsTxtArea.setText(world.getPlayer().getStatsText());

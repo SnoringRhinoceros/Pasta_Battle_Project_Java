@@ -8,6 +8,7 @@ abstract public class LivingBeing {
     private StatModifiersOwned statModifiersOwned;
     private String loc;
     private final ArrayList<Action> actions = new ArrayList<>();
+//    private final ArrayList<Item> items = new ArrayList<>();
     public LivingBeing(String name, String loc, int maxHealth, int strength, int defense, int awesomeness) {
         this.name = name;
         stats = new Stats(maxHealth, strength, defense, awesomeness, maxHealth);

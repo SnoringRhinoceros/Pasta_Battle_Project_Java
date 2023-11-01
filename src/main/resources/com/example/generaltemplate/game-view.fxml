@@ -130,13 +130,6 @@
                   <ImageView fitHeight="88.0" fitWidth="88.0" pickOnBounds="true" preserveRatio="true" />
                </graphic>
             </Button>
-      
-      
-            <Label fx:id="battleOutcomeLbl" alignment="CENTER" contentDisplay="CENTER" layoutX="221.0" layoutY="197.0" prefHeight="96.0" prefWidth="470.0" text="Label" textAlignment="CENTER">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Label>
          </children>
       </AnchorPane>
       <Button fx:id="idahoBtn" layoutX="346.0" layoutY="85.0" mnemonicParsing="false" onMouseClicked="#handleIdahoBtnClick">
@@ -191,5 +184,6 @@
       <ImageView fx:id="enemyBattleImg" fitHeight="185.0" fitWidth="220.0" layoutX="289.0" layoutY="54.0" pickOnBounds="true" preserveRatio="true" />
       <ProgressBar fx:id="enemyBattleHealthBar" layoutX="300.0" layoutY="39.0" prefWidth="200.0" progress="0.0" />
       <Label fx:id="enemyBattleHPLbl" layoutX="309.0" layoutY="22.0" text="HP:" />
+      <TextArea fx:id="battleOutcomeTextArea" layoutX="252.0" layoutY="241.0" prefHeight="60.0" prefWidth="312.0" />
    </children>
 </AnchorPane>

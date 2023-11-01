@@ -12,7 +12,7 @@ public enum PossibleActions {
             "Slow but strong\n+10 damage"),
     BASIC_SAUCE ("Basic sauce", ActionGroupings.SPELLS,
             new StatModifier("Basic Sauce", 5, new Stats(0,5,0,0,0)),
-            "The letters ABC in a baby rotini's alphabet\n+5 to sauce dmg");
+            "The first sauce a rotini ever learns\n+5 to sauce dmg");
 
     private final String strName;
     private final String description;

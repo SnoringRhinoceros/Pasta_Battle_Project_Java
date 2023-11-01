@@ -1,34 +1,32 @@
 package com.example.generaltemplate;
 
-import javafx.geometry.Pos;
-
 import java.util.ArrayList;
 
 public class PossibleDrops {
-    private final ArrayList<PossibleDrop> drops = new ArrayList<>();
+    private final ArrayList<Drop> drops = new ArrayList<>();
 
-    public PossibleDrops(PossibleDrop ... inputtedPossibleDrop) {
-        for (PossibleDrop drop: inputtedPossibleDrop) {
+    public PossibleDrops(Drop... inputtedDrop) {
+        for (Drop drop: inputtedDrop) {
             addDrop(drop);
         }
     }
 
     public void addDrop(PossibleActions action, int dropChance, int amount) {
-        drops.add(new PossibleDrop(action, dropChance, amount));
+        drops.add(new Drop(action, dropChance, amount));
     }
 
-    public void addDrop(PossibleDrop possibleDrop) {
-        addDrop(possibleDrop.drop(), possibleDrop.dropChance(), possibleDrop.amount());
+    public void addDrop(Drop drop) {
+        addDrop(drop.drop(), drop.dropChance(), drop.amount());
     }
 
-    public PossibleDrop getRandDrop() {
+    public Drop getRandDrop() {
         int randNum = generateRandNum(1, 100);
         int percentCount = 0;
-        for (PossibleDrop possibleDrop: drops) {
-            if (randNum >= percentCount && randNum <= possibleDrop.dropChance()+percentCount) {
-                return possibleDrop;
+        for (Drop drop : drops) {
+            if (randNum >= percentCount && randNum <= drop.dropChance()+percentCount) {
+                return drop;
             }
-            percentCount += possibleDrop.dropChance();
+            percentCount += drop.dropChance();
         }
         return null;
     }
