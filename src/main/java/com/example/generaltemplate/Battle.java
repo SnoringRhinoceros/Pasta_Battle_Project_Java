@@ -16,12 +16,12 @@ public class Battle {
         curBeing = this.player;
     }
 
-    public String runTurn(PossibleActions chosenAction) {
+    public String runTurn(Action chosenAction) {
         player.passTick();
         result = "";
         if (chosenAction.getGrouping().equals(ActionGroupings.SPELLS)) {
             curBeing.getStatModifiersOwned().addStatModif(new StatModifier(chosenAction.getStatModifier()));
-            result = curBeing.getName() + " casts a " + chosenAction.getStrName() + " spell";
+            result = curBeing.getName() + " casts a " + chosenAction.getName() + " spell";
         } else {
             doDmg(chosenAction);
             curBeing.getStatModifiersOwned().clearFinishedStats();
@@ -31,7 +31,7 @@ public class Battle {
             state = BattleState.BATTLE_OVER;
             if (winner.equals(player)) {
                 enemyDrop = enemy.getRandDrop();
-                result += System.lineSeparator() + "enemy dropped " + enemyDrop.amount() + " " + enemyDrop.drop().getStrName() + " (" + enemyDrop.dropChance() + "%)";
+                result += "\nenemy dropped " + enemyDrop.amount() + " " + enemyDrop.drop().getName() + " (" + enemyDrop.dropChance() + "%)";
             }
             return result;
         }
@@ -40,17 +40,17 @@ public class Battle {
     }
 
     public String runTurn() {
-        return runTurn(PossibleActions.FISTS);
+        return runTurn(PossibleActions.FISTS.getAction());
     }
 
-    private String doDmg(PossibleActions chosenAction) {
+    private String doDmg(Action chosenAction) {
         int dmgDealt = getDmgDealt(chosenAction);
         getOpp(curBeing).loseHealth(dmgDealt);
         result += getDmgText(dmgDealt);
         return result;
     }
 
-    private int getDmgDealt(PossibleActions chosenAction) {
+    private int getDmgDealt(Action chosenAction) {
         curBeing.getStatModifiersOwned().addStatModif(new StatModifier(chosenAction.getStatModifier(), 0));
         Stats curBeingModifiedStats = curBeing.getStatModifiersOwned().getTotalStatModif(curBeing.getStats());
         int dmgDealt = curBeingModifiedStats.getStrength();

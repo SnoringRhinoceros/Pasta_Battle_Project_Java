@@ -29,7 +29,7 @@ public class GameController {
     @FXML
     public ListView actionGroupingsListView, specificActionListView;
     private ActionGroupings selectedActionGrouping;
-    private PossibleActions selectedSpecificAction;
+    private Action selectedSpecificAction;
     @FXML
     public AnchorPane characterSelectPane, idahoViewPane;
     @FXML
@@ -232,9 +232,27 @@ public class GameController {
     @FXML
     public void fightEnemy(MouseEvent mouseEvent) {
         fakeScreenController.activate("battleView");
-        String idOfBtn = getIdOfButton(mouseEvent);
-        world.createBattle(world.createNewEnemy(EnemyType.getEnemyType(getEnemyType(idOfBtn)), getEnemyDifficulty(idOfBtn)));
+        String idOfBtn = getCodeName(getIdOfButton(mouseEvent));
+        world.createBattle(world.createNewEnemy(EnemyType.getEnemyType(idOfBtn), getEnemyDifficulty(idOfBtn)));
         initBattleScreen();
+    }
+
+    private String getCodeName(String name) {
+        String[] nameArray = name.split("_");
+        StringBuilder result = new StringBuilder();
+        for (int i = 0; i < nameArray.length; i++) {
+            if (i == nameArray.length-1) {
+                result.append(nameArray[i].toLowerCase().substring(0, nameArray[i].indexOf("Btn")));
+            } else {
+                if (i == 0) {
+                    result.append(nameArray[i].substring(0, 1).toUpperCase()).append(nameArray[i].toLowerCase().substring(1));
+                } else {
+                    result.append(nameArray[i].toLowerCase());
+                }
+                result.append(" ");
+            }
+        }
+        return result.toString();
     }
 
     @FXML
@@ -275,7 +293,7 @@ public class GameController {
     public void handleSpecificActionListViewClick(MouseEvent mouseEvent) {
         String selectedSpecificActionTxt = getSelectedItemFromListView(specificActionListView);
         if (selectedSpecificActionTxt != null) {
-            selectedSpecificAction = PossibleActions.getPossibleAction(selectedSpecificActionTxt);
+            selectedSpecificAction = world.getPlayer().getAction(selectedSpecificActionTxt);
             updateBattleView();
         }
     }

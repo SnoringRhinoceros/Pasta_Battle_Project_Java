@@ -1,7 +1,7 @@
 package com.example.generaltemplate;
 
 public enum EnemyType {
-    MILITARY_POTATO ("MILITARY_POTATO", new Drop(PossibleActions.BASIC_SWORD, 100, 2));
+    MILITARY_POTATO ("Military potato", new Drop(new Action(PossibleActions.BASIC_SWORD), 100, 2));
 
     private final String name;
     private final Drop[] drops;
@@ -15,7 +15,7 @@ public enum EnemyType {
                 return enemyType;
             }
         }
-        throw new RuntimeException("Enemy type doesn't exist");
+        throw new RuntimeException("Enemy type (" + name + ") doesn't exist");
     }
 
     public String getName() {

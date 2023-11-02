@@ -1,50 +1,32 @@
 package com.example.generaltemplate;
 
 public enum PossibleActions {
-    FISTS ("Fists", ActionGroupings.WEAPONS,
+    FISTS (new Action("Fists", ActionGroupings.WEAPONS,
             new StatModifier("Fists", new Stats(0,0,0,0,0)),
-            "Fists always work\nHowever, they only do your base damage"),
-    BASIC_SWORD ("Basic sword", ActionGroupings.WEAPONS,
+            "Fists always work\nHowever, they only do your base damage")),
+    BASIC_SWORD (new Action("Basic sword", ActionGroupings.WEAPONS,
             new StatModifier("Basic sword", new Stats(0,5,0,0,0)),
-            "Simple sword for a simple pasta\n +5 damage"),
-    BASIC_HAMMER ("Basic hammer", ActionGroupings.WEAPONS,
+            "Simple sword for a simple pasta\n +5 damage")),
+    BASIC_HAMMER (new Action("Basic hammer", ActionGroupings.WEAPONS,
             new StatModifier("Basic shield", new Stats(0, 10, 0, 0, 0)),
-            "Slow but strong\n+10 damage"),
-    BASIC_SAUCE ("Basic sauce", ActionGroupings.SPELLS,
+            "Slow but strong\n+10 damage")),
+    BASIC_SAUCE (new Action("Basic sauce", ActionGroupings.SPELLS,
             new StatModifier("Basic Sauce", 5, new Stats(0,5,0,0,0)),
-            "The first sauce a rotini ever learns\n+5 to sauce dmg");
+            "The first sauce a rotini ever learns\n+5 to sauce dmg"));
 
-    private final String strName;
-    private final String description;
-    private final ActionGroupings grouping;
-    private final StatModifier statModifier;
+    private Action action;
 
-    PossibleActions(String strName, ActionGroupings grouping, StatModifier statModifier, String description) {
-        this.strName = strName;
-        this.grouping = grouping;
-        this.statModifier = statModifier;
-        this.description = description;
+    PossibleActions(Action action) {
+        this.action = action;
     }
 
-    public String getStrName() {
-        return strName;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public ActionGroupings getGrouping() {
-        return grouping;
-    }
-
-    public StatModifier getStatModifier() {
-        return statModifier;
+    public Action getAction() {
+        return action;
     }
 
     public static PossibleActions getPossibleAction(String name) {
         for (PossibleActions possibleAction : values()) {
-            if (possibleAction.getStrName().equals(name)) {
+            if (possibleAction.getAction().getName().equals(name)) {
                 return possibleAction;
             }
         }

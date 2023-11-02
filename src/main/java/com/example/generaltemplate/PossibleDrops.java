@@ -11,7 +11,7 @@ public class PossibleDrops {
         }
     }
 
-    public void addDrop(PossibleActions action, int dropChance, int amount) {
+    public void addDrop(Action action, int dropChance, int amount) {
         drops.add(new Drop(action, dropChance, amount));
     }
 

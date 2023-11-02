@@ -18,22 +18,11 @@ public class Enemy extends LivingBeing{
 
     @Override
     public String getStatsText() {
-        return getNormalName() + "'s stats:" + "\n"
+        return getName() + "'s stats:" + "\n"
                 + "Health, " + getStats().getCurHealth() + "/" + getStats().getMaxHealth() + "\n"
                 + "Strength, " + getStats().getStrength() + "\n"
                 + "Defense, " + getStats().getDefense() + "\n"
                 + "Awesomeness, " + getStats().getAwesomeness() + "\n";
-    }
-
-    public String getNormalName() {
-        String[] nameArray = getName().split("_");
-        StringBuilder result = new StringBuilder();
-        for (String word: nameArray) {
-            result.append(word.toLowerCase());
-            result.append(" ");
-        }
-        // removes the last space at the end
-        return result.substring(0, result.length()-1);
     }
 
     public EnemyType getEnemyType() {return enemyType;}

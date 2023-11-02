@@ -4,7 +4,6 @@ public class PC extends LivingBeing {
     private final PastaType pastaType;
 
     public PC(String name, PastaType pastaType) {
-        // default sets the base stats as that of spaghetti
         super(name, "mainMap", 0, 0, 0, 0);
         this.pastaType = pastaType;
         if (pastaType.equals(PastaType.SPAGHETTI)) {
@@ -13,23 +12,23 @@ public class PC extends LivingBeing {
             getStats().setStrength(5);
             getStats().setDefense(5);
             getStats().setAwesomeness(5);
-            getActions().add(new Action(PossibleActions.BASIC_SWORD));
+            getActions().add(PossibleActions.BASIC_SWORD.getAction());
         } else if (pastaType.equals(PastaType.RAVIOLI)) {
             getStats().setMaxHealth(100);
             getStats().setCurHealth(100);
             getStats().setStrength(1);
             getStats().setDefense(15);
             getStats().setAwesomeness(0);
-            getActions().add(new Action(PossibleActions.BASIC_HAMMER));
+            getActions().add(PossibleActions.BASIC_HAMMER.getAction());
         } else if (pastaType.equals(PastaType.ROTINI)) {
             getStats().setMaxHealth(20);
             getStats().setCurHealth(20);
             getStats().setStrength(0);
             getStats().setDefense(0);
             getStats().setAwesomeness(69);
-            getActions().add(new Action(PossibleActions.BASIC_SAUCE));
+            getActions().add(PossibleActions.BASIC_SAUCE.getAction());
         }
-        getActions().add(new Action(PossibleActions.FISTS));
+        getActions().add(PossibleActions.FISTS.getAction());
     }
 
     @Override
