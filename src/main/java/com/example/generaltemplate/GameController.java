@@ -232,17 +232,17 @@ public class GameController {
     @FXML
     public void fightEnemy(MouseEvent mouseEvent) {
         fakeScreenController.activate("battleView");
-        String idOfBtn = getCodeName(getIdOfButton(mouseEvent));
-        world.createBattle(world.createNewEnemy(EnemyType.getEnemyType(idOfBtn), getEnemyDifficulty(idOfBtn)));
+        String idOfBtn = getIdOfButton(mouseEvent);
+        world.createBattle(world.createNewEnemy(EnemyType.getEnemyType(getNormalName(idOfBtn)), getEnemyDifficulty(idOfBtn)));
         initBattleScreen();
     }
 
-    private String getCodeName(String name) {
+    private String getNormalName(String name) {
         String[] nameArray = name.split("_");
         StringBuilder result = new StringBuilder();
         for (int i = 0; i < nameArray.length; i++) {
             if (i == nameArray.length-1) {
-                result.append(nameArray[i].toLowerCase().substring(0, nameArray[i].indexOf("Btn")));
+                result.append(nameArray[i].toLowerCase(), 0, nameArray[i].indexOf("Btn"));
             } else {
                 if (i == 0) {
                     result.append(nameArray[i].substring(0, 1).toUpperCase()).append(nameArray[i].toLowerCase().substring(1));
