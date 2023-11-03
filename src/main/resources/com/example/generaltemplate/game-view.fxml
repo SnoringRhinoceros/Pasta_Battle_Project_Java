@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.generaltemplate.GameController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.generaltemplate.GameController">
    <children>
       <AnchorPane fx:id="characterSelectPane" prefHeight="600.0" prefWidth="800.0">
          <children>
@@ -131,8 +131,6 @@
                   <ImageView fitHeight="88.0" fitWidth="88.0" pickOnBounds="true" preserveRatio="true" />
                </graphic>
             </Button>
-            <ImageView fx:id="playerImg" fitHeight="195.0" fitWidth="110.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
-          <Button layoutX="145.0" layoutY="91.0" mnemonicParsing="false" onAction="#inventoryBtnClick" text="Inventory" />
          </children>
       </AnchorPane>
       <AnchorPane fx:id="inventoryPane" prefHeight="600.0" prefWidth="800.0">
@@ -179,6 +177,7 @@
             </ImageView>
          </graphic>
       </Button>
+      <ImageView fx:id="playerImg" fitHeight="195.0" fitWidth="110.0" pickOnBounds="true" preserveRatio="true" />
 
 
       <Button fx:id="goBackBtn" layoutX="152.0" layoutY="36.0" mnemonicParsing="false" onMouseClicked="#goBack" text="Go Back" />
@@ -195,6 +194,10 @@
       <ProgressBar fx:id="enemyBattleHealthBar" layoutX="300.0" layoutY="39.0" prefWidth="200.0" progress="0.0" />
       <Label fx:id="enemyBattleHPLbl" layoutX="309.0" layoutY="22.0" text="HP:" />
       <TextArea fx:id="battleOutcomeTextArea" layoutX="252.0" layoutY="241.0" prefHeight="60.0" prefWidth="312.0" />
-      <ButtonBar layoutX="101.0" layoutY="48.0" prefHeight="40.0" prefWidth="33.0" />
+      <ButtonBar fx:id="topBtnBar" prefHeight="40.0" prefWidth="18.0">
+        <buttons>
+          <Button fx:id="inventoryBtn" mnemonicParsing="false" onAction="#inventoryBtnClick" text="Inventory" />
+        </buttons>
+      </ButtonBar>
    </children>
 </AnchorPane>
