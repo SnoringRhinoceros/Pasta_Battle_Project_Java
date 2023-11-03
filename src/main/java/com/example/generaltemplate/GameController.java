@@ -22,7 +22,11 @@ public class GameController {
     public Button MILITARY_POTATOBtn1, MILITARY_POTATOBtnA1, MILITARY_POTATOBtnB1, MILITARY_POTATOBtnA3,
             MILITARY_POTATOBtnA4, MILITARY_POTATOBtn2, MILITARY_POTATOBtnA5, MILITARY_POTATOBtnA2;
     @FXML
-    public TextArea battleOutcomeTextArea;
+    public TextArea battleOutcomeTextArea, actionDescriptionTextArea;
+    @FXML
+    public ListView equippedActionsListView, equippedActionGroupingsListView, allActionsListView;
+    @FXML
+    public AnchorPane inventoryPane;
     ArrayList<Button> idahoViewBattleBtns;
     @FXML
     public TextArea enemyStatsTextArea, playerStatsTxtArea;
@@ -114,12 +118,20 @@ public class GameController {
         battleView.addFXMLElement(enemyBattleHPLbl);
         fakeScreenController.add(battleView);
 
+
+        FakeScreen inventoryView = new FakeScreen("inventoryView");
+        inventoryView.addFXMLElement(inventoryPane);
+        inventoryView.addFXMLElement(playerImg);
+        inventoryView.addFXMLElement(playerStatsTxtArea);
+        fakeScreenController.add(inventoryView);
+
         fakeScreenController.activate(characterSelectView.getName());
     }
 
     private void playerTravelTo(String place) {
         world.getPlayer().travelTo(place);
         fakeScreenController.activate(place);
+        displayImage(playerImg, "Player/" + world.getPlayer().getPastaType().getName() + ".png");
     }
 
     @FXML
@@ -298,14 +310,20 @@ public class GameController {
         }
     }
 
+    @FXML
     public void chooseCharacterBtnClick(ActionEvent actionEvent) {
         for (PastaType pastaType: PastaType.values()) {
             if (getIdOfButton(actionEvent).equals(pastaType.getName())) {
                 world = new World(new PC("player", pastaType));
+                playerTravelTo("mainView");
                 playerStatsTxtArea.setText(world.getPlayer().getStatsText());
-                displayImage(playerImg, "Player/" + pastaType.getName() + ".png");
-                fakeScreenController.activate("mainView");
+                break;
             }
         }
+    }
+
+    @FXML
+    public void inventoryBtnClick(ActionEvent actionEvent) {
+        fakeScreenController.activate("inventoryView");
     }
 }

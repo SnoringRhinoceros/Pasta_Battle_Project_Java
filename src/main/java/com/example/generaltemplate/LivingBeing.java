@@ -49,6 +49,14 @@ abstract public class LivingBeing {
         return null;
     }
 
+    public ArrayList<Action> getItems() {
+        return items;
+    }
+
+    public void addItem(Action action) {
+        items.add(action);
+    }
+
     public boolean isDead() {return stats.getCurHealth() <= 0;}
 
     public void travelTo(String place) {
