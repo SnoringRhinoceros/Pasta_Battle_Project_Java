@@ -29,8 +29,6 @@ public class GameController {
     @FXML
     public AnchorPane inventoryPane;
     @FXML
-    public ButtonBar topBtnBar;
-    @FXML
     public Button inventoryBtn;
     @FXML
     public TextArea enemyStatsTextArea, playerStatsTxtArea;
@@ -68,7 +66,6 @@ public class GameController {
         mainView.addFXMLElement(questionMarkBtn);
         mainView.addFXMLElement(playerImg);
         mainView.addFXMLElement(playerStatsTxtArea);
-        mainView.addFXMLElement(topBtnBar);
         mainView.addFXMLElement(inventoryBtn);
         questionMarkBtn.setDisable(true);
         fakeScreenController.add(mainView);
@@ -78,7 +75,6 @@ public class GameController {
         idahoView.addFXMLElement(idahoViewPane);
         idahoView.addFXMLElement(playerImg);
         idahoView.addFXMLElement(playerStatsTxtArea);
-        idahoView.addFXMLElement(topBtnBar);
         idahoView.addFXMLElement(inventoryBtn);
         fakeScreenController.add(idahoView);
         idahoViewBattleBtns = new ArrayList<>(Arrays.asList(MILITARY_POTATOBtn1, MILITARY_POTATOBtnA1, MILITARY_POTATOBtnB1, MILITARY_POTATOBtnA3,
@@ -91,7 +87,6 @@ public class GameController {
         bakeryView.addFXMLElement(goBackBtn);
         bakeryView.addFXMLElement(playerImg);
         bakeryView.addFXMLElement(playerStatsTxtArea);
-        bakeryView.addFXMLElement(topBtnBar);
         bakeryView.addFXMLElement(inventoryBtn);
         fakeScreenController.add(bakeryView);
 
@@ -99,14 +94,12 @@ public class GameController {
         riceFieldsView.addFXMLElement(goBackBtn);
         riceFieldsView.addFXMLElement(playerImg);
         riceFieldsView.addFXMLElement(playerStatsTxtArea);
-        riceFieldsView.addFXMLElement(topBtnBar);
         riceFieldsView.addFXMLElement(inventoryBtn);
         fakeScreenController.add(riceFieldsView);
 
         FakeScreen questionMarkView = new FakeScreen("questionMarkView");
         questionMarkView.addFXMLElement(playerImg);
         questionMarkView.addFXMLElement(playerStatsTxtArea);
-        questionMarkView.addFXMLElement(topBtnBar);
         questionMarkView.addFXMLElement(inventoryBtn);
         fakeScreenController.add(questionMarkView);
 
@@ -135,6 +128,7 @@ public class GameController {
 
         FakeScreen inventoryView = new FakeScreen("inventoryView");
         inventoryView.addFXMLElement(inventoryPane);
+        actionDescriptionTextArea.setEditable(false);
         inventoryView.addFXMLElement(playerImg);
         inventoryView.addFXMLElement(playerStatsTxtArea);
         fakeScreenController.add(inventoryView);
