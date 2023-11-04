@@ -135,6 +135,7 @@ public class GameController {
         actionDescriptionTextArea.setEditable(false);
         inventoryView.addFXMLElement(playerImg);
         inventoryView.addFXMLElement(playerStatsTxtArea);
+        inventoryView.addFXMLElement(goBackBtn);
         fakeScreenController.add(inventoryView);
 
         fakeScreenController.activate(characterSelectView.getName());
@@ -334,7 +335,7 @@ public class GameController {
 
         updateActionsAndDescriptionsListViewAndTextArea(equippedActionsListView, actionDescriptionTextArea);
 
-
+        allActionsListView.getItems().clear();
         for (Action action : world.getPlayer().getItems()) {
             if (action.getGrouping().equals(selectedActionGrouping)) {
                 allActionsListView.getItems().add(action.getName());

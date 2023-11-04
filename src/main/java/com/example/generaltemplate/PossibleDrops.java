@@ -16,7 +16,7 @@ public class PossibleDrops {
     }
 
     public void addDrop(Drop drop) {
-        addDrop(drop.drop(), drop.dropChance(), drop.amount());
+        addDrop(drop.action(), drop.dropChance(), drop.amount());
     }
 
     public Drop getRandDrop() {

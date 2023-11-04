@@ -1,4 +1,4 @@
 package com.example.generaltemplate;
 
-public record Drop(Action drop, int dropChance, int amount) {
+public record Drop(Action action, int dropChance, int amount) {
 }

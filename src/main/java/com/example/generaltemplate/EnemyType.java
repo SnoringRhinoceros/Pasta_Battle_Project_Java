@@ -1,7 +1,7 @@
 package com.example.generaltemplate;
 
 public enum EnemyType {
-    MILITARY_POTATO ("Military potato", new Drop(new Action(PossibleActions.BASIC_SWORD), 100, 2));
+    MILITARY_POTATO ("Military potato", new Drop(PossibleActions.BASIC_SWORD.getAction(), 100, 2));
 
     private final String name;
     private final Drop[] drops;
