@@ -134,15 +134,6 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button fx:id="bakeryBtn" layoutX="480.0" layoutY="226.0" mnemonicParsing="false" onMouseClicked="#handleBakeryBtnClick">
-         <graphic>
-            <ImageView fitHeight="110.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../generaltemplate/img/Bakery/bakery.png" />
-               </image>
-            </ImageView>
-         </graphic>
-      </Button>
       <Button fx:id="riceFieldsBtn" layoutX="539.0" layoutY="85.0" mnemonicParsing="false" onMouseClicked="#handleRiceFieldsBtnClick">
          <graphic>
             <ImageView fitHeight="110.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
