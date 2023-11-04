@@ -128,6 +128,10 @@ public class GameController {
 
         FakeScreen inventoryView = new FakeScreen("inventoryView");
         inventoryView.addFXMLElement(inventoryPane);
+        equippedActionGroupingsListView.getItems().add("Weapons");
+        equippedActionGroupingsListView.getItems().add("Items");
+        equippedActionGroupingsListView.getItems().add("Spells");
+        equippedActionGroupingsListView.getItems().add("Misc");
         actionDescriptionTextArea.setEditable(false);
         inventoryView.addFXMLElement(playerImg);
         inventoryView.addFXMLElement(playerStatsTxtArea);
@@ -207,16 +211,7 @@ public class GameController {
         specificActionListView.getItems().clear();
         itemDescriptionTextArea.clear();
         if (battleState.equals(BattleState.PLAYER_TURN)) {
-            if (selectedActionGrouping != null) {
-                for (Action action: world.getPlayer().getActions()) {
-                    if (action.getGrouping().getName().equals(selectedActionGrouping.getName())) {
-                        specificActionListView.getItems().add(action.getName());
-                    }
-                }
-                if (selectedSpecificAction != null ) {
-                    itemDescriptionTextArea.setText(selectedSpecificAction.getDescription());
-                }
-            }
+            updateActionsAndDescriptionsListViewAndTextArea(specificActionListView, itemDescriptionTextArea);
             doActionBtn.setDisable(selectedActionGrouping == null || selectedSpecificAction == null);
             doActionBtn.setText("Do");
         } else if (battleState.equals(BattleState.ENEMY_TURN)) {
@@ -331,7 +326,64 @@ public class GameController {
     }
 
     @FXML
+    public void updateInventoryViewListViews() {
+        String selectedActionGroupingTxt = getSelectedItemFromListView(equippedActionGroupingsListView);
+        if (selectedActionGroupingTxt != null) {
+            selectedActionGrouping = ActionGroupings.getActionGrouping(selectedActionGroupingTxt);
+        }
+
+        updateActionsAndDescriptionsListViewAndTextArea(equippedActionsListView, actionDescriptionTextArea);
+
+
+        for (Action action : world.getPlayer().getItems()) {
+            if (action.getGrouping().equals(selectedActionGrouping)) {
+                allActionsListView.getItems().add(action.getName());
+            }
+        }
+    }
+
+    private void updateActionsAndDescriptionsListViewAndTextArea(ListView actionGroupingsListView, TextArea actionDescriptionTextArea) {
+        if (selectedActionGrouping != null) {
+            actionGroupingsListView.getItems().clear();
+            actionDescriptionTextArea.clear();
+            for (Action action: world.getPlayer().getActions()) {
+                if (action.getGrouping().getName().equals(selectedActionGrouping.getName())) {
+                    actionGroupingsListView.getItems().add(action.getName());
+                }
+            }
+            if (selectedSpecificAction != null ) {
+                actionDescriptionTextArea.setText(selectedSpecificAction.getDescription());
+            }
+        }
+    }
+
+    private void initInventoryView() {
+        selectedActionGrouping = null;
+        selectedSpecificAction = null;
+    }
+
+    @FXML
     public void inventoryBtnClick(ActionEvent actionEvent) {
         fakeScreenController.activate("inventoryView");
+        initInventoryView();
+        updateInventoryViewListViews();
+    }
+
+    public void equippedActionsListViewClick(MouseEvent mouseEvent) {
+        String selectedSpecificActionTxt = getSelectedItemFromListView(equippedActionsListView);
+        selectedSpecificAction = world.getPlayer().getAction(selectedSpecificActionTxt);
+        updateInventoryViewListViews();
+    }
+
+    public void allActionsListViewClick(MouseEvent mouseEvent) {
+        String selectedSpecificActionTxt = getSelectedItemFromListView(allActionsListView);
+        selectedSpecificAction = world.getPlayer().getAction(selectedSpecificActionTxt);
+        updateInventoryViewListViews();
+    }
+
+    @FXML
+    public void equippedActionGroupingsListViewClick(MouseEvent mouseEvent) {
+        selectedSpecificAction = null;
+        updateInventoryViewListViews();
     }
 }
