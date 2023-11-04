@@ -100,27 +100,12 @@
                   <ImageView fitHeight="88.0" fitWidth="88.0" pickOnBounds="true" preserveRatio="true" />
                </graphic>
             </Button>
-            <Button fx:id="MILITARY_POTATOBtnB1" layoutX="230.0" layoutY="228.0" mnemonicParsing="false" onMouseClicked="#fightEnemy" prefHeight="96.0" prefWidth="0.0">
-               <graphic>
-                  <ImageView fitHeight="88.0" fitWidth="88.0" pickOnBounds="true" preserveRatio="true" />
-               </graphic>
-            </Button>
-            <Button fx:id="MILITARY_POTATOBtnA3" layoutX="443.0" layoutY="318.0" mnemonicParsing="false" onMouseClicked="#fightEnemy" prefHeight="96.0" prefWidth="0.0">
-               <graphic>
-                  <ImageView fitHeight="88.0" fitWidth="88.0" pickOnBounds="true" preserveRatio="true" />
-               </graphic>
-            </Button>
-            <Button fx:id="MILITARY_POTATOBtnA4" layoutX="296.0" layoutY="414.0" mnemonicParsing="false" onMouseClicked="#fightEnemy" prefHeight="96.0" prefWidth="0.0">
+            <Button fx:id="MILITARY_POTATOBtn3" layoutX="443.0" layoutY="318.0" mnemonicParsing="false" onMouseClicked="#fightEnemy" prefHeight="96.0" prefWidth="0.0">
                <graphic>
                   <ImageView fitHeight="88.0" fitWidth="88.0" pickOnBounds="true" preserveRatio="true" />
                </graphic>
             </Button>
             <Button fx:id="MILITARY_POTATOBtn2" layoutX="359.0" layoutY="204.0" mnemonicParsing="false" onMouseClicked="#fightEnemy" prefHeight="96.0" prefWidth="0.0">
-               <graphic>
-                  <ImageView fitHeight="88.0" fitWidth="88.0" pickOnBounds="true" preserveRatio="true" />
-               </graphic>
-            </Button>
-            <Button fx:id="MILITARY_POTATOBtnA5" layoutX="611.0" layoutY="404.0" mnemonicParsing="false" onMouseClicked="#fightEnemy" prefHeight="96.0" prefWidth="0.0">
                <graphic>
                   <ImageView fitHeight="88.0" fitWidth="88.0" pickOnBounds="true" preserveRatio="true" />
                </graphic>

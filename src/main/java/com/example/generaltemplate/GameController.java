@@ -19,8 +19,8 @@ public class GameController {
     @FXML
     public Button idahoBtn, bakeryBtn, riceFieldsBtn, questionMarkBtn, goBackBtn;
     @FXML
-    public Button MILITARY_POTATOBtn1, MILITARY_POTATOBtnA1, MILITARY_POTATOBtnB1, MILITARY_POTATOBtnA3,
-            MILITARY_POTATOBtnA4, MILITARY_POTATOBtn2, MILITARY_POTATOBtnA5, MILITARY_POTATOBtnA2;
+    public Button MILITARY_POTATOBtn1, MILITARY_POTATOBtnA1, MILITARY_POTATOBtn3,
+            MILITARY_POTATOBtn2, MILITARY_POTATOBtnA2;
     ArrayList<Button> idahoViewBattleBtns;
     @FXML
     public TextArea battleOutcomeTextArea, actionDescriptionTextArea;
@@ -77,8 +77,8 @@ public class GameController {
         idahoView.addFXMLElement(playerStatsTxtArea);
         idahoView.addFXMLElement(inventoryBtn);
         fakeScreenController.add(idahoView);
-        idahoViewBattleBtns = new ArrayList<>(Arrays.asList(MILITARY_POTATOBtn1, MILITARY_POTATOBtnA1, MILITARY_POTATOBtnB1, MILITARY_POTATOBtnA3,
-                MILITARY_POTATOBtnA4, MILITARY_POTATOBtn2, MILITARY_POTATOBtnA5, MILITARY_POTATOBtnA2));
+        idahoViewBattleBtns = new ArrayList<>(Arrays.asList(MILITARY_POTATOBtn1, MILITARY_POTATOBtnA1,
+                MILITARY_POTATOBtn2, MILITARY_POTATOBtnA2, MILITARY_POTATOBtn3));
         for (Button button: idahoViewBattleBtns) {
             displayImage((ImageView) button.getGraphic(), "/Idaho/" + getEnemyType(button.getId()) + "/" + getEnemyDifficulty(button.getId()) + "/" + getEnemyType(button.getId()) + ".png");
         }
