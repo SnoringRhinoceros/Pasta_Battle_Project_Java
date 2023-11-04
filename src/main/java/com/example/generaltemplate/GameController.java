@@ -17,7 +17,7 @@ import java.util.Arrays;
 public class GameController {
 
     @FXML
-    public Button idahoBtn, bakeryBtn, riceFieldsBtn, questionMarkBtn, goBackBtn;
+    public Button idahoBtn, bakeryBtn, questionMarkBtn, goBackBtn;
     @FXML
     public Button MILITARY_POTATOBtn1, MILITARY_POTATOBtnA1, MILITARY_POTATOBtn3,
             MILITARY_POTATOBtn2, MILITARY_POTATOBtnA2;
@@ -62,7 +62,6 @@ public class GameController {
         FakeScreen mainView = new FakeScreen("mainView");
         mainView.addFXMLElement(idahoBtn);
         mainView.addFXMLElement(bakeryBtn);
-        mainView.addFXMLElement(riceFieldsBtn);
         mainView.addFXMLElement(questionMarkBtn);
         mainView.addFXMLElement(playerImg);
         mainView.addFXMLElement(playerStatsTxtArea);
@@ -89,13 +88,6 @@ public class GameController {
         bakeryView.addFXMLElement(playerStatsTxtArea);
         bakeryView.addFXMLElement(inventoryBtn);
         fakeScreenController.add(bakeryView);
-
-        FakeScreen riceFieldsView = new FakeScreen("riceFieldsView");
-        riceFieldsView.addFXMLElement(goBackBtn);
-        riceFieldsView.addFXMLElement(playerImg);
-        riceFieldsView.addFXMLElement(playerStatsTxtArea);
-        riceFieldsView.addFXMLElement(inventoryBtn);
-        fakeScreenController.add(riceFieldsView);
 
         FakeScreen questionMarkView = new FakeScreen("questionMarkView");
         questionMarkView.addFXMLElement(playerImg);
@@ -155,11 +147,6 @@ public class GameController {
     @FXML
     public void handleBakeryBtnClick(MouseEvent mouseEvent) {
         playerTravelTo("bakeryView");
-    }
-
-    @FXML
-    public void handleRiceFieldsBtnClick(MouseEvent mouseEvent) {
-        playerTravelTo("riceFieldsView");
     }
 
     @FXML
