@@ -63,6 +63,16 @@ abstract public class LivingBeing {
         items.add(drop);
     }
 
+    public void addItem(Action action) {
+        for (Item item: items) {
+            if (item.getAction().getName().equals(action.getName())) {
+                item.addAmount(1);
+                return;
+            }
+        }
+        items.add(new Item(action, 1));
+    }
+
     public void subtractItem(Item itemToSubtract, int amount) {
         for (Item item: items) {
             if (item.getAction().equals(itemToSubtract.getAction())) {
@@ -76,15 +86,22 @@ abstract public class LivingBeing {
     }
 
     public void equipItem(Item itemToEquip) {
-//        if (itemToEquip.getAction().getGrouping().equals(ActionGroupings.WEAPONS)) {
-//            for (Action action: actions) {
-//                if (action.getGrouping().equals(ActionGroupings.WEAPONS)) {
-//
-//                }
-//            }
-//        }
-        subtractItem(itemToEquip, 1);
-        actions.add(itemToEquip.getAction());
+        // right now, player can only equip one weapon at a time
+        if (itemToEquip.getAction().getGrouping().equals(ActionGroupings.WEAPONS)) {
+            for (Action action: actions) {
+                if (action.getGrouping().equals(ActionGroupings.WEAPONS) && !action.equals(PossibleActions.FISTS.getAction())) {
+                    unEquipAction(action);
+                    subtractItem(itemToEquip, 1);
+                    actions.add(itemToEquip.getAction());
+                    return;
+                }
+            }
+        }
+    }
+
+    public void unEquipAction(Action actionToUnEquip) {
+        actions.remove(actionToUnEquip);
+        addItem(actionToUnEquip);
     }
 
     // make an unequip item method
