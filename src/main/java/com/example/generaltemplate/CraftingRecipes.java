@@ -1,9 +1,9 @@
 package com.example.generaltemplate;
 
 public enum CraftingRecipes {
-    STRAIGHT_SWORD (PossibleActions.BASIC_SWORD, 4, PossibleActions.STRAIGHT_SWORD),
-    MEAT_HAMMER (PossibleActions.BASIC_HAMMER, 4, PossibleActions.MEAT_HAMMER),
-    MARINARA_SAUCE (PossibleActions.BASIC_SAUCE, 4, PossibleActions.MARINARA_SAUCE);
+    STRAIGHT_SWORD (PossibleActions.BASIC_SWORD, 2, PossibleActions.STRAIGHT_SWORD),
+    MEAT_HAMMER (PossibleActions.BASIC_HAMMER, 2, PossibleActions.MEAT_HAMMER),
+    MARINARA_SAUCE (PossibleActions.BASIC_SAUCE, 2, PossibleActions.MARINARA_SAUCE);
 
 
 

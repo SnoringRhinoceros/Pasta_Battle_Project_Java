@@ -63,14 +63,16 @@ abstract public class LivingBeing {
         items.add(drop);
     }
 
-    public void addItem(Action action) {
+    public void subtractItem(Item itemToSubtract, int amount) {
         for (Item item: items) {
-            if (item.getAction().equals(action)) {
-                item.addAmount(item.getAmount());
+            if (item.getAction().equals(itemToSubtract.getAction())) {
+                item.subtractAmount(amount);
+                if (item.isMarkedForDeletion()) {
+                    items.remove(item);
+                }
                 return;
             }
         }
-        items.add(new Item(action, 1));
     }
 
     public boolean isDead() {return stats.getCurHealth() <= 0;}

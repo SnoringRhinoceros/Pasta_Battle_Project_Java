@@ -16,7 +16,7 @@ public class Crafter {
             if (recipe.getIngredient().getAction().equals(item.getAction())) {
                 return "Next upgrade:\n   "
                         + recipe.getResult().getAction().getName()
-                        + "\n" + "Upgrade Description:"
+                        + "\n" + "Upgrade Description:\n"
                         + recipe.getResult().getAction().getDescription()
                         + "\nAmount needed:\n  " + recipe.getHowMany()
                         + "\nCraftable:\n  " + getItemCraftable(item);
@@ -24,10 +24,10 @@ public class Crafter {
         }
         return "";
     }
-    public Item craft(Item item) {
+    public Item craft(Item item, LivingBeing personToSubtractItemFrom) {
         for (CraftingRecipes recipe : CraftingRecipes.values()) {
             if (recipe.getIngredient().getAction().equals(item.getAction())) {
-                item.subtractAmount(recipe.getHowMany());
+                personToSubtractItemFrom.subtractItem(item, recipe.getHowMany());
                 return new Item(recipe.getResult().getAction(), 1);
             }
         }

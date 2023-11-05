@@ -17,10 +17,9 @@ import java.util.Arrays;
 public class GameController {
 
     @FXML
-    public Button Spaghetti, Ravioli, Rotini, idahoBtn, bakeryBtn, questionMarkBtn, goBackBtn;
+    public Button Spaghetti, Ravioli, Rotini, idahoBtn, bakeryBtn, questionMarkBtn, goBackBtn, inventoryCraftBtn;
     @FXML
-    public Button MILITARY_POTATOBtn1, MILITARY_POTATOBtnA1, MILITARY_POTATOBtn3,
-            MILITARY_POTATOBtn2, MILITARY_POTATOBtnA2;
+    public Button MILITARY_POTATOBtn1, MILITARY_POTATOBtnA1, MILITARY_POTATOBtn3, MILITARY_POTATOBtn2, MILITARY_POTATOBtnA2;
     ArrayList<Button> idahoViewBattleBtns;
     @FXML
     public TextArea battleOutcomeTextArea, actionDescriptionTextArea, inventoryCraftableItemTextArea;;
@@ -323,8 +322,12 @@ public class GameController {
             }
         }
 
+        inventoryCraftBtn.setDisable(true);
+        inventoryCraftableItemTextArea.clear();
         if (selectedItem != null) {
-            // disable crafting button if not craftable
+            if (world.getCrafter().getItemCraftable(selectedItem)) {
+                inventoryCraftBtn.setDisable(false);
+            }
             inventoryCraftableItemTextArea.setText(world.getCrafter().getNextItemCraftableDescription(selectedItem));
         }
     }
@@ -386,6 +389,7 @@ public class GameController {
 
     @FXML
     public void onInventoryCraftBtnClick(ActionEvent actionEvent) {
-        // write
+        world.getPlayer().addItem(world.getCrafter().craft(selectedItem, world.getPlayer()));
+        updateInventoryView();
     }
 }
