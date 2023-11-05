@@ -19,7 +19,7 @@ public class Crafter {
                         + "\n" + "Upgrade Description:"
                         + recipe.getResult().getAction().getDescription()
                         + "\nAmount needed:\n  " + recipe.getHowMany()
-                        + "\nCraftability:\n  " + getItemCraftable(item);
+                        + "\nCraftable:\n  " + getItemCraftable(item);
             }
         }
         return "";

@@ -56,7 +56,7 @@ abstract public class LivingBeing {
     public void addItem(Item drop) {
         for (Item item: items) {
             if (item.getAction().getName().equals(drop.getAction().getName())) {
-                item.addAmount(item.getAmount());
+                item.addAmount(drop.getAmount());
                 return;
             }
         }
