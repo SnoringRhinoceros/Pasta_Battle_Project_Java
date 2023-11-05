@@ -17,31 +17,23 @@ import java.util.Arrays;
 public class GameController {
 
     @FXML
-    public Button idahoBtn, bakeryBtn, questionMarkBtn, goBackBtn;
+    public Button Spaghetti, Ravioli, Rotini, idahoBtn, bakeryBtn, questionMarkBtn, goBackBtn;
     @FXML
     public Button MILITARY_POTATOBtn1, MILITARY_POTATOBtnA1, MILITARY_POTATOBtn3,
             MILITARY_POTATOBtn2, MILITARY_POTATOBtnA2;
     ArrayList<Button> idahoViewBattleBtns;
     @FXML
-    public TextArea battleOutcomeTextArea, actionDescriptionTextArea;
+    public TextArea battleOutcomeTextArea, actionDescriptionTextArea, inventoryCraftableItemTextArea;;
     @FXML
-    public ListView equippedActionsListView, equippedActionGroupingsListView, allActionsListView;
+    public ListView equippedActionsListView, equippedActionGroupingsListView, allActionsListView, actionGroupingsListView, specificActionListView;;
     @FXML
-    public AnchorPane inventoryPane;
+    public AnchorPane inventoryPane, characterSelectPane, idahoViewPane;
     @FXML
-    public Button inventoryBtn;
+    public Button inventoryBtn, doActionBtn;
     @FXML
-    public TextArea enemyStatsTextArea, playerStatsTxtArea;
-    @FXML
-    public ListView actionGroupingsListView, specificActionListView;
+    public TextArea enemyStatsTextArea, playerStatsTxtArea, itemDescriptionTextArea;
     private ActionGroupings selectedActionGrouping;
     private Action selectedSpecificAction;
-    @FXML
-    public AnchorPane characterSelectPane, idahoViewPane;
-    @FXML
-    public TextArea itemDescriptionTextArea;
-    @FXML
-    public Button doActionBtn;
     @FXML
     public ImageView playerImg, enemyBattleImg;
     @FXML
@@ -125,6 +117,7 @@ public class GameController {
         equippedActionGroupingsListView.getItems().add("Spells");
         equippedActionGroupingsListView.getItems().add("Misc");
         actionDescriptionTextArea.setEditable(false);
+        inventoryCraftableItemTextArea.setEditable(false);
         inventoryView.addFXMLElement(playerImg);
         inventoryView.addFXMLElement(playerStatsTxtArea);
         inventoryView.addFXMLElement(goBackBtn);
@@ -377,5 +370,10 @@ public class GameController {
     public void equippedActionGroupingsListViewClick(MouseEvent mouseEvent) {
         selectedSpecificAction = null;
         updateInventoryViewListViews();
+    }
+
+    @FXML
+    public void onInventoryCraftBtnClick(ActionEvent actionEvent) {
+        // write
     }
 }
