@@ -128,6 +128,7 @@
             <Label layoutX="373.0" layoutY="73.0" text="Equipped Items" />
             <Label layoutX="581.0" layoutY="73.0" text="Item Description" />
             <Label layoutX="587.0" layoutY="338.0" text="Craftable Item" />
+            <Button fx:id="inventoryEquipBtn" layoutX="375.0" layoutY="560.0" mnemonicParsing="false" onAction="#inventoryEquipBtnClick" text="Equip" />
             <Label layoutX="314.0" layoutY="330.0" text="All items (not including equipped)" />
          </children>
       </AnchorPane>

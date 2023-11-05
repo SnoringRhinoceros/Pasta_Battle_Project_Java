@@ -17,18 +17,16 @@ import java.util.Arrays;
 public class GameController {
 
     @FXML
-    public Button Spaghetti, Ravioli, Rotini, idahoBtn, bakeryBtn, questionMarkBtn, goBackBtn, inventoryCraftBtn;
+    public Button Spaghetti, Ravioli, Rotini, idahoBtn, bakeryBtn, questionMarkBtn, goBackBtn, inventoryCraftBtn, inventoryEquipBtn, inventoryBtn, doActionBtn;
     @FXML
     public Button MILITARY_POTATOBtn1, MILITARY_POTATOBtnA1, MILITARY_POTATOBtn3, MILITARY_POTATOBtn2, MILITARY_POTATOBtnA2;
     ArrayList<Button> idahoViewBattleBtns;
     @FXML
-    public TextArea battleOutcomeTextArea, actionDescriptionTextArea, inventoryCraftableItemTextArea;;
+    public TextArea battleOutcomeTextArea, actionDescriptionTextArea, inventoryCraftableItemTextArea;
     @FXML
-    public ListView equippedActionsListView, equippedActionGroupingsListView, allActionsListView, actionGroupingsListView, specificActionListView;;
+    public ListView equippedActionsListView, equippedActionGroupingsListView, allActionsListView, actionGroupingsListView, specificActionListView;
     @FXML
     public AnchorPane inventoryPane, characterSelectPane, idahoViewPane;
-    @FXML
-    public Button inventoryBtn, doActionBtn;
     @FXML
     public TextArea enemyStatsTextArea, playerStatsTxtArea, itemDescriptionTextArea;
     private ActionGroupings selectedActionGrouping;
@@ -198,9 +196,6 @@ public class GameController {
         } else if (battleState.equals(BattleState.ENEMY_TURN)) {
             doActionBtn.setText("Enemy attacks");
         } else if (battleState.equals(BattleState.BATTLE_OVER)) {
-            if (world.getCurBattle().getEnemyDrop() != null) {
-                // change
-            }
             doActionBtn.setText("Leave battle");
         }
         playerStatsTxtArea.setText(world.getPlayer().getStatsText());
@@ -322,9 +317,16 @@ public class GameController {
             }
         }
 
+
         inventoryCraftBtn.setDisable(true);
         inventoryCraftableItemTextArea.clear();
+        inventoryEquipBtn.setDisable(true);
         if (selectedItem != null) {
+            if (!world.getPlayer().hasItem(selectedItem)) {
+                selectedItem = null;
+                return;
+            }
+            inventoryEquipBtn.setDisable(false);
             if (world.getCrafter().getItemCraftable(selectedItem)) {
                 inventoryCraftBtn.setDisable(false);
             }
@@ -390,6 +392,11 @@ public class GameController {
     @FXML
     public void onInventoryCraftBtnClick(ActionEvent actionEvent) {
         world.getPlayer().addItem(world.getCrafter().craft(selectedItem, world.getPlayer()));
+        updateInventoryView();
+    }
+    @FXML
+    public void inventoryEquipBtnClick(ActionEvent actionEvent) {
+        world.getPlayer().equipItem(selectedItem);
         updateInventoryView();
     }
 }

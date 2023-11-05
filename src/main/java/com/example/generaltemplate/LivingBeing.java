@@ -75,6 +75,29 @@ abstract public class LivingBeing {
         }
     }
 
+    public void equipItem(Item itemToEquip) {
+//        if (itemToEquip.getAction().getGrouping().equals(ActionGroupings.WEAPONS)) {
+//            for (Action action: actions) {
+//                if (action.getGrouping().equals(ActionGroupings.WEAPONS)) {
+//
+//                }
+//            }
+//        }
+        subtractItem(itemToEquip, 1);
+        actions.add(itemToEquip.getAction());
+    }
+
+    // make an unequip item method
+
+    public boolean hasItem(Item itemToFind) {
+        for (Item item: items) {
+            if (itemToFind.getAction().getName().equals(item.getAction().getName())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public boolean isDead() {return stats.getCurHealth() <= 0;}
 
     public void travelTo(String place) {
