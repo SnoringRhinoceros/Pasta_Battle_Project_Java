@@ -6,13 +6,24 @@ public enum PossibleActions {
             "Fists always work\nHowever, they only do your base damage")),
     BASIC_SWORD (new Action("Basic sword", ActionGroupings.WEAPONS,
             new StatModifier("Basic sword", new Stats(0,5,0,0,0)),
-            "Simple sword for a simple pasta\n +5 damage")),
+            "Simple sword for a simple pasta\n+5 damage")),
+    STRAIGHT_SWORD(new Action("Straight sword", ActionGroupings.WEAPONS,
+            new StatModifier("Straight sword", new Stats(0, 10, 0, 0, 0)),
+            "A decent blade for a decent pasta.\n+10 damage")),
     BASIC_HAMMER (new Action("Basic hammer", ActionGroupings.WEAPONS,
-            new StatModifier("Basic shield", new Stats(0, 10, 0, 0, 0)),
+            new StatModifier("Basic hammer", new Stats(0, 10, 0, 0, 0)),
             "Slow but strong\n+10 damage")),
+    MEAT_HAMMER(new Action("Meat hammer", ActionGroupings.WEAPONS,
+            new StatModifier("Normal hammer", new Stats(0, 20, 0, 0, 0)),
+            "Hammer but for meat\n+20 damage"
+            )),
     BASIC_SAUCE (new Action("Basic sauce", ActionGroupings.SPELLS,
-            new StatModifier("Basic Sauce", 5, new Stats(0,5,0,0,0)),
-            "The first sauce a rotini ever learns\n+5 to sauce dmg"));
+            new StatModifier("Basic Sauce", 5, new Stats(0,20,0,0,0)),
+            "The first sauce a rotini ever learns\n+20 to sauce dmg for 5 ticks")),
+    MARINARA_SAUCE (new Action("Marinara sauce", ActionGroupings.SPELLS,
+            new StatModifier("Marinara sauce", 10, new Stats(0, 20, 0, 0, 0)),
+            "All good rotini start with the fundamentals\n+20 to sauce dmg for 10 ticks"));
+
 
     private Action action;
 
