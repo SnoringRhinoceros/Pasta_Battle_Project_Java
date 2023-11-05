@@ -19,6 +19,10 @@ abstract public class LivingBeing {
     public String getName() {
         return name;
     }
+
+    public Stats getModifStats() {
+        return statModifiersOwned.getTotalStatModif(this.getStats());
+    }
     public StatModifiersOwned getStatModifiersOwned() {
         return statModifiersOwned;
     }

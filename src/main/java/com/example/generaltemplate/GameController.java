@@ -124,6 +124,10 @@ public class GameController {
         fakeScreenController.activate(characterSelectView.getName());
     }
 
+    public static int generateRandNum(int min, int max) {
+        return min + (int) (Math.random()*((max - min) + 1));
+    }
+
     private void playerTravelTo(String place) {
         world.getPlayer().travelTo(place);
         fakeScreenController.activate(place);

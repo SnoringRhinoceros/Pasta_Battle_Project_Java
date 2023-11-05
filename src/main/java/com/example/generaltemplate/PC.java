@@ -11,21 +11,21 @@ public class PC extends LivingBeing {
             getStats().setCurHealth(40);
             getStats().setStrength(5);
             getStats().setDefense(5);
-            getStats().setAwesomeness(5);
+            getStats().setAwesomeness(2);
             getActions().add(PossibleActions.BASIC_SWORD.getAction());
         } else if (pastaType.equals(PastaType.RAVIOLI)) {
             getStats().setMaxHealth(100);
             getStats().setCurHealth(100);
             getStats().setStrength(1);
             getStats().setDefense(15);
-            getStats().setAwesomeness(0);
+            getStats().setAwesomeness(1);
             getActions().add(PossibleActions.BASIC_HAMMER.getAction());
         } else if (pastaType.equals(PastaType.ROTINI)) {
             getStats().setMaxHealth(20);
             getStats().setCurHealth(20);
             getStats().setStrength(0);
             getStats().setDefense(0);
-            getStats().setAwesomeness(69);
+            getStats().setAwesomeness(10);
             getActions().add(PossibleActions.BASIC_SAUCE.getAction());
         }
         getActions().add(PossibleActions.FISTS.getAction());

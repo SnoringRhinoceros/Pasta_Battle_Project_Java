@@ -2,6 +2,8 @@ package com.example.generaltemplate;
 
 import java.util.ArrayList;
 
+import static com.example.generaltemplate.GameController.generateRandNum;
+
 public class PossibleDrops {
     private final ArrayList<Item> items = new ArrayList<>();
 
@@ -34,9 +36,4 @@ public class PossibleDrops {
         }
         return null;
     }
-
-    public static int generateRandNum(int min, int max) {
-        return min + (int) (Math.random()*((max - min) + 1));
-    }
-
 }
