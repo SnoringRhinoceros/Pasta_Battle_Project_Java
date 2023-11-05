@@ -11,12 +11,16 @@ public class PossibleDrops {
         }
     }
 
-    public void addItem(Action action, int dropChance, int amount) {
-        items.add(new Item(action, dropChance, amount));
+    public void addItem(Action action, int amount) {
+        items.add(new Item(action, amount));
+    }
+
+    public void addItem(Action action, int amount, int dropChance) {
+        items.add(new Item(action, amount, dropChance));
     }
 
     public void addItem(Item item) {
-        addItem(item.getAction(), item.getDropChance(), item.getAmount());
+        addItem(item.getAction(), item.getAmount());
     }
 
     public Item getRandDrop() {

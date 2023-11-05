@@ -63,6 +63,16 @@ abstract public class LivingBeing {
         items.add(drop);
     }
 
+    public void addItem(Action action) {
+        for (Item item: items) {
+            if (item.getAction().equals(action)) {
+                item.addAmount(item.getAmount());
+                return;
+            }
+        }
+        items.add(new Item(action, 1));
+    }
+
     public boolean isDead() {return stats.getCurHealth() <= 0;}
 
     public void travelTo(String place) {

@@ -3,9 +3,11 @@ package com.example.generaltemplate;
 public class World {
     private final PC player;
     private Battle curBattle;
+    private final Crafter crafter;
 
     World(PC player) {
         this.player = player;
+        crafter = new Crafter();
     }
 
     public void createBattle(Enemy enemy) {
@@ -30,5 +32,9 @@ public class World {
 
     public PC getPlayer() {
         return player;
+    }
+
+    public Crafter getCrafter() {
+        return crafter;
     }
 }

@@ -14,14 +14,6 @@ public class Action {
         this.description = description;
         this.statModifier = statModifier;
     }
-
-    public Action(PossibleActions possibleActions) {
-        this.name = possibleActions.name();
-        this.grouping = possibleActions.getAction().getGrouping();
-        this.description = possibleActions.getAction().getDescription();
-        this.statModifier = possibleActions.getAction().getStatModifier();
-    }
-
     public String getName() {
         return name;
     }

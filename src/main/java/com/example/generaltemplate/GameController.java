@@ -34,6 +34,7 @@ public class GameController {
     public TextArea enemyStatsTextArea, playerStatsTxtArea, itemDescriptionTextArea;
     private ActionGroupings selectedActionGrouping;
     private Action selectedSpecificAction;
+    private Item selectedItem;
     @FXML
     public ImageView playerImg, enemyBattleImg;
     @FXML
@@ -307,7 +308,7 @@ public class GameController {
     }
 
     @FXML
-    public void updateInventoryViewListViews() {
+    public void updateInventoryView() {
         String selectedActionGroupingTxt = getSelectedItemFromListView(equippedActionGroupingsListView);
         if (selectedActionGroupingTxt != null) {
             selectedActionGrouping = ActionGroupings.getActionGrouping(selectedActionGroupingTxt);
@@ -320,6 +321,11 @@ public class GameController {
             if (item.getAction().getGrouping().equals(selectedActionGrouping)) {
                 allActionsListView.getItems().add(item.getAction().getName() + " - " + item.getAmount() + "x");
             }
+        }
+
+        if (selectedItem != null) {
+            // disable crafting button if not craftable
+            inventoryCraftableItemTextArea.setText(world.getCrafter().getNextItemCraftableDescription(selectedItem));
         }
     }
 
@@ -347,7 +353,7 @@ public class GameController {
     public void inventoryBtnClick(ActionEvent actionEvent) {
         fakeScreenController.activate("inventoryView");
         initInventoryView();
-        updateInventoryViewListViews();
+        updateInventoryView();
     }
 
     public void equippedActionsListViewClick(MouseEvent mouseEvent) {
@@ -355,21 +361,27 @@ public class GameController {
             String selectedSpecificActionTxt = getSelectedItemFromListView(equippedActionsListView);
             selectedSpecificAction = world.getPlayer().getAction(selectedSpecificActionTxt);
         }
-        updateInventoryViewListViews();
+        updateInventoryView();
     }
 
     public void allActionsListViewClick(MouseEvent mouseEvent) {
         if (getSelectedItemFromListView(allActionsListView) != null) {
             String selectedSpecificActionTxt = getSelectedItemFromListView(allActionsListView);
             selectedSpecificAction = world.getPlayer().getAction(selectedSpecificActionTxt.substring(0, selectedSpecificActionTxt.indexOf(" - ")));
+            for (Item item: world.getPlayer().getItems()) {
+                if (item.getAction().equals(selectedSpecificAction)) {
+                    selectedItem = item;
+                }
+            }
         }
-        updateInventoryViewListViews();
+        updateInventoryView();
     }
 
     @FXML
     public void equippedActionGroupingsListViewClick(MouseEvent mouseEvent) {
         selectedSpecificAction = null;
-        updateInventoryViewListViews();
+        selectedItem = null;
+        updateInventoryView();
     }
 
     @FXML
