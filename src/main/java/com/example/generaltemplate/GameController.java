@@ -20,13 +20,16 @@ public class GameController {
     public Button Spaghetti, Ravioli, Rotini, idahoBtn, bakeryBtn, questionMarkBtn, goBackBtn, inventoryCraftBtn, inventoryEquipBtn, inventoryBtn, doActionBtn;
     @FXML
     public Button MILITARY_POTATOBtn1, MILITARY_POTATOBtnA1, MILITARY_POTATOBtn3, MILITARY_POTATOBtn2, MILITARY_POTATOBtnA2;
+    @FXML
+    public Button KUNG_FU_BREADBtn1, KUNG_FU_BREADBtnA1, KUNG_FU_BREADBtn3, KUNG_FU_BREADBtn2, KUNG_FU_BREADBtnA2;
     ArrayList<Button> idahoViewBattleBtns;
+    ArrayList<Button> bakeryViewBattleBtns;
     @FXML
     public TextArea battleOutcomeTextArea, actionDescriptionTextArea, inventoryCraftableItemTextArea;
     @FXML
     public ListView equippedActionsListView, equippedActionGroupingsListView, allActionsListView, actionGroupingsListView, specificActionListView;
     @FXML
-    public AnchorPane inventoryPane, characterSelectPane, idahoViewPane;
+    public AnchorPane inventoryPane, characterSelectPane, idahoViewPane, bakeryViewPane;
     @FXML
     public TextArea enemyStatsTextArea, playerStatsTxtArea, itemDescriptionTextArea;
     private ActionGroupings selectedActionGrouping;
@@ -77,7 +80,14 @@ public class GameController {
         bakeryView.addFXMLElement(playerImg);
         bakeryView.addFXMLElement(playerStatsTxtArea);
         bakeryView.addFXMLElement(inventoryBtn);
+        bakeryView.addFXMLElement(bakeryViewPane);
         fakeScreenController.add(bakeryView);
+        bakeryViewBattleBtns = new ArrayList<>(Arrays.asList(KUNG_FU_BREADBtn1, KUNG_FU_BREADBtnA1,
+                KUNG_FU_BREADBtn3, KUNG_FU_BREADBtn2, KUNG_FU_BREADBtnA2));
+        for (Button button: bakeryViewBattleBtns) {
+            displayImage((ImageView) button.getGraphic(), "/Bakery/" + getEnemyType(button.getId()) + "/" + getEnemyDifficulty(button.getId()) + "/" + getEnemyType(button.getId()) + ".png");
+        }
+
 
         FakeScreen questionMarkView = new FakeScreen("questionMarkView");
         questionMarkView.addFXMLElement(playerImg);
