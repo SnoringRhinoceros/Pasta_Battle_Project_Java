@@ -3,7 +3,10 @@ package com.example.generaltemplate;
 public enum EnemyType {
     MILITARY_POTATO ("Military potato", new Item(PossibleActions.BASIC_SWORD.getAction(), 1, 33),
             new Item(PossibleActions.BASIC_HAMMER.getAction(), 1, 33),
-            new Item(PossibleActions.BASIC_SAUCE.getAction(), 1, 33));
+            new Item(PossibleActions.BASIC_SAUCE.getAction(), 1, 33)),
+    KUNG_FU_BREAD ("Kung fu bread", new Item(PossibleActions.STRAIGHT_SWORD.getAction(), 1, 33),
+            new Item(PossibleActions.MARINARA_SAUCE.getAction(), 1, 33),
+            new Item(PossibleActions.MEAT_HAMMER.getAction(), 1, 33));
 
     private final String name;
     private final Item[] items;

@@ -22,6 +22,13 @@ public class World {
                     "You encountered a random military potato named Joe",
                     20*enemyDifficulty, 5*enemyDifficulty,
                     5*enemyDifficulty, enemyDifficulty, enemyDifficulty);
+        } else if (enemyType.equals(EnemyType.KUNG_FU_BREAD)) {
+            return new Enemy(EnemyType.KUNG_FU_BREAD, EnemyType.KUNG_FU_BREAD.getName(),
+                    "Bakery/KUNG_FU_BREAD/" + enemyDifficulty + "/KUNG_FU_BREAD.png",
+                    "bakeryView",
+                    "A piece of bread appears!",
+                    30*enemyDifficulty, 10*enemyDifficulty,
+                    10*enemyDifficulty, (int) (enemyDifficulty*1.2), enemyDifficulty);
         }
         throw new RuntimeException("Invalid enemy type");
     }
