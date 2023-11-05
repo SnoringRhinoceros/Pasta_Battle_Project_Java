@@ -8,7 +8,7 @@ abstract public class LivingBeing {
     private StatModifiersOwned statModifiersOwned;
     private String loc;
     private final ArrayList<Action> actions = new ArrayList<>();
-    private final ArrayList<Action> items = new ArrayList<>();
+    private final ArrayList<Item> items = new ArrayList<>();
     public LivingBeing(String name, String loc, int maxHealth, int strength, int defense, int awesomeness) {
         this.name = name;
         stats = new Stats(maxHealth, strength, defense, awesomeness, maxHealth);
@@ -34,6 +34,10 @@ abstract public class LivingBeing {
         return actions;
     }
 
+    public ArrayList<Item> getItems() {
+        return items;
+    }
+
     public Action getAction(String actionName) {
         for (Action action : actions) {
             if (action.getName().equals(actionName)) {
@@ -41,20 +45,22 @@ abstract public class LivingBeing {
             }
         }
 
-        for (Action action : items) {
-            if (action.getName().equals(actionName)) {
-                return action;
+        for (Item item : items) {
+            if (item.getAction().getName().equals(actionName)) {
+                return item.getAction();
             }
         }
         return null;
     }
 
-    public ArrayList<Action> getItems() {
-        return items;
-    }
-
-    public void addItem(Action action) {
-        items.add(action);
+    public void addItem(Item drop) {
+        for (Item item: items) {
+            if (item.getAction().getName().equals(drop.getAction().getName())) {
+                item.addAmount(item.getAmount());
+                return;
+            }
+        }
+        items.add(drop);
     }
 
     public boolean isDead() {return stats.getCurHealth() <= 0;}

@@ -323,9 +323,9 @@ public class GameController {
         updateActionsAndDescriptionsListViewAndTextArea(equippedActionsListView, actionDescriptionTextArea);
 
         allActionsListView.getItems().clear();
-        for (Action action : world.getPlayer().getItems()) {
-            if (action.getGrouping().equals(selectedActionGrouping)) {
-                allActionsListView.getItems().add(action.getName());
+        for (Item item : world.getPlayer().getItems()) {
+            if (item.getAction().getGrouping().equals(selectedActionGrouping)) {
+                allActionsListView.getItems().add(item.getAction().getName() + " - " + item.getAmount() + "x");
             }
         }
     }
@@ -358,14 +358,18 @@ public class GameController {
     }
 
     public void equippedActionsListViewClick(MouseEvent mouseEvent) {
-        String selectedSpecificActionTxt = getSelectedItemFromListView(equippedActionsListView);
-        selectedSpecificAction = world.getPlayer().getAction(selectedSpecificActionTxt);
+        if (getSelectedItemFromListView(equippedActionsListView) != null) {
+            String selectedSpecificActionTxt = getSelectedItemFromListView(equippedActionsListView);
+            selectedSpecificAction = world.getPlayer().getAction(selectedSpecificActionTxt);
+        }
         updateInventoryViewListViews();
     }
 
     public void allActionsListViewClick(MouseEvent mouseEvent) {
-        String selectedSpecificActionTxt = getSelectedItemFromListView(allActionsListView);
-        selectedSpecificAction = world.getPlayer().getAction(selectedSpecificActionTxt);
+        if (getSelectedItemFromListView(allActionsListView) != null) {
+            String selectedSpecificActionTxt = getSelectedItemFromListView(allActionsListView);
+            selectedSpecificAction = world.getPlayer().getAction(selectedSpecificActionTxt.substring(0, selectedSpecificActionTxt.indexOf(" - ")));
+        }
         updateInventoryViewListViews();
     }
 

@@ -5,14 +5,16 @@ public class Enemy extends LivingBeing{
     private String entryText;
     private final PossibleDrops possibleDrops;
     private EnemyType enemyType;
-    public Enemy(EnemyType enemyType, String name, String imgPath, String loc, String entryText, int health, int strength, int defense, int awesomeness) {
+    private int difficulty;
+    public Enemy(EnemyType enemyType, String name, String imgPath, String loc, String entryText, int health, int strength, int defense, int awesomeness, int difficulty) {
         super(name, loc, health, strength, defense, awesomeness);
         this.enemyType = enemyType;
         this.imgPath = imgPath;
         this.entryText = entryText;
+        this.difficulty = difficulty;
         possibleDrops = new PossibleDrops();
-        for (Drop drop : enemyType.getPossibleDrops()) {
-            possibleDrops.addDrop(drop);
+        for (Item item : enemyType.getPossibleDrops()) {
+            possibleDrops.addDrop(item);
         }
     }
 
@@ -34,7 +36,7 @@ public class Enemy extends LivingBeing{
         return entryText;
     }
 
-    public Drop getRandDrop() {
+    public Item getRandDrop() {
         return possibleDrops.getRandDrop();
     }
 }

@@ -1,13 +1,13 @@
 package com.example.generaltemplate;
 
 public enum EnemyType {
-    MILITARY_POTATO ("Military potato", new Drop(PossibleActions.BASIC_SWORD.getAction(), 100, 2));
+    MILITARY_POTATO ("Military potato", new Item(PossibleActions.BASIC_SWORD.getAction(), 100, 1));
 
     private final String name;
-    private final Drop[] drops;
-    EnemyType(String name, Drop... drops) {
+    private final Item[] items;
+    EnemyType(String name, Item... items) {
         this.name = name;
-        this.drops = drops;
+        this.items = items;
     }
     public static EnemyType getEnemyType(String name) {
         for (EnemyType enemyType : values()) {
@@ -22,7 +22,7 @@ public enum EnemyType {
         return name;
     }
 
-    public Drop[] getPossibleDrops() {
-        return drops;
+    public Item[] getPossibleDrops() {
+        return items;
     }
 }

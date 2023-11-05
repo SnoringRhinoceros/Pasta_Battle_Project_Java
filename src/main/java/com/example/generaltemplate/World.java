@@ -19,7 +19,7 @@ public class World {
                     "idahoView",
                     "You encountered a random military potato named Joe",
                     20*enemyDifficulty, 5*enemyDifficulty,
-                    5*enemyDifficulty, 5*enemyDifficulty);
+                    5*enemyDifficulty, 5*enemyDifficulty, enemyDifficulty);
         }
         throw new RuntimeException("Invalid enemy type");
     }

@@ -8,7 +8,7 @@ public class Battle {
     private String result;
     private LivingBeing winner;
     private BattleState state = BattleState.PLAYER_TURN;
-    private Drop enemyDrop;
+    private Item enemyItem;
 
     public Battle(PC player, Enemy enemy) {
         this.player = player;
@@ -30,9 +30,9 @@ public class Battle {
         if (winner != null) {
             state = BattleState.BATTLE_OVER;
             if (winner.equals(player)) {
-                enemyDrop = enemy.getRandDrop();
-                player.addItem(enemyDrop.action());
-                result += "\nenemy dropped " + enemyDrop.amount() + " " + enemyDrop.action().getName() + " (" + enemyDrop.dropChance() + "%)";
+                enemyItem = enemy.getRandDrop();
+                player.addItem(new Item(enemyItem));
+                result += "\nenemy dropped " + enemyItem.getAmount() + " " + enemyItem.getAction().getName() + " (" + enemyItem.getDropChance() + "%)";
             }
             return result;
         }
@@ -115,7 +115,7 @@ public class Battle {
         return state;
     }
 
-    public Drop getEnemyDrop() {
-        return enemyDrop;
+    public Item getEnemyDrop() {
+        return enemyItem;
     }
 }

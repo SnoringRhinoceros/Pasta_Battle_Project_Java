@@ -3,30 +3,30 @@ package com.example.generaltemplate;
 import java.util.ArrayList;
 
 public class PossibleDrops {
-    private final ArrayList<Drop> drops = new ArrayList<>();
+    private final ArrayList<Item> items = new ArrayList<>();
 
-    public PossibleDrops(Drop... inputtedDrop) {
-        for (Drop drop: inputtedDrop) {
-            addDrop(drop);
+    public PossibleDrops(Item... inputtedItem) {
+        for (Item item : inputtedItem) {
+            addDrop(item);
         }
     }
 
     public void addDrop(Action action, int dropChance, int amount) {
-        drops.add(new Drop(action, dropChance, amount));
+        items.add(new Item(action, dropChance, amount));
     }
 
-    public void addDrop(Drop drop) {
-        addDrop(drop.action(), drop.dropChance(), drop.amount());
+    public void addDrop(Item item) {
+        addDrop(item.getAction(), item.getDropChance(), item.getDropChance());
     }
 
-    public Drop getRandDrop() {
+    public Item getRandDrop() {
         int randNum = generateRandNum(1, 100);
         int percentCount = 0;
-        for (Drop drop : drops) {
-            if (randNum >= percentCount && randNum <= drop.dropChance()+percentCount) {
-                return drop;
+        for (Item item : items) {
+            if (randNum >= percentCount && randNum <= item.getDropChance()+percentCount) {
+                return item;
             }
-            percentCount += drop.dropChance();
+            percentCount += item.getDropChance();
         }
         return null;
     }
