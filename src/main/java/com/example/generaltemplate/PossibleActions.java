@@ -12,7 +12,7 @@ public enum PossibleActions {
             "A decent blade for a decent pasta.\n+10 damage", 50)),
     BASIC_HAMMER (new Action("Basic hammer", ActionGroupings.WEAPONS,
             new StatModifier("Basic hammer", new Stats(0, 10, 0, 0, 0)),
-            "Slow but strong\n+10 damage", 25)),
+            "Not very accurate but pretty strong\n+10 damage", 25)),
     MEAT_HAMMER(new Action("Meat hammer", ActionGroupings.WEAPONS,
             new StatModifier("Normal hammer", new Stats(0, 20, 0, 0, 0)),
             "Hammer but for meat\n+20 damage", 35)),

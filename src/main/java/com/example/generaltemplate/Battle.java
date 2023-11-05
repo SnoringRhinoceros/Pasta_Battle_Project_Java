@@ -31,8 +31,10 @@ public class Battle {
             state = BattleState.BATTLE_OVER;
             if (winner.equals(player)) {
                 Item enemyItem = enemy.getRandDrop();
-                player.addItem(new Item(enemyItem));
-                result += "\nenemy dropped " + enemyItem.getAmount() + " " + enemyItem.getAction().getName() + " (" + enemyItem.getDropChance() + "%)";
+                if (enemyItem != null) {
+                    player.addItem(new Item(enemyItem));
+                    result += "\nenemy dropped " + enemyItem.getAmount() + " " + enemyItem.getAction().getName() + " (" + enemyItem.getDropChance() + "%)";
+                }
             }
             return result;
         }

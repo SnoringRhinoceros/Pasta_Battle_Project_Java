@@ -90,15 +90,18 @@ abstract public class LivingBeing {
     }
 
     public void equipItem(Item itemToEquip) {
-        // right now, player can only equip one weapon at a time
-        if (itemToEquip.getAction().getGrouping().equals(ActionGroupings.WEAPONS)) {
-            for (Action action: actions) {
-                if (action.getGrouping().equals(ActionGroupings.WEAPONS) && !action.equals(PossibleActions.FISTS.getAction())) {
-                    unEquipAction(action);
-                    subtractItem(itemToEquip, 1);
-                    actions.add(itemToEquip.getAction());
-                    return;
-                }
+        // right now, player can only equip one weapon at a time and as many non-identical spells as they want
+         if (itemToEquip.getAction().getGrouping().equals(ActionGroupings.SPELLS) && !actions.contains(itemToEquip.getAction())) {
+            subtractItem(itemToEquip, 1);
+            actions.add(itemToEquip.getAction());
+            return;
+        }
+        for (Action action: actions) {
+            if (itemToEquip.getAction().getGrouping().equals(ActionGroupings.WEAPONS) && action.getGrouping().equals(ActionGroupings.WEAPONS) && !action.equals(PossibleActions.FISTS.getAction())) {
+                unEquipAction(action);
+                subtractItem(itemToEquip, 1);
+                actions.add(itemToEquip.getAction());
+                return;
             }
         }
     }
@@ -107,8 +110,6 @@ abstract public class LivingBeing {
         actions.remove(actionToUnEquip);
         addItem(actionToUnEquip);
     }
-
-    // make an unequip item method
 
     public boolean hasItem(Item itemToFind) {
         for (Item item: items) {
