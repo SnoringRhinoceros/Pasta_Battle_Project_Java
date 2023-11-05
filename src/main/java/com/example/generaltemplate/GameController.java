@@ -25,13 +25,11 @@ public class GameController {
     ArrayList<Button> idahoViewBattleBtns;
     ArrayList<Button> bakeryViewBattleBtns;
     @FXML
-    public TextArea battleOutcomeTextArea, actionDescriptionTextArea, inventoryCraftableItemTextArea;
+    public TextArea battleOutcomeTextArea, actionDescriptionTextArea, inventoryCraftableItemTextArea, enemyStatsTextArea, playerStatsTxtArea, itemDescriptionTextArea;
     @FXML
     public ListView equippedActionsListView, equippedActionGroupingsListView, allActionsListView, actionGroupingsListView, specificActionListView;
     @FXML
     public AnchorPane inventoryPane, characterSelectPane, idahoViewPane, bakeryViewPane;
-    @FXML
-    public TextArea enemyStatsTextArea, playerStatsTxtArea, itemDescriptionTextArea;
     private ActionGroupings selectedActionGrouping;
     private Action selectedSpecificAction;
     private Item selectedItem;
@@ -40,7 +38,7 @@ public class GameController {
     @FXML
     public ProgressBar enemyBattleHealthBar;
     @FXML
-    public Label enemyBattleHPLbl;
+    public Label enemyBattleHPLbl, battleTurnNumLbl;
     FakeScreenController fakeScreenController;
     World world;
 
@@ -115,6 +113,7 @@ public class GameController {
         battleView.addFXMLElement(enemyBattleImg);
         battleView.addFXMLElement(enemyBattleHealthBar);
         battleView.addFXMLElement(enemyBattleHPLbl);
+        battleView.addFXMLElement(battleTurnNumLbl);
         fakeScreenController.add(battleView);
 
 
@@ -182,6 +181,7 @@ public class GameController {
         updateEnemyBattleHealthBar();
         doActionBtn.setText("Do");
         doActionBtn.setDisable(true);
+        updateBattleView();
     }
 
     private void updateEnemyBattleHealthBar() {
@@ -196,6 +196,7 @@ public class GameController {
     }
 
     private void updateBattleView() {
+        battleTurnNumLbl.setText("Turn Num: " + world.getCurBattle().getTurnNum());
         playerStatsTxtArea.setText(world.getPlayer().getStatsText());
         playerStatsTxtArea.appendText("\n" + world.getPlayer().getStatModifiersOwned().getAllStatModifierText());
         enemyStatsTextArea.setText(world.getCurBattle().getEnemy().getStatsText());

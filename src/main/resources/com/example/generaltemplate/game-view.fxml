@@ -206,5 +206,6 @@
       <Label fx:id="enemyBattleHPLbl" layoutX="309.0" layoutY="22.0" text="HP:" />
       <TextArea fx:id="battleOutcomeTextArea" layoutX="252.0" layoutY="241.0" prefHeight="60.0" prefWidth="312.0" />
     <Button fx:id="inventoryBtn" layoutX="150.0" layoutY="80.0" mnemonicParsing="false" onAction="#inventoryBtnClick" text="Inventory" />
+      <Label fx:id="battleTurnNumLbl" layoutX="550.0" layoutY="25.0" text="Turn Num:" />
    </children>
 </AnchorPane>
