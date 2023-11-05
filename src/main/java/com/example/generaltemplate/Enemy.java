@@ -14,7 +14,7 @@ public class Enemy extends LivingBeing{
         this.difficulty = difficulty;
         possibleDrops = new PossibleDrops();
         for (Item item : enemyType.getPossibleDrops()) {
-            possibleDrops.addDrop(item);
+            possibleDrops.addItem(item.getAction(), item.getDropChance(), item.getAmount()*difficulty);
         }
     }
 

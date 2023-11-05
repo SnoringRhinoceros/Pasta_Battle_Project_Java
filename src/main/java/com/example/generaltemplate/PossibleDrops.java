@@ -7,16 +7,16 @@ public class PossibleDrops {
 
     public PossibleDrops(Item... inputtedItem) {
         for (Item item : inputtedItem) {
-            addDrop(item);
+            addItem(item);
         }
     }
 
-    public void addDrop(Action action, int dropChance, int amount) {
+    public void addItem(Action action, int dropChance, int amount) {
         items.add(new Item(action, dropChance, amount));
     }
 
-    public void addDrop(Item item) {
-        addDrop(item.getAction(), item.getDropChance(), item.getDropChance());
+    public void addItem(Item item) {
+        addItem(item.getAction(), item.getDropChance(), item.getAmount());
     }
 
     public Item getRandDrop() {
