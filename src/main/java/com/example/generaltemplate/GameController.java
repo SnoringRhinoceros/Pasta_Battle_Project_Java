@@ -38,7 +38,7 @@ public class GameController {
     @FXML
     public ProgressBar enemyBattleHealthBar;
     @FXML
-    public Label enemyBattleHPLbl, battleTurnNumLbl;
+    public Label enemyBattleHPLbl, battleTurnNumLbl, timePassedLbl;
     FakeScreenController fakeScreenController;
     World world;
 
@@ -57,6 +57,7 @@ public class GameController {
         mainView.addFXMLElement(playerImg);
         mainView.addFXMLElement(playerStatsTxtArea);
         mainView.addFXMLElement(inventoryBtn);
+        mainView.addFXMLElement(timePassedLbl);
         questionMarkBtn.setDisable(true);
         fakeScreenController.add(mainView);
 
@@ -66,6 +67,7 @@ public class GameController {
         idahoView.addFXMLElement(playerImg);
         idahoView.addFXMLElement(playerStatsTxtArea);
         idahoView.addFXMLElement(inventoryBtn);
+        idahoView.addFXMLElement(timePassedLbl);
         fakeScreenController.add(idahoView);
         idahoViewBattleBtns = new ArrayList<>(Arrays.asList(MILITARY_POTATOBtn1, MILITARY_POTATOBtnA1,
                 MILITARY_POTATOBtn2, MILITARY_POTATOBtnA2, MILITARY_POTATOBtn3));
@@ -79,6 +81,7 @@ public class GameController {
         bakeryView.addFXMLElement(playerStatsTxtArea);
         bakeryView.addFXMLElement(inventoryBtn);
         bakeryView.addFXMLElement(bakeryViewPane);
+        bakeryView.addFXMLElement(timePassedLbl);
         fakeScreenController.add(bakeryView);
         bakeryViewBattleBtns = new ArrayList<>(Arrays.asList(KUNG_FU_BREADBtn1, KUNG_FU_BREADBtnA1,
                 KUNG_FU_BREADBtn3, KUNG_FU_BREADBtn2, KUNG_FU_BREADBtnA2));
@@ -91,6 +94,7 @@ public class GameController {
         questionMarkView.addFXMLElement(playerImg);
         questionMarkView.addFXMLElement(playerStatsTxtArea);
         questionMarkView.addFXMLElement(inventoryBtn);
+        questionMarkView.addFXMLElement(timePassedLbl);
         fakeScreenController.add(questionMarkView);
 
         FakeScreen battleView = new FakeScreen("battleView");
@@ -114,6 +118,7 @@ public class GameController {
         battleView.addFXMLElement(enemyBattleHealthBar);
         battleView.addFXMLElement(enemyBattleHPLbl);
         battleView.addFXMLElement(battleTurnNumLbl);
+        battleView.addFXMLElement(timePassedLbl);
         fakeScreenController.add(battleView);
 
 
@@ -138,6 +143,8 @@ public class GameController {
     }
 
     private void playerTravelTo(String place) {
+        world.tickTime();
+        timePassedLbl.setText("Time: " + world.getTime());
         world.getPlayer().travelTo(place);
         fakeScreenController.activate(place);
         displayImage(playerImg, "Player/" + world.getPlayer().getPastaType().getName() + ".png");
@@ -197,6 +204,7 @@ public class GameController {
 
     private void updateBattleView() {
         battleTurnNumLbl.setText("Turn Num: " + world.getCurBattle().getTurnNum());
+        timePassedLbl.setText("Time: " + world.getTime());
         playerStatsTxtArea.setText(world.getPlayer().getStatsText());
         playerStatsTxtArea.appendText("\n" + world.getPlayer().getStatModifiersOwned().getAllStatModifierText());
         enemyStatsTextArea.setText(world.getCurBattle().getEnemy().getStatsText());
@@ -240,6 +248,7 @@ public class GameController {
         fakeScreenController.activate("battleView");
         String idOfBtn = getIdOfButton(mouseEvent);
         world.createBattle(world.createNewEnemy(EnemyType.getEnemyType(getNormalName(idOfBtn)), getEnemyDifficulty(idOfBtn)));
+        world.tickTime();
         initBattleScreen();
     }
 
@@ -310,6 +319,7 @@ public class GameController {
             if (getIdOfButton(actionEvent).equals(pastaType.getName())) {
                 world = new World(new PC("player", pastaType));
                 playerTravelTo("mainView");
+                timePassedLbl.setText("Time: " + world.getTime());
                 playerStatsTxtArea.setText(world.getPlayer().getStatsText());
                 break;
             }
@@ -372,6 +382,8 @@ public class GameController {
     @FXML
     public void inventoryBtnClick(ActionEvent actionEvent) {
         fakeScreenController.activate("inventoryView");
+        world.tickTime();
+        timePassedLbl.setText("Time: " + world.getTime());
         initInventoryView();
         updateInventoryView();
     }

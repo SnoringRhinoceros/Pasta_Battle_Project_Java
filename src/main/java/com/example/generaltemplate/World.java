@@ -4,6 +4,7 @@ public class World {
     private final PC player;
     private Battle curBattle;
     private final Crafter crafter;
+    private int time;
 
     World(PC player) {
         this.player = player;
@@ -43,5 +44,13 @@ public class World {
 
     public Crafter getCrafter() {
         return crafter;
+    }
+
+    public int getTime() {
+        return time;
+    }
+
+    public void tickTime() {
+        time += 1;
     }
 }
