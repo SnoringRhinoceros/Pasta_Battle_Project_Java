@@ -44,6 +44,7 @@ public class GameController {
 
     @FXML
     public void initialize() {
+
         fakeScreenController = new FakeScreenController();
 
         FakeScreen characterSelectView = new FakeScreen("characterSelectView");
@@ -89,6 +90,12 @@ public class GameController {
             displayImage((ImageView) button.getGraphic(), "/Bakery/" + getEnemyType(button.getId()) + "/" + getEnemyDifficulty(button.getId()) + "/" + getEnemyType(button.getId()) + ".png");
         }
 
+        for (Button button : bakeryViewBattleBtns) {
+            
+        }
+        for (Button button : idahoViewBattleBtns) {
+
+        }
 
         FakeScreen questionMarkView = new FakeScreen("questionMarkView");
         questionMarkView.addFXMLElement(playerImg);

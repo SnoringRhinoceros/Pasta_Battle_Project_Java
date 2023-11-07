@@ -2,11 +2,14 @@ package com.example.generaltemplate;
 
 import javafx.scene.control.Button;
 
+import java.util.ArrayList;
+
 public class World {
     private final PC player;
     private Battle curBattle;
     private final Crafter crafter;
     private int time;
+    private ArrayList<Enemy> allEnemies;
 
     World(PC player) {
         this.player = player;
