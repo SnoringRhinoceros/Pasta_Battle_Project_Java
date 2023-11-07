@@ -19,9 +19,6 @@ public class Battle {
     public String runTurn(Action chosenAction) {
         player.passTick();
         result = "";
-        if (chosenAction.getGrouping().equals(ActionGroupings.ITEMS)) {
-            curBeing.useEquippedItem(chosenAction, 1);
-        }
         if (chosenAction.getGrouping().equals(ActionGroupings.SPELLS)) {
             curBeing.getStatModifiersOwned().addStatModif(new StatModifier(chosenAction.getStatModifier()));
             result = curBeing.getName() + " casts a " + chosenAction.getName() + " spell";

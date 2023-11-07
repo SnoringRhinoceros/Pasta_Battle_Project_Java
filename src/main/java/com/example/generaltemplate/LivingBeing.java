@@ -3,13 +3,12 @@ package com.example.generaltemplate;
 import java.util.ArrayList;
 
 abstract public class LivingBeing {
-    private final String name;
+    private String name;
     private Stats stats;
     private StatModifiersOwned statModifiersOwned;
     private String loc;
     private final ArrayList<Action> actions = new ArrayList<>();
     private final ArrayList<Item> items = new ArrayList<>();
-    private final ArrayList<Item> equippedItems = new ArrayList<>();
     public LivingBeing(String name, String loc, int maxHealth, int strength, int defense, int awesomeness) {
         this.name = name;
         stats = new Stats(maxHealth, strength, defense, awesomeness, maxHealth);
@@ -92,12 +91,7 @@ abstract public class LivingBeing {
 
     public void equipItem(Item itemToEquip) {
         // right now, player can only equip one weapon at a time and as many non-identical spells as they want
-        if (itemToEquip.getAction().getGrouping().equals(ActionGroupings.ITEMS)) {
-            equippedItems.add(new Item(itemToEquip.getAction(), itemToEquip.getAmount()));
-            subtractItem(itemToEquip, itemToEquip.getAmount());
-            return;
-        }
-        if (itemToEquip.getAction().getGrouping().equals(ActionGroupings.SPELLS) && !actions.contains(itemToEquip.getAction())) {
+         if (itemToEquip.getAction().getGrouping().equals(ActionGroupings.SPELLS) && !actions.contains(itemToEquip.getAction())) {
             subtractItem(itemToEquip, 1);
             actions.add(itemToEquip.getAction());
             return;
@@ -124,24 +118,6 @@ abstract public class LivingBeing {
             }
         }
         return false;
-    }
-
-
-    public void useEquippedItem(Action action, int amount) {
-        for (Item item: equippedItems) {
-            if (item.getAction().equals(action)) {
-                item.subtractAmount(amount);
-                if (item.isMarkedForDeletion()) {
-                    equippedItems.remove(item);
-                }
-                statModifiersOwned.addStatModif(item.getAction().getStatModifier());
-                return;
-            }
-        }
-    }
-
-    public ArrayList<Item> getEquippedItems() {
-        return equippedItems;
     }
 
     public boolean isDead() {return stats.getCurHealth() <= 0;}

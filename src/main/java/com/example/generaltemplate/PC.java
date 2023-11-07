@@ -13,7 +13,6 @@ public class PC extends LivingBeing {
             getStats().setDefense(5);
             getStats().setAwesomeness(2);
             getActions().add(PossibleActions.BASIC_SWORD.getAction());
-            getItems().add(new Item(PossibleActions.HEALING_POTION.getAction(), 1));
         } else if (pastaType.equals(PastaType.RAVIOLI)) {
             getStats().setMaxHealth(100);
             getStats().setCurHealth(100);

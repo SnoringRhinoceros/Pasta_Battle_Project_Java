@@ -388,7 +388,6 @@ public class GameController {
         updateInventoryView();
     }
 
-    @FXML
     public void equippedActionsListViewClick(MouseEvent mouseEvent) {
         if (getSelectedItemFromListView(equippedActionsListView) != null) {
             String selectedSpecificActionTxt = getSelectedItemFromListView(equippedActionsListView);
@@ -397,7 +396,6 @@ public class GameController {
         updateInventoryView();
     }
 
-    @FXML
     public void allActionsListViewClick(MouseEvent mouseEvent) {
         if (getSelectedItemFromListView(allActionsListView) != null) {
             String selectedSpecificActionTxt = getSelectedItemFromListView(allActionsListView);

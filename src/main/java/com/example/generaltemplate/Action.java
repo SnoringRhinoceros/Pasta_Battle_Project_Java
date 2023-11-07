@@ -7,15 +7,13 @@ public class Action {
     private final StatModifier statModifier;
     private final String description;
     private final int accuracy;
-    private boolean oneTimeUse;
 
-    public Action(String name, ActionGroupings grouping, StatModifier statModifier, String description, int accuracy, boolean oneTimeUse) {
+    public Action(String name, ActionGroupings grouping, StatModifier statModifier, String description, int accuracy) {
         this.name = name;
         this.grouping = grouping;
         this.description = description;
         this.statModifier = statModifier;
         this.accuracy = accuracy;
-        this.oneTimeUse = oneTimeUse;
     }
     public String getName() {
         return name;
@@ -35,9 +33,5 @@ public class Action {
 
     public int getAccuracy() {
         return accuracy;
-    }
-
-    public boolean isOneTimeUse() {
-        return oneTimeUse;
     }
 }
