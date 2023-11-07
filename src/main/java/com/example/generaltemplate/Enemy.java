@@ -1,17 +1,20 @@
 package com.example.generaltemplate;
 
+import javafx.scene.control.Button;
+
 public class Enemy extends LivingBeing{
     private String imgPath;
     private String entryText;
     private final PossibleDrops possibleDrops;
     private EnemyType enemyType;
-    private int difficulty;
-    public Enemy(EnemyType enemyType, String name, String imgPath, String loc, String entryText, int health, int strength, int defense, int awesomeness, int difficulty) {
+    private Button button;
+
+    public Enemy(Button button, EnemyType enemyType, String name, String imgPath, String loc, String entryText, int health, int strength, int defense, int awesomeness, int difficulty) {
         super(name, loc, health, strength, defense, awesomeness);
+        this.button = button;
         this.enemyType = enemyType;
         this.imgPath = imgPath;
         this.entryText = entryText;
-        this.difficulty = difficulty;
         possibleDrops = new PossibleDrops();
         for (Item item : enemyType.getPossibleDrops()) {
             possibleDrops.addItem(item.getAction(), item.getAmount()*difficulty, item.getDropChance());
@@ -25,6 +28,10 @@ public class Enemy extends LivingBeing{
                 + "Strength, " + getStats().getStrength() + "\n"
                 + "Defense, " + getStats().getDefense() + "\n"
                 + "Awesomeness, " + getStats().getAwesomeness() + "\n";
+    }
+
+    public Button getButton() {
+        return button;
     }
 
     public EnemyType getEnemyType() {return enemyType;}

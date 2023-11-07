@@ -224,9 +224,11 @@ public class GameController {
         } else if (battleState.equals(BattleState.ENEMY_TURN)) {
             doActionBtn.setText("Enemy attacks");
         } else if (battleState.equals(BattleState.BATTLE_OVER)) {
-            doActionBtn.setText("Leave battle");
             if (world.getPlayer().isDead()) {
                 initEndGame(false);
+            } else {
+                doActionBtn.setText("Leave battle");
+                world.getCurBattle().getEnemy().getButton().setDisable(true);
             }
         }
         playerStatsTxtArea.setText(world.getPlayer().getStatsText());
@@ -237,6 +239,8 @@ public class GameController {
         fakeScreenController.activate("fullScreenView");
         if (!win) {
             displayImage(fullScreenImageView, "End_Screen/lose_screen.png");
+        } else {
+            displayImage(fullScreenImageView, "Win_Screen/win_screen.png");
         }
     }
 
@@ -259,10 +263,10 @@ public class GameController {
     }
 
     @FXML
-    public void fightEnemy(MouseEvent mouseEvent) {
+    public void fightEnemy(Event event) {
         fakeScreenController.activate("battleView");
-        String idOfBtn = getIdOfButton(mouseEvent);
-        world.createBattle(world.createNewEnemy(EnemyType.getEnemyType(getNormalName(idOfBtn)), getEnemyDifficulty(idOfBtn)));
+        String idOfBtn = getIdOfButton(event);
+        world.createBattle(world.createNewEnemy(((Button)event.getSource()), EnemyType.getEnemyType(getNormalName(idOfBtn)), getEnemyDifficulty(idOfBtn)));
         world.tickTime();
         initBattleScreen();
     }
@@ -294,9 +298,6 @@ public class GameController {
         } else if (battleState.equals(BattleState.ENEMY_TURN)) {
             updateBattleView(world.getCurBattle().runTurn());
         } else if (battleState.equals(BattleState.BATTLE_OVER)) {
-            if (world.getPlayer().isDead()) {
-                // handle that
-            }
             fakeScreenController.activate(world.getPlayer().getLoc());
         }
     }
