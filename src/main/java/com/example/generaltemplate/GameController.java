@@ -29,12 +29,12 @@ public class GameController {
     @FXML
     public ListView equippedActionsListView, equippedActionGroupingsListView, allActionsListView, actionGroupingsListView, specificActionListView;
     @FXML
-    public AnchorPane inventoryPane, characterSelectPane, idahoViewPane, bakeryViewPane;
+    public AnchorPane inventoryPane, characterSelectPane, idahoViewPane, bakeryViewPane, oneBigImgPane;
     private ActionGroupings selectedActionGrouping;
     private Action selectedSpecificAction;
     private Item selectedItem;
     @FXML
-    public ImageView playerImg, enemyBattleImg;
+    public ImageView playerImg, enemyBattleImg, fullScreenImageView;
     @FXML
     public ProgressBar enemyBattleHealthBar;
     @FXML
@@ -135,6 +135,11 @@ public class GameController {
         inventoryView.addFXMLElement(goBackBtn);
         fakeScreenController.add(inventoryView);
 
+
+        FakeScreen fullScreenView = new FakeScreen("fullScreenView");
+        fullScreenView.addFXMLElement(oneBigImgPane);
+        fakeScreenController.add(fullScreenView);
+
         fakeScreenController.activate(characterSelectView.getName());
     }
 
@@ -220,9 +225,19 @@ public class GameController {
             doActionBtn.setText("Enemy attacks");
         } else if (battleState.equals(BattleState.BATTLE_OVER)) {
             doActionBtn.setText("Leave battle");
+            if (world.getPlayer().isDead()) {
+                initEndGame(false);
+            }
         }
         playerStatsTxtArea.setText(world.getPlayer().getStatsText());
         playerStatsTxtArea.appendText("\n" + world.getPlayer().getStatModifiersOwned().getAllStatModifierText());
+    }
+
+    private void initEndGame(boolean win) {
+        fakeScreenController.activate("fullScreenView");
+        if (!win) {
+            displayImage(fullScreenImageView, "End_Screen/lose_screen");
+        }
     }
 
     private static String getIdOfButton(Event event) {

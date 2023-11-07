@@ -208,5 +208,10 @@
     <Button fx:id="inventoryBtn" layoutX="150.0" layoutY="80.0" mnemonicParsing="false" onAction="#inventoryBtnClick" text="Inventory" />
       <Label fx:id="battleTurnNumLbl" layoutX="550.0" layoutY="25.0" text="Turn Num:" />
       <Label fx:id="timePassedLbl" layoutX="681.0" layoutY="53.0" text="Time Passed:" />
+      <AnchorPane fx:id="oneBigImgPane" prefHeight="600.0" prefWidth="800.0">
+         <children>
+            <ImageView fx:id="fullScreenImageView" fitHeight="600.0" fitWidth="800.0" pickOnBounds="true" preserveRatio="true" />
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>
