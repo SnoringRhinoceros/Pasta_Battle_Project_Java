@@ -91,7 +91,7 @@ public class GameController {
         }
 
         for (Button button : bakeryViewBattleBtns) {
-            
+
         }
         for (Button button : idahoViewBattleBtns) {
 
