@@ -29,7 +29,7 @@ public class GameController {
     @FXML
     public ListView equippedActionsListView, equippedActionGroupingsListView, allActionsListView, actionGroupingsListView, specificActionListView;
     @FXML
-    public AnchorPane inventoryPane, characterSelectPane, idahoViewPane, bakeryViewPane, oneBigImgPane;
+    public AnchorPane inventoryPane, characterSelectPane, idahoViewPane, bakeryViewPane, fullScreenImgPane;
     private ActionGroupings selectedActionGrouping;
     private Action selectedSpecificAction;
     private Item selectedItem;
@@ -137,7 +137,7 @@ public class GameController {
 
 
         FakeScreen fullScreenView = new FakeScreen("fullScreenView");
-        fullScreenView.addFXMLElement(oneBigImgPane);
+        fullScreenView.addFXMLElement(fullScreenImgPane);
         fakeScreenController.add(fullScreenView);
 
         fakeScreenController.activate(characterSelectView.getName());
@@ -236,7 +236,7 @@ public class GameController {
     private void initEndGame(boolean win) {
         fakeScreenController.activate("fullScreenView");
         if (!win) {
-            displayImage(fullScreenImageView, "End_Screen/lose_screen");
+            displayImage(fullScreenImageView, "End_Screen/lose_screen.png");
         }
     }
 

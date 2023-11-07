@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.generaltemplate.GameController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.generaltemplate.GameController">
    <children>
       <AnchorPane fx:id="characterSelectPane" prefHeight="600.0" prefWidth="800.0">
          <children>
@@ -161,6 +161,11 @@
             <Label layoutX="314.0" layoutY="330.0" text="All items (not including equipped)" />
          </children>
       </AnchorPane>
+      <AnchorPane fx:id="fullScreenImgPane" prefHeight="200.0" prefWidth="200.0">
+         <children>
+            <ImageView fx:id="fullScreenImageView" fitHeight="600.0" fitWidth="800.0" pickOnBounds="true" preserveRatio="true" />
+         </children>
+      </AnchorPane>
       <Button fx:id="idahoBtn" layoutX="346.0" layoutY="85.0" mnemonicParsing="false" onMouseClicked="#handleIdahoBtnClick">
          <graphic>
             <ImageView fitHeight="110.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
@@ -208,10 +213,5 @@
     <Button fx:id="inventoryBtn" layoutX="150.0" layoutY="80.0" mnemonicParsing="false" onAction="#inventoryBtnClick" text="Inventory" />
       <Label fx:id="battleTurnNumLbl" layoutX="550.0" layoutY="25.0" text="Turn Num:" />
       <Label fx:id="timePassedLbl" layoutX="681.0" layoutY="53.0" text="Time Passed:" />
-      <AnchorPane fx:id="oneBigImgPane" prefHeight="600.0" prefWidth="800.0">
-         <children>
-            <ImageView fx:id="fullScreenImageView" fitHeight="600.0" fitWidth="800.0" pickOnBounds="true" preserveRatio="true" />
-         </children>
-      </AnchorPane>
    </children>
 </AnchorPane>
