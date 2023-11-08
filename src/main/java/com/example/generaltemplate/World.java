@@ -9,11 +9,12 @@ public class World {
     private Battle curBattle;
     private final Crafter crafter;
     private int time;
-    private ArrayList<Enemy> allEnemies;
+    private final ArrayList<Enemy> allAliveEnemies;
 
     World(PC player) {
         this.player = player;
         crafter = new Crafter();
+        allAliveEnemies = new ArrayList<>();
     }
 
     public void createBattle(Enemy enemy) {
@@ -57,5 +58,19 @@ public class World {
 
     public void tickTime() {
         time += 1;
+    }
+
+    public ArrayList<Enemy> getAllAliveEnemies() {
+        return allAliveEnemies;
+    }
+
+    public void enemyDies(Enemy enemy) {
+        for (Enemy aliveEnemy: allAliveEnemies){
+            if (aliveEnemy.equals(enemy)) {
+                aliveEnemy.getButton().setDisable(true);
+                allAliveEnemies.remove(aliveEnemy);
+                return;
+            }
+        }
     }
 }

@@ -90,13 +90,6 @@ public class GameController {
             displayImage((ImageView) button.getGraphic(), "/Bakery/" + getEnemyType(button.getId()) + "/" + getEnemyDifficulty(button.getId()) + "/" + getEnemyType(button.getId()) + ".png");
         }
 
-        for (Button button : bakeryViewBattleBtns) {
-
-        }
-        for (Button button : idahoViewBattleBtns) {
-
-        }
-
         FakeScreen questionMarkView = new FakeScreen("questionMarkView");
         questionMarkView.addFXMLElement(playerImg);
         questionMarkView.addFXMLElement(playerStatsTxtArea);
@@ -235,7 +228,7 @@ public class GameController {
                 initEndGame(false);
             } else {
                 doActionBtn.setText("Leave battle");
-                world.getCurBattle().getEnemy().getButton().setDisable(true);
+                world.enemyDies(world.getCurBattle().getEnemy());
             }
         }
         playerStatsTxtArea.setText(world.getPlayer().getStatsText());
@@ -341,6 +334,12 @@ public class GameController {
         for (PastaType pastaType: PastaType.values()) {
             if (getIdOfButton(actionEvent).equals(pastaType.getName())) {
                 world = new World(new PC("player", pastaType));
+                for (Button button : bakeryViewBattleBtns) {
+                    world.getAllAliveEnemies().add(world.createNewEnemy(button, EnemyType.getEnemyType(getNormalName(button.getId())), getEnemyDifficulty(button.getId())));
+                }
+                for (Button button : idahoViewBattleBtns) {
+                    world.getAllAliveEnemies().add(world.createNewEnemy(button, EnemyType.getEnemyType(getNormalName(button.getId())), getEnemyDifficulty(button.getId())));
+                }
                 playerTravelTo("mainView");
                 timePassedLbl.setText("Time: " + world.getTime());
                 playerStatsTxtArea.setText(world.getPlayer().getStatsText());
