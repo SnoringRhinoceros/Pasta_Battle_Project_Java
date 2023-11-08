@@ -33,7 +33,7 @@ public enum PossibleActions {
             "The ultimate sauce\n+20 damage and +2 awesomeness", 100));
 
 
-    private Action action;
+    private final Action action;
 
     PossibleActions(Action action) {
         this.action = action;
@@ -41,14 +41,5 @@ public enum PossibleActions {
 
     public Action getAction() {
         return action;
-    }
-
-    public static PossibleActions getPossibleAction(String name) {
-        for (PossibleActions possibleAction : values()) {
-            if (possibleAction.getAction().getName().equals(name)) {
-                return possibleAction;
-            }
-        }
-        throw new RuntimeException("Possible action doesn't exist");
     }
 }

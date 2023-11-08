@@ -2,7 +2,7 @@ package com.example.generaltemplate;
 
 public class Item {
 
-    private Action action;
+    private final Action action;
     private int amount;
     private int dropChance;
     private boolean markedForDeletion = false;

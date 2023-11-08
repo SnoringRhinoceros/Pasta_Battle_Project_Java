@@ -31,8 +31,4 @@ public enum CraftingRecipes {
     public PossibleActions getResult() {
         return result;
     }
-
-    public CraftingRecipes[] getAll() {
-        return values();
-    }
 }

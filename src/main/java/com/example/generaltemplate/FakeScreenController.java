@@ -5,8 +5,8 @@ import javafx.scene.Node;
 import java.util.ArrayList;
 
 public class FakeScreenController {
-    ArrayList<FakeScreen> fakeScreens = new ArrayList<>();
-    FakeScreen currentScreen;
+    private final ArrayList<FakeScreen> fakeScreens = new ArrayList<>();
+    private FakeScreen currentScreen;
 
     public void add(FakeScreen fakeScreen) {
         fakeScreens.add(fakeScreen);
@@ -32,5 +32,9 @@ public class FakeScreenController {
                 node.setVisible(false);
             }
         }
+    }
+
+    public FakeScreen getCurrentScreen() {
+        return currentScreen;
     }
 }

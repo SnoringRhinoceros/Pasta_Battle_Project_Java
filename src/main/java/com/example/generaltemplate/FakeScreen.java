@@ -5,8 +5,8 @@ import javafx.scene.Node;
 import java.util.ArrayList;
 
 public class FakeScreen {
-    private String name;
-    private ArrayList<Node> FXMLElements = new ArrayList<>();
+    private final String name;
+    private final ArrayList<Node> FXMLElements = new ArrayList<>();
 
     public FakeScreen(String name) {
         this.name = name;

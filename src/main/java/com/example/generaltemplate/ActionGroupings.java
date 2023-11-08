@@ -6,7 +6,7 @@ public enum ActionGroupings {
     ITEMS("Items"),
     MISC("Misc");
 
-    String name;
+    private final String name;
 
     ActionGroupings(String name) {
         this.name = name;

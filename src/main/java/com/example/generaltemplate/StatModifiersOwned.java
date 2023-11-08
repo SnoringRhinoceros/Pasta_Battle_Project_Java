@@ -3,7 +3,7 @@ package com.example.generaltemplate;
 import java.util.ArrayList;
 
 public class StatModifiersOwned {
-    private ArrayList<StatModifier> statModifiers = new ArrayList<>();
+    private final ArrayList<StatModifier> statModifiers = new ArrayList<>();
 
     public void addStatModif(StatModifier newStatModifier) {
         if (newStatModifier.getDuration() > 0) {
@@ -40,7 +40,7 @@ public class StatModifiersOwned {
     }
 
     public String getAllStatModifierText() {
-        if (statModifiers.size() > 0) {
+        if (!statModifiers.isEmpty()) {
             StringBuilder result = new StringBuilder();
             result.append("Modifiers:");
             for (StatModifier statmodifier: statModifiers) {

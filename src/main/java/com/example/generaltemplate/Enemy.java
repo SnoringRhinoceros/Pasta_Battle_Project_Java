@@ -3,11 +3,11 @@ package com.example.generaltemplate;
 import javafx.scene.control.Button;
 
 public class Enemy extends LivingBeing{
-    private String imgPath;
-    private String entryText;
+    private final String imgPath;
+    private final String entryText;
     private final PossibleDrops possibleDrops;
-    private EnemyType enemyType;
-    private Button button;
+    private final EnemyType enemyType;
+    private final Button button;
 
     public Enemy(Button button, EnemyType enemyType, String name, String imgPath, String loc, String entryText, int health, int strength, int defense, int awesomeness, int difficulty) {
         super(name, loc, health, strength, defense, awesomeness);

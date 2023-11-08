@@ -1,7 +1,5 @@
 package com.example.generaltemplate;
 
-import java.util.ArrayList;
-
 public class StatModifier extends Stats {
 
     private final String reason;
@@ -45,9 +43,8 @@ public class StatModifier extends Stats {
         return duration;
     }
 
-    public boolean decrementDuration() {
+    public void decrementDuration() {
         duration -= 1;
-        return duration <= 0;
     }
 
     public void addDuration(int amount) {
@@ -57,21 +54,21 @@ public class StatModifier extends Stats {
     public String getText() {
         StringBuilder result = new StringBuilder();
 
-        result.append(getReason()+" (" + getDuration() + " ticks) \n");
+        result.append(getReason()).append(" (").append(getDuration()).append(" ticks) \n");
         if (getMaxHealth() != 0) {
-            result.append("  Max Health: " + getPosOrNeg(getMaxHealth()));
+            result.append("  Max Health: ").append(getPosOrNeg(getMaxHealth()));
         }
         if (getStrength() != 0) {
-            result.append("  Strength: " + getPosOrNeg(getStrength()));
+            result.append("  Strength: ").append(getPosOrNeg(getStrength()));
         }
         if (getDefense() != 0) {
-            result.append("  Defense: " + getPosOrNeg(getDefense()));
+            result.append("  Defense: ").append(getPosOrNeg(getDefense()));
         }
         if (getAwesomeness() != 0) {
-            result.append("  Awesomeness: " + getPosOrNeg(getAwesomeness()));
+            result.append("  Awesomeness: ").append(getPosOrNeg(getAwesomeness()));
         }
         if (getCurHealth() != 0) {
-            result.append("  Current Health" + getPosOrNeg(getCurHealth()));
+            result.append("  Current Health").append(getPosOrNeg(getCurHealth()));
         }
         return result.toString();
     }

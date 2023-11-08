@@ -22,8 +22,8 @@ public class GameController {
     public Button MILITARY_POTATOBtn1, MILITARY_POTATOBtnA1, MILITARY_POTATOBtn3, MILITARY_POTATOBtn2, MILITARY_POTATOBtnA2;
     @FXML
     public Button KUNG_FU_BREADBtn1, KUNG_FU_BREADBtnA1, KUNG_FU_BREADBtn3, KUNG_FU_BREADBtn2, KUNG_FU_BREADBtnA2;
-    ArrayList<Button> idahoViewBattleBtns;
-    ArrayList<Button> bakeryViewBattleBtns;
+    private ArrayList<Button> idahoViewBattleBtns;
+    private ArrayList<Button> bakeryViewBattleBtns;
     @FXML
     public TextArea battleOutcomeTextArea, actionDescriptionTextArea, inventoryCraftableItemTextArea, enemyStatsTextArea, playerStatsTxtArea, itemDescriptionTextArea;
     @FXML
@@ -39,8 +39,8 @@ public class GameController {
     public ProgressBar enemyBattleHealthBar;
     @FXML
     public Label enemyBattleHPLbl, battleTurnNumLbl, timePassedLbl;
-    FakeScreenController fakeScreenController;
-    World world;
+    private FakeScreenController fakeScreenController;
+    private World world;
 
     @FXML
     public void initialize() {
@@ -362,8 +362,8 @@ public class GameController {
 
         allActionsListView.getItems().clear();
         for (Item item : world.getPlayer().getItems()) {
-            if (item.getAction().getGrouping().equals(selectedActionGrouping)) {
-                allActionsListView.getItems().add(item.getAction().getName() + " - " + item.getAmount() + "x");
+            if (item.getAction().grouping().equals(selectedActionGrouping)) {
+                allActionsListView.getItems().add(item.getAction().name() + " - " + item.getAmount() + "x");
             }
         }
 
@@ -389,12 +389,12 @@ public class GameController {
             actionGroupingsListView.getItems().clear();
             actionDescriptionTextArea.clear();
             for (Action action: world.getPlayer().getActions()) {
-                if (action.getGrouping().getName().equals(selectedActionGrouping.getName())) {
-                    actionGroupingsListView.getItems().add(action.getName());
+                if (action.grouping().getName().equals(selectedActionGrouping.getName())) {
+                    actionGroupingsListView.getItems().add(action.name());
                 }
             }
             if (selectedSpecificAction != null ) {
-                actionDescriptionTextArea.setText(selectedSpecificAction.getDescription());
+                actionDescriptionTextArea.setText(selectedSpecificAction.description());
             }
         }
     }

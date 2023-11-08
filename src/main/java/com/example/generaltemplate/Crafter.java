@@ -4,7 +4,7 @@ public class Crafter {
 
     public boolean getItemCraftable(Item item) {
         for (CraftingRecipes recipe: CraftingRecipes.values()) {
-            if (recipe.getIngredient().getAction().getName().equals(item.getAction().getName()) && recipe.getHowMany() == item.getAmount()) {
+            if (recipe.getIngredient().getAction().name().equals(item.getAction().name()) && recipe.getHowMany() == item.getAmount()) {
                 return true;
             }
         }
@@ -15,9 +15,9 @@ public class Crafter {
         for (CraftingRecipes recipe: CraftingRecipes.values()) {
             if (recipe.getIngredient().getAction().equals(item.getAction())) {
                 return "Next upgrade:\n   "
-                        + recipe.getResult().getAction().getName()
+                        + recipe.getResult().getAction().name()
                         + "\n" + "Upgrade Description:\n"
-                        + recipe.getResult().getAction().getDescription()
+                        + recipe.getResult().getAction().description()
                         + "\nAmount needed:\n  " + recipe.getHowMany()
                         + "\nCraftable:\n  " + getItemCraftable(item);
             }

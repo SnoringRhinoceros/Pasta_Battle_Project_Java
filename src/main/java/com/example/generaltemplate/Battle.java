@@ -3,8 +3,8 @@ package com.example.generaltemplate;
 import static com.example.generaltemplate.GameController.generateRandNum;
 
 public class Battle {
-    private PC player;
-    private Enemy enemy;
+    private final PC player;
+    private final Enemy enemy;
     private LivingBeing curBeing;
     private int turnNum = 1;
     private String result;
@@ -19,9 +19,9 @@ public class Battle {
     public String runTurn(Action chosenAction) {
         player.passTick();
         result = "";
-        if (chosenAction.getGrouping().equals(ActionGroupings.SPELLS)) {
-            curBeing.getStatModifiersOwned().addStatModif(new StatModifier(chosenAction.getStatModifier()));
-            result = curBeing.getName() + " casts a " + chosenAction.getName() + " spell";
+        if (chosenAction.grouping().equals(ActionGroupings.SPELLS)) {
+            curBeing.getStatModifiersOwned().addStatModif(new StatModifier(chosenAction.statModifier()));
+            result = curBeing.getName() + " casts a " + chosenAction.name() + " spell";
         } else {
             doDmg(chosenAction);
             curBeing.getStatModifiersOwned().clearFinishedStats();
@@ -33,7 +33,7 @@ public class Battle {
                 Item enemyItem = enemy.getRandDrop();
                 if (enemyItem != null) {
                     player.addItem(new Item(enemyItem));
-                    result += "\nenemy dropped " + enemyItem.getAmount() + " " + enemyItem.getAction().getName() + " (" + enemyItem.getDropChance() + "%)";
+                    result += "\nenemy dropped " + enemyItem.getAmount() + " " + enemyItem.getAction().name() + " (" + enemyItem.getDropChance() + "%)";
                 }
             }
             return result;
@@ -61,7 +61,7 @@ public class Battle {
     private boolean getAttackHits(Action chosenAction) {
         int randNum = generateRandNum(1, 100);
         int awesomeModif = curBeing.getModifStats().getAwesomeness() - getOpp(curBeing).getModifStats().getAwesomeness();
-        int changedAccuracy = chosenAction.getAccuracy();
+        int changedAccuracy = chosenAction.accuracy();
         boolean curBeingIsMorAwesome;
         if (awesomeModif > 0) {
             changedAccuracy *= awesomeModif;
@@ -94,7 +94,7 @@ public class Battle {
     }
 
     private int getDmgDealt(Action chosenAction) {
-        curBeing.getStatModifiersOwned().addStatModif(new StatModifier(chosenAction.getStatModifier(), 0));
+        curBeing.getStatModifiersOwned().addStatModif(new StatModifier(chosenAction.statModifier(), 0));
         Stats curBeingModifiedStats = curBeing.getModifStats();
         int dmgDealt = curBeingModifiedStats.getStrength();
         Stats oppBeingModifiedStats = getOpp(curBeing).getStatModifiersOwned().getTotalStatModif(getOpp(curBeing).getStats());
@@ -128,12 +128,12 @@ public class Battle {
     private String getDmgText(int dmgDealt) {
         StringBuilder result = new StringBuilder();
         if (dmgDealt == 0) {
-            result.append(curBeing.getName() + " did no damage.");
+            result.append(curBeing.getName()).append(" did no damage.");
         } else {
-            result.append(curBeing.getName() + " attacked for " + dmgDealt + " damage.");
+            result.append(curBeing.getName()).append(" attacked for ").append(dmgDealt).append(" damage.");
         }
         if (getOpp(curBeing).isDead()) {
-            result.append(" " + curBeing.getName() + " wins!");
+            result.append(" ").append(curBeing.getName()).append(" wins!");
         }
         return result.toString();
     }
