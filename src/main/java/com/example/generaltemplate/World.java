@@ -66,11 +66,15 @@ public class World {
 
     public void enemyDies(Enemy enemy) {
         for (Enemy aliveEnemy: allAliveEnemies){
-            if (aliveEnemy.equals(enemy)) {
-                aliveEnemy.getButton().setDisable(true);
+            if (aliveEnemy.getButton().equals(enemy.getButton())) {
+                enemy.getButton().setDisable(true);
                 allAliveEnemies.remove(aliveEnemy);
                 return;
             }
         }
+    }
+
+    public boolean allEnemiesAreDead() {
+        return allAliveEnemies.isEmpty();
     }
 }

@@ -229,6 +229,9 @@ public class GameController {
             } else {
                 doActionBtn.setText("Leave battle");
                 world.enemyDies(world.getCurBattle().getEnemy());
+                if (world.allEnemiesAreDead()) {
+                    initEndGame(true);
+                }
             }
         }
         playerStatsTxtArea.setText(world.getPlayer().getStatsText());
@@ -240,7 +243,7 @@ public class GameController {
         if (!win) {
             displayImage(fullScreenImageView, "End_Screen/lose_screen.png");
         } else {
-            displayImage(fullScreenImageView, "Win_Screen/win_screen.png");
+            displayImage(fullScreenImageView, "End_Screen/win_screen.png");
         }
     }
 
