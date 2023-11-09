@@ -39,6 +39,8 @@ public class GameController {
     public ProgressBar enemyBattleHealthBar;
     @FXML
     public Label enemyBattleHPLbl, battleTurnNumLbl, timePassedLbl;
+    @FXML
+    public TextField playerNameTextField;
     private FakeScreenController fakeScreenController;
     private World world;
 
@@ -336,7 +338,7 @@ public class GameController {
     public void chooseCharacterBtnClick(ActionEvent actionEvent) {
         for (PastaType pastaType: PastaType.values()) {
             if (getIdOfButton(actionEvent).equals(pastaType.getName())) {
-                world = new World(new PC("player", pastaType));
+                world = new World(new PC(playerNameTextField.getText(), pastaType));
                 for (Button button : bakeryViewBattleBtns) {
                     world.getAllAliveEnemies().add(world.createNewEnemy(button, EnemyType.getEnemyType(getNormalName(button.getId())), getEnemyDifficulty(button.getId())));
                 }
