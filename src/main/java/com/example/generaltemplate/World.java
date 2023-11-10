@@ -2,9 +2,10 @@ package com.example.generaltemplate;
 
 import javafx.scene.control.Button;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class World {
+public class World implements Serializable {
     private PC player;
     private Battle curBattle;
     private final Crafter crafter;

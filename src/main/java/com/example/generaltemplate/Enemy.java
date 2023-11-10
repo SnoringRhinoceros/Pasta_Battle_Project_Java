@@ -2,7 +2,10 @@ package com.example.generaltemplate;
 
 import javafx.scene.control.Button;
 
-public class Enemy extends LivingBeing{
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+
+public class Enemy extends LivingBeing {
     private final String imgPath;
     private final String entryText;
     private final PossibleDrops possibleDrops;
@@ -17,7 +20,7 @@ public class Enemy extends LivingBeing{
         this.entryText = entryText;
         possibleDrops = new PossibleDrops();
         for (Item item : enemyType.getPossibleDrops()) {
-            possibleDrops.addItem(item.getAction(), item.getAmount()*difficulty, item.getDropChance());
+            possibleDrops.addItem(item.getAction(), item.getAmount() * difficulty, item.getDropChance());
         }
     }
 
@@ -34,7 +37,10 @@ public class Enemy extends LivingBeing{
         return button;
     }
 
-    public EnemyType getEnemyType() {return enemyType;}
+    public EnemyType getEnemyType() {
+        return enemyType;
+    }
+
     public String getImgPath() {
         return imgPath;
     }
@@ -46,4 +52,6 @@ public class Enemy extends LivingBeing{
     public Item getRandDrop() {
         return possibleDrops.getRandDrop();
     }
+
+    // make custom serialization method
 }
