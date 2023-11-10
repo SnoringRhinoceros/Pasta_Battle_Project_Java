@@ -1,6 +1,8 @@
 package com.example.generaltemplate;
 
-public class PC extends LivingBeing {
+import java.io.Serializable;
+
+public class PC extends LivingBeing implements Serializable {
     private final PastaType pastaType;
 
     public PC(String name, PastaType pastaType) {

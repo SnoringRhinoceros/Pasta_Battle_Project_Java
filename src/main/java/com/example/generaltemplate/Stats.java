@@ -1,6 +1,8 @@
 package com.example.generaltemplate;
 
-public class Stats {
+import java.io.Serializable;
+
+public class Stats implements Serializable {
     private int maxHealth;
     private int strength;
     private int defense;

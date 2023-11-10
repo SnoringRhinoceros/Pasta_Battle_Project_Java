@@ -216,5 +216,7 @@
     <Button fx:id="inventoryBtn" layoutX="150.0" layoutY="80.0" mnemonicParsing="false" onAction="#inventoryBtnClick" text="Inventory" />
       <Label fx:id="battleTurnNumLbl" layoutX="550.0" layoutY="25.0" text="Turn Num:" />
       <Label fx:id="timePassedLbl" layoutX="681.0" layoutY="53.0" text="Time Passed:" />
+      <Button fx:id="saveBtn" layoutX="160.0" layoutY="120.0" mnemonicParsing="false" onAction="#onSaveBtnClick" text="Save" />
+      <Button fx:id="loadBtn" layoutX="160.0" layoutY="155.0" mnemonicParsing="false" onAction="#onLoadBtnClick" text="Load" />
    </children>
 </AnchorPane>

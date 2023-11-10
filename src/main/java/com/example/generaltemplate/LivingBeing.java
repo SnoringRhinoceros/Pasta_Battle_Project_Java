@@ -1,14 +1,15 @@
 package com.example.generaltemplate;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-abstract public class LivingBeing {
+abstract public class LivingBeing implements Serializable {
     private final String name;
     private final Stats stats;
     private final StatModifiersOwned statModifiersOwned;
     private String loc;
     private final ArrayList<Action> actions = new ArrayList<>();
-    private final ArrayList<Item> items = new ArrayList<>();
+    private ArrayList<Item> items = new ArrayList<>();
     public LivingBeing(String name, String loc, int maxHealth, int strength, int defense, int awesomeness) {
         this.name = name;
         stats = new Stats(maxHealth, strength, defense, awesomeness, maxHealth);
@@ -133,5 +134,9 @@ abstract public class LivingBeing {
     public void passTick() {
         getStatModifiersOwned().decrementStatDurations();
         getStatModifiersOwned().clearFinishedStats();
+    }
+
+    public void setItems(ArrayList<Item> items) {
+        this.items = items;
     }
 }

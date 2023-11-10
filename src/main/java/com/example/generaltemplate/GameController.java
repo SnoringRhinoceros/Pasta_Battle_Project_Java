@@ -9,8 +9,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -21,7 +20,7 @@ public class GameController {
     @FXML
     public Button MILITARY_POTATOBtn1, MILITARY_POTATOBtnA1, MILITARY_POTATOBtn3, MILITARY_POTATOBtn2, MILITARY_POTATOBtnA2;
     @FXML
-    public Button KUNG_FU_BREADBtn1, KUNG_FU_BREADBtnA1, KUNG_FU_BREADBtn3, KUNG_FU_BREADBtn2, KUNG_FU_BREADBtnA2;
+    public Button KUNG_FU_BREADBtn1, KUNG_FU_BREADBtnA1, KUNG_FU_BREADBtn3, KUNG_FU_BREADBtn2, KUNG_FU_BREADBtnA2, saveBtn, loadBtn;
     private ArrayList<Button> idahoViewBattleBtns;
     private ArrayList<Button> bakeryViewBattleBtns;
     @FXML
@@ -61,6 +60,8 @@ public class GameController {
         mainView.addFXMLElement(playerStatsTxtArea);
         mainView.addFXMLElement(inventoryBtn);
         mainView.addFXMLElement(timePassedLbl);
+        mainView.addFXMLElement(saveBtn);
+        mainView.addFXMLElement(loadBtn);
         questionMarkBtn.setDisable(true);
         fakeScreenController.add(mainView);
 
@@ -322,7 +323,6 @@ public class GameController {
             selectedActionGrouping = ActionGroupings.getActionGrouping(selectedActionGroupingTxt);
             updateBattleView();
         }
-
     }
 
     @FXML
@@ -452,5 +452,26 @@ public class GameController {
     public void inventoryEquipBtnClick(ActionEvent actionEvent) {
         world.getPlayer().equipItem(selectedItem);
         updateInventoryView();
+    }
+
+    @FXML
+    public void onSaveBtnClick(ActionEvent actionEvent) throws IOException {
+        FileOutputStream fileOutputStream = new FileOutputStream("src/main/resources/com/example/generaltemplate/saves/save1.txt");
+        ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
+        objectOutputStream.writeObject(world.getPlayer().getItems());
+        for (Item item: world.getPlayer().getItems()) {
+            System.out.println(item.getAction().name());
+        }
+        objectOutputStream.flush();
+        objectOutputStream.close();
+    }
+
+    @FXML
+    public void onLoadBtnClick(ActionEvent actionEvent) throws IOException, ClassNotFoundException {
+        FileInputStream fileInputStream = new FileInputStream("src/main/resources/com/example/generaltemplate/saves/save1.txt");
+        ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+        ArrayList<Item> items = (ArrayList<Item>) objectInputStream.readObject();
+        world.getPlayer().setItems(items);
+        objectInputStream.close();
     }
 }

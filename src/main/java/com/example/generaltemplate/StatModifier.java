@@ -1,6 +1,8 @@
 package com.example.generaltemplate;
 
-public class StatModifier extends Stats {
+import java.io.Serializable;
+
+public class StatModifier extends Stats implements Serializable {
 
     private final String reason;
     private int duration;

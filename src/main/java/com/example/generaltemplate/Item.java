@@ -1,6 +1,8 @@
 package com.example.generaltemplate;
 
-public class Item {
+import java.io.Serializable;
+
+public class Item implements Serializable {
 
     private final Action action;
     private int amount;
