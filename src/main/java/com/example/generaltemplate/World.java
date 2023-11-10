@@ -5,7 +5,7 @@ import javafx.scene.control.Button;
 import java.util.ArrayList;
 
 public class World {
-    private final PC player;
+    private PC player;
     private Battle curBattle;
     private final Crafter crafter;
     private int time;
@@ -76,5 +76,9 @@ public class World {
 
     public boolean allEnemiesAreDead() {
         return allAliveEnemies.isEmpty();
+    }
+
+    public void setPlayer(PC player) {
+        this.player = player;
     }
 }

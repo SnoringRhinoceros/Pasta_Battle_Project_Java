@@ -458,10 +458,7 @@ public class GameController {
     public void onSaveBtnClick(ActionEvent actionEvent) throws IOException {
         FileOutputStream fileOutputStream = new FileOutputStream("src/main/resources/com/example/generaltemplate/saves/save1.txt");
         ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
-        objectOutputStream.writeObject(world.getPlayer().getItems());
-        for (Item item: world.getPlayer().getItems()) {
-            System.out.println(item.getAction().name());
-        }
+        objectOutputStream.writeObject(world.getPlayer());
         objectOutputStream.flush();
         objectOutputStream.close();
     }
@@ -470,8 +467,8 @@ public class GameController {
     public void onLoadBtnClick(ActionEvent actionEvent) throws IOException, ClassNotFoundException {
         FileInputStream fileInputStream = new FileInputStream("src/main/resources/com/example/generaltemplate/saves/save1.txt");
         ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
-        ArrayList<Item> items = (ArrayList<Item>) objectInputStream.readObject();
-        world.getPlayer().setItems(items);
+        PC player = (PC) objectInputStream.readObject();
+        world.setPlayer(player);
         objectInputStream.close();
     }
 }

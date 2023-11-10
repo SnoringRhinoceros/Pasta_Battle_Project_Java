@@ -1,8 +1,9 @@
 package com.example.generaltemplate;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class StatModifiersOwned {
+public class StatModifiersOwned implements Serializable {
     private final ArrayList<StatModifier> statModifiers = new ArrayList<>();
 
     public void addStatModif(StatModifier newStatModifier) {
