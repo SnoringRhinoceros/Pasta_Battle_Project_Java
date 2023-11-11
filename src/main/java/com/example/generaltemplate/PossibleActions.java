@@ -30,7 +30,11 @@ public enum PossibleActions {
             "All good rotini start with the fundamentals\n+20 to sauce dmg for 10 ticks", 100)),
     BOLOGNESE (new Action("Bolognese", ActionGroupings.SPELLS,
             new StatModifier("Bolognese", 10, new Stats(0, 10, 0, 2, 0)),
-            "The ultimate sauce\n+20 damage and +2 awesomeness", 100));
+            "The ultimate sauce\n+20 damage and +2 awesomeness", 100)),
+
+    BASIC_ARMOR (new Action("Basic Armor", ActionGroupings.ARMOR,
+            new StatModifier("Basic Armor", 1, new Stats(0, 0, 5, 0, 0)),
+            "Some armor is better than no armor\n+10 defense", 100));
 
 
     private final Action action;

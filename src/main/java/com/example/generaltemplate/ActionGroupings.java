@@ -4,7 +4,8 @@ public enum ActionGroupings {
     WEAPONS("Weapons"),
     SPELLS("Spells"),
     ITEMS("Items"),
-    MISC("Misc");
+    MISC("Misc"),
+    ARMOR("Armor");
 
     private final String name;
 
