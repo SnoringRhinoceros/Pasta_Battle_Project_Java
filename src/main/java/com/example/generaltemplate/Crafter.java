@@ -1,6 +1,8 @@
 package com.example.generaltemplate;
 
-public class Crafter {
+import java.io.Serializable;
+
+public class Crafter implements Serializable {
 
     public boolean getItemCraftable(Item item) {
         for (CraftingRecipes recipe: CraftingRecipes.values()) {

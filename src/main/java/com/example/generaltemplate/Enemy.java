@@ -10,7 +10,8 @@ public class Enemy extends LivingBeing {
     private final String entryText;
     private final PossibleDrops possibleDrops;
     private final EnemyType enemyType;
-    private final Button button;
+    private transient Button button;
+    private String buttonId;
 
     public Enemy(Button button, EnemyType enemyType, String name, String imgPath, String loc, String entryText, int health, int strength, int defense, int awesomeness, int difficulty) {
         super(name, loc, health, strength, defense, awesomeness);
@@ -22,6 +23,7 @@ public class Enemy extends LivingBeing {
         for (Item item : enemyType.getPossibleDrops()) {
             possibleDrops.addItem(item.getAction(), item.getAmount() * difficulty, item.getDropChance());
         }
+        buttonId = button.getId();
     }
 
     @Override
@@ -53,5 +55,10 @@ public class Enemy extends LivingBeing {
         return possibleDrops.getRandDrop();
     }
 
-    // make custom serialization method
+    public String getButtonId() {
+        return buttonId;
+    }
+    public void setButton(Button button) {
+        this.button = button;
+    }
 }

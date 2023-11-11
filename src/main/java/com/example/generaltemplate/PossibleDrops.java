@@ -1,10 +1,11 @@
 package com.example.generaltemplate;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import static com.example.generaltemplate.GameController.generateRandNum;
 
-public class PossibleDrops {
+public class PossibleDrops implements Serializable {
     private final ArrayList<Item> items = new ArrayList<>();
 
     public PossibleDrops(Item... inputtedItem) {

@@ -339,12 +339,14 @@ public class GameController {
         for (PastaType pastaType: PastaType.values()) {
             if (getIdOfButton(actionEvent).equals(pastaType.getName())) {
                 world = new World(new PC(playerNameTextField.getText(), pastaType));
+                ArrayList<Enemy> tempAllEnemies = new ArrayList<>();
                 for (Button button : bakeryViewBattleBtns) {
-                    world.getAllAliveEnemies().add(world.createNewEnemy(button, EnemyType.getEnemyType(getNormalName(button.getId())), getEnemyDifficulty(button.getId())));
+                    tempAllEnemies.add(world.createNewEnemy(button, EnemyType.getEnemyType(getNormalName(button.getId())), getEnemyDifficulty(button.getId())));
                 }
                 for (Button button : idahoViewBattleBtns) {
-                    world.getAllAliveEnemies().add(world.createNewEnemy(button, EnemyType.getEnemyType(getNormalName(button.getId())), getEnemyDifficulty(button.getId())));
+                    tempAllEnemies.add(world.createNewEnemy(button, EnemyType.getEnemyType(getNormalName(button.getId())), getEnemyDifficulty(button.getId())));
                 }
+                world.setAllEnemies(tempAllEnemies);
                 playerTravelTo("mainView");
                 timePassedLbl.setText("Time: " + world.getTime());
                 playerStatsTxtArea.setText(world.getPlayer().getStatsText());
@@ -467,7 +469,18 @@ public class GameController {
     public void onLoadBtnClick(ActionEvent actionEvent) throws IOException, ClassNotFoundException {
         FileInputStream fileInputStream = new FileInputStream("src/main/resources/com/example/generaltemplate/saves/save1.txt");
         ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
-        this.world = (World) objectInputStream.readObject();
+        ArrayList<Enemy> tempEnemies = world.getAllEnemies();
+        world = (World) objectInputStream.readObject();
+        for (Enemy enemy: world.getAllAliveEnemies()) {
+            for (Enemy tempEnemy : tempEnemies) {
+                if (tempEnemy.getButtonId().equals(enemy.getButtonId())) {
+                    enemy.setButton(tempEnemy.getButton());
+                    enemy.getButton().setDisable(false);
+                    break;
+                }
+            }
+        }
+        playerTravelTo("mainView");
         objectInputStream.close();
     }
 }

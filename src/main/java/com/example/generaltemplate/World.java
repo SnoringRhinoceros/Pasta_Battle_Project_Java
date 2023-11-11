@@ -6,16 +6,16 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class World implements Serializable {
-    private PC player;
+    private final PC player;
     private Battle curBattle;
     private final Crafter crafter;
     private int time;
-    private final ArrayList<Enemy> allAliveEnemies;
+    private ArrayList<Enemy> allAliveEnemies;
+    private ArrayList<Enemy> allEnemies;
 
     World(PC player) {
         this.player = player;
         crafter = new Crafter();
-        allAliveEnemies = new ArrayList<>();
     }
 
     public void createBattle(Enemy enemy) {
@@ -57,14 +57,22 @@ public class World implements Serializable {
         return time;
     }
 
-    public void tickTime() {
-        time += 1;
-    }
-
     public ArrayList<Enemy> getAllAliveEnemies() {
         return allAliveEnemies;
     }
 
+    public ArrayList<Enemy> getAllEnemies() {
+        return allEnemies;
+    }
+
+    public void setAllEnemies(ArrayList<Enemy> allEnemies) {
+        this.allEnemies = new ArrayList<>(allEnemies);
+        allAliveEnemies = new ArrayList<>(allEnemies);
+    }
+
+    public void tickTime() {
+        time += 1;
+    }
     public void enemyDies(Enemy enemy) {
         for (Enemy aliveEnemy: allAliveEnemies){
             if (aliveEnemy.getButton().equals(enemy.getButton())) {
@@ -77,9 +85,5 @@ public class World implements Serializable {
 
     public boolean allEnemiesAreDead() {
         return allAliveEnemies.isEmpty();
-    }
-
-    public void setPlayer(PC player) {
-        this.player = player;
     }
 }
