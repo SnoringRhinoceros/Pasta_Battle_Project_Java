@@ -33,8 +33,8 @@ public enum PossibleActions {
             "The ultimate sauce\n+20 damage and +5 awesomeness", 100)),
 
     BASIC_ARMOR (new Action("Basic Armor", ActionGroupings.ARMOR,
-            new StatModifier("Basic Armor", 1, new Stats(0, 0, 10, 0, 0)),
-            "Some armor is better than no armor\n+10 defense", 100)),
+            new StatModifier("Basic Armor", 1, new Stats(0, 0, 5, 0, 0)),
+            "Some armor is better than no armor\n+5 defense", 100)),
     MEDIUM_ARMOR (new Action("Medium Armor", ActionGroupings.ARMOR,
                   new StatModifier("Medium armor", 1, new Stats(0, 0, 20, 0, 0)),
             "Middle of the pack\n+20 defense", 100)),

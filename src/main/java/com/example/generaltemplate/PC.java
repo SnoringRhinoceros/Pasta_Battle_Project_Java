@@ -12,7 +12,7 @@ public class PC extends LivingBeing implements Serializable {
             getStats().setMaxHealth(50);
             getStats().setCurHealth(50);
             getStats().setStrength(5);
-            getStats().setDefense(9);
+            getStats().setDefense(5);
             getStats().setAwesomeness(2);
             getActions().add(PossibleActions.BASIC_SWORD.getAction());
             getEquippedArmor().add(new Item(PossibleActions.BASIC_ARMOR.getAction(), 1));
@@ -20,7 +20,7 @@ public class PC extends LivingBeing implements Serializable {
             getStats().setMaxHealth(100);
             getStats().setCurHealth(100);
             getStats().setStrength(1);
-            getStats().setDefense(15);
+            getStats().setDefense(10);
             getStats().setAwesomeness(1);
             getActions().add(PossibleActions.BASIC_HAMMER.getAction());
             getEquippedArmor().add(new Item(PossibleActions.BASIC_ARMOR.getAction(), 1));
