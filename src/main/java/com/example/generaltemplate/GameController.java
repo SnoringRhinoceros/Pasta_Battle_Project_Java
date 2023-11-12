@@ -110,7 +110,6 @@ public class GameController {
         enemyStatsTextArea.setEditable(false);
         battleView.addFXMLElement(actionGroupingsListView);
         actionGroupingsListView.getItems().add("Weapons");
-        actionGroupingsListView.getItems().add("Items");
         actionGroupingsListView.getItems().add("Spells");
         battleView.addFXMLElement(specificActionListView);
         battleView.addFXMLElement(itemDescriptionTextArea);
@@ -127,7 +126,6 @@ public class GameController {
         FakeScreen inventoryView = new FakeScreen("inventoryView");
         inventoryView.addFXMLElement(inventoryPane);
         equippedActionGroupingsListView.getItems().add("Weapons");
-        equippedActionGroupingsListView.getItems().add("Items");
         equippedActionGroupingsListView.getItems().add("Spells");
         equippedActionGroupingsListView.getItems().add("Armor");
         actionDescriptionTextArea.setEditable(false);

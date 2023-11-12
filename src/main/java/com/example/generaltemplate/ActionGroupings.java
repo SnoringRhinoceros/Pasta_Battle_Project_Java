@@ -3,7 +3,6 @@ package com.example.generaltemplate;
 public enum ActionGroupings {
     WEAPONS("Weapons"),
     SPELLS("Spells"),
-    ITEMS("Items"),
     ARMOR("Armor");
 
     private final String name;
