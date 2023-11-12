@@ -42,7 +42,7 @@ public class StatModifier extends Stats implements Serializable {
         stat.setStrength(stat.getStrength() + getStrength());
         stat.setDefense(stat.getDefense() + getDefense());
         stat.setAwesomeness(stat.getAwesomeness() + getAwesomeness());
-        stat.setCurHealth(stat.getAwesomeness() + getCurHealth());
+        stat.setCurHealth(stat.getCurHealth() + getCurHealth());
     }
 
     public String getReason() {

@@ -15,7 +15,7 @@ public class PC extends LivingBeing implements Serializable {
             getStats().setDefense(5);
             getStats().setAwesomeness(2);
             getActions().add(PossibleActions.BASIC_SWORD.getAction());
-            getItems().add(new Item(PossibleActions.BASIC_ARMOR.getAction(), 1));
+            getEquippedArmor().add(new Item(PossibleActions.BASIC_ARMOR.getAction(), 1));
         } else if (pastaType.equals(PastaType.RAVIOLI)) {
             getStats().setMaxHealth(100);
             getStats().setCurHealth(100);
@@ -23,6 +23,7 @@ public class PC extends LivingBeing implements Serializable {
             getStats().setDefense(15);
             getStats().setAwesomeness(1);
             getActions().add(PossibleActions.BASIC_HAMMER.getAction());
+            getEquippedArmor().add(new Item(PossibleActions.BASIC_ARMOR.getAction(), 1));
         } else if (pastaType.equals(PastaType.ROTINI)) {
             getStats().setMaxHealth(20);
             getStats().setCurHealth(20);
@@ -30,17 +31,19 @@ public class PC extends LivingBeing implements Serializable {
             getStats().setDefense(0);
             getStats().setAwesomeness(10);
             getActions().add(PossibleActions.BASIC_SAUCE.getAction());
+            getEquippedArmor().add(new Item(PossibleActions.BASIC_ARMOR.getAction(), 1));
         }
         getActions().add(PossibleActions.FISTS.getAction());
     }
 
     @Override
     public String getStatsText() {
+        Stats stats = getStatModifiersOwned().getTotalStatModif(getStats());
         return "Your stats:" + "\n"
-                + "Health, " + getStats().getCurHealth() + "/" + getStats().getMaxHealth() + "\n"
-                + "Strength, " + getStats().getStrength() + "\n"
-                + "Defense, " + getStats().getDefense() + "\n"
-                + "Awesomeness, " + getStats().getAwesomeness() + "\n";
+                + "Health, " + stats.getCurHealth() + "/" + stats.getMaxHealth() + "\n"
+                + "Strength, " + stats.getStrength() + "\n"
+                + "Defense, " + stats.getDefense() + "\n"
+                + "Awesomeness, " + stats.getAwesomeness() + "\n";
     }
 
     public PastaType getPastaType() {

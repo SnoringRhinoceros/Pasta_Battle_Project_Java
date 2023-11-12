@@ -276,7 +276,7 @@ public class GameController {
         initBattleScreen();
     }
 
-    private String getNormalName(String name) {
+    public static String getNormalName(String name) {
         String[] nameArray = name.split("_");
         StringBuilder result = new StringBuilder();
         for (int i = 0; i < nameArray.length; i++) {

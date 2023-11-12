@@ -6,7 +6,10 @@ public enum CraftingRecipes {
     MARINARA_SAUCE (PossibleActions.BASIC_SAUCE, 2, PossibleActions.MARINARA_SAUCE),
     MASTER_SWORD (PossibleActions.STRAIGHT_SWORD, 10, PossibleActions.MASTER_SWORD),
     PRETTY_BIG_HAMMER (PossibleActions.MEAT_HAMMER, 10, PossibleActions.PRETTY_BIG_HAMMER),
-    BOLOGNESE (PossibleActions.MARINARA_SAUCE, 10, PossibleActions.BOLOGNESE);
+    BOLOGNESE (PossibleActions.MARINARA_SAUCE, 10, PossibleActions.BOLOGNESE),
+    MEDIUM_ARMOR (PossibleActions.BASIC_ARMOR, 2, PossibleActions.MEDIUM_ARMOR),
+    AWESOME_ARMOR (PossibleActions.MEDIUM_ARMOR, 2, PossibleActions.AWESOME_ARMOR);
+
 
 
 

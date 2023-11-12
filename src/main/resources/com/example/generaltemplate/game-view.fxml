@@ -24,7 +24,7 @@
                <graphic>
                   <ImageView fitHeight="300.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../generaltemplate/img/Player/Spaghetti.png" />
+                        <Image url="@img/Player/Spaghetti.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -33,7 +33,7 @@
                <graphic>
                   <ImageView fitHeight="300.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../generaltemplate/img/Player/Rotini.png" />
+                        <Image url="@img/Player/Rotini.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -173,7 +173,7 @@
          <graphic>
             <ImageView fitHeight="110.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../generaltemplate/img/Idaho/idaho.png" />
+                  <Image url="@img/Idaho/idaho.png" />
                </image>
             </ImageView>
          </graphic>
@@ -182,7 +182,7 @@
          <graphic>
             <ImageView fitHeight="110.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../generaltemplate/img/Bakery/bakery.png" />
+                  <Image url="@img/Bakery/bakery.png" />
                </image>
             </ImageView>
          </graphic>
@@ -191,7 +191,7 @@
          <graphic>
             <ImageView fitHeight="110.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../generaltemplate/img/Question_Mark/questionmark.png" />
+                  <Image url="@img/Question_Mark/questionmark.png" />
                </image>
             </ImageView>
          </graphic>

@@ -2,11 +2,13 @@ package com.example.generaltemplate;
 
 import java.io.Serializable;
 
+import static com.example.generaltemplate.GameController.getNormalName;
+
 public class Crafter implements Serializable {
 
     public boolean getItemCraftable(Item item) {
         for (CraftingRecipes recipe: CraftingRecipes.values()) {
-            if (recipe.getIngredient().getAction().name().equals(item.getAction().name()) && recipe.getHowMany() == item.getAmount()) {
+            if (recipe.getIngredient().getAction().equals(item.getAction()) && recipe.getHowMany() <= item.getAmount()) {
                 return true;
             }
         }

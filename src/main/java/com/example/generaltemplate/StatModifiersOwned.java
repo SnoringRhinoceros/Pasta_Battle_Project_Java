@@ -41,20 +41,13 @@ public class StatModifiersOwned implements Serializable {
     }
 
     public String getAllStatModifierText() {
-        for (StatModifier tempStat: statModifiers) {
-            if (!tempStat.getReason().contains("Armor")) {
-                if (!statModifiers.isEmpty()) {
-                    StringBuilder result = new StringBuilder();
-                    result.append("Modifiers:");
-                    for (StatModifier statmodifier: statModifiers) {
-                        if (!statmodifier.getReason().equals("Armor")) {
-                            result.append("\n").append(statmodifier.getText());
-                        }
-                    }
-                    return result.toString();
-                }
-                return "";
+        if (!statModifiers.isEmpty()) {
+            StringBuilder result = new StringBuilder();
+            result.append("Modifiers:");
+            for (StatModifier statmodifier: statModifiers) {
+                result.append("\n").append(statmodifier.getText());
             }
+            return result.toString();
         }
         return "";
     }
