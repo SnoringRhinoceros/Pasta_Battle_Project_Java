@@ -1,11 +1,19 @@
 package com.example.generaltemplate;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class StatModifier extends Stats implements Serializable {
 
     private final String reason;
     private int duration;
+
+    public StatModifier(String reason, int maxHealth, int strength, int defense, int awesomeness, int curHealth) {
+        super(maxHealth, strength, defense, awesomeness, curHealth);
+        this.reason = reason;
+    }
+
+
     public StatModifier(String reason, Stats stat) {
         super(stat);
         this.reason = reason;

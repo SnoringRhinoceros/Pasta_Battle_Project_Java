@@ -23,7 +23,7 @@ abstract public class LivingBeing implements Serializable {
     }
 
     public Stats getModifStats() {
-        return statModifiersOwned.getTotalStatModif(this.getStats());
+        return statModifiersOwned.getTotalStatModif(stats);
     }
     public StatModifiersOwned getStatModifiersOwned() {
         return statModifiersOwned;
