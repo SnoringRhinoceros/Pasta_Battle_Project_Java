@@ -9,7 +9,8 @@ abstract public class LivingBeing implements Serializable {
     private final StatModifiersOwned statModifiersOwned;
     private String loc;
     private final ArrayList<Action> actions = new ArrayList<>();
-    private ArrayList<Item> items = new ArrayList<>();
+    private final ArrayList<Item> items = new ArrayList<>();
+    private final ArrayList<Item> equippedArmor = new ArrayList<>();
     public LivingBeing(String name, String loc, int maxHealth, int strength, int defense, int awesomeness) {
         this.name = name;
         stats = new Stats(maxHealth, strength, defense, awesomeness, maxHealth);
@@ -55,6 +56,12 @@ abstract public class LivingBeing implements Serializable {
                 return item.getAction();
             }
         }
+
+        for (Item item : equippedArmor) {
+            if (item.getAction().name().equals(actionName)) {
+                return item.getAction();
+            }
+        }
         return null;
     }
 
@@ -92,6 +99,14 @@ abstract public class LivingBeing implements Serializable {
 
     public void equipItem(Item itemToEquip) {
         // right now, player can only equip one weapon at a time and as many non-identical spells as they want
+        if (itemToEquip.getAction().grouping().equals(ActionGroupings.ARMOR)) {
+            if (!equippedArmor.isEmpty()) {
+                unEquipArmor(equippedArmor.get(0));
+            }
+            subtractItem(itemToEquip, 1);
+            equippedArmor.add(itemToEquip);
+            return;
+        }
          if (itemToEquip.getAction().grouping().equals(ActionGroupings.SPELLS) && !actions.contains(itemToEquip.getAction())) {
             subtractItem(itemToEquip, 1);
             actions.add(itemToEquip.getAction());
@@ -110,6 +125,11 @@ abstract public class LivingBeing implements Serializable {
     public void unEquipAction(Action actionToUnEquip) {
         actions.remove(actionToUnEquip);
         addItem(actionToUnEquip);
+    }
+
+    public void unEquipArmor(Item armorToUnEquip) {
+        equippedArmor.remove(armorToUnEquip);
+        addItem(armorToUnEquip);
     }
 
     public boolean hasItem(Item itemToFind) {
@@ -136,7 +156,7 @@ abstract public class LivingBeing implements Serializable {
         getStatModifiersOwned().clearFinishedStats();
     }
 
-    public void setItems(ArrayList<Item> items) {
-        this.items = items;
+    public ArrayList<Item> getEquippedArmor() {
+        return equippedArmor;
     }
 }

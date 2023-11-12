@@ -112,7 +112,6 @@ public class GameController {
         actionGroupingsListView.getItems().add("Weapons");
         actionGroupingsListView.getItems().add("Items");
         actionGroupingsListView.getItems().add("Spells");
-        actionGroupingsListView.getItems().add("Misc");
         battleView.addFXMLElement(specificActionListView);
         battleView.addFXMLElement(itemDescriptionTextArea);
         itemDescriptionTextArea.setEditable(false);
@@ -130,7 +129,7 @@ public class GameController {
         equippedActionGroupingsListView.getItems().add("Weapons");
         equippedActionGroupingsListView.getItems().add("Items");
         equippedActionGroupingsListView.getItems().add("Spells");
-        equippedActionGroupingsListView.getItems().add("Misc");
+        equippedActionGroupingsListView.getItems().add("Armor");
         actionDescriptionTextArea.setEditable(false);
         inventoryCraftableItemTextArea.setEditable(false);
         inventoryView.addFXMLElement(playerImg);
@@ -362,7 +361,20 @@ public class GameController {
             selectedActionGrouping = ActionGroupings.getActionGrouping(selectedActionGroupingTxt);
         }
 
-        updateActionsAndDescriptionsListViewAndTextArea(equippedActionsListView, actionDescriptionTextArea);
+        if (selectedActionGrouping != null && selectedActionGrouping.equals(ActionGroupings.ARMOR)) {
+            equippedActionsListView.getItems().clear();
+            actionDescriptionTextArea.clear();
+            for (Item item: world.getPlayer().getEquippedArmor()) {
+                if (item.getAction().grouping().getName().equals(selectedActionGrouping.getName())) {
+                    equippedActionsListView.getItems().add(item.getAction().name());
+                }
+            }
+            if (selectedSpecificAction != null ) {
+                actionDescriptionTextArea.setText(selectedSpecificAction.description());
+            }
+        } else {
+            updateActionsAndDescriptionsListViewAndTextArea(equippedActionsListView, actionDescriptionTextArea);
+        }
 
         allActionsListView.getItems().clear();
         for (Item item : world.getPlayer().getItems()) {
@@ -388,13 +400,13 @@ public class GameController {
         }
     }
 
-    private void updateActionsAndDescriptionsListViewAndTextArea(ListView actionGroupingsListView, TextArea actionDescriptionTextArea) {
+    private void updateActionsAndDescriptionsListViewAndTextArea(ListView listView, TextArea actionDescriptionTextArea) {
         if (selectedActionGrouping != null) {
-            actionGroupingsListView.getItems().clear();
+            listView.getItems().clear();
             actionDescriptionTextArea.clear();
             for (Action action: world.getPlayer().getActions()) {
                 if (action.grouping().getName().equals(selectedActionGrouping.getName())) {
-                    actionGroupingsListView.getItems().add(action.name());
+                    listView.getItems().add(action.name());
                 }
             }
             if (selectedSpecificAction != null ) {
@@ -417,6 +429,7 @@ public class GameController {
         updateInventoryView();
     }
 
+    @FXML
     public void equippedActionsListViewClick(MouseEvent mouseEvent) {
         if (getSelectedItemFromListView(equippedActionsListView) != null) {
             String selectedSpecificActionTxt = getSelectedItemFromListView(equippedActionsListView);
@@ -425,6 +438,7 @@ public class GameController {
         updateInventoryView();
     }
 
+    @FXML
     public void allActionsListViewClick(MouseEvent mouseEvent) {
         if (getSelectedItemFromListView(allActionsListView) != null) {
             String selectedSpecificActionTxt = getSelectedItemFromListView(allActionsListView);
