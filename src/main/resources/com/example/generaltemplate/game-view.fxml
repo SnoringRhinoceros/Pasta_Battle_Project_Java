@@ -11,13 +11,13 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.generaltemplate.GameController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.generaltemplate.GameController">
    <children>
       <AnchorPane fx:id="characterSelectPane" prefHeight="600.0" prefWidth="800.0">
          <children>
-            <Label layoutX="138.0" layoutY="14.0" text="Choose your Pasta :)">
+            <Label layoutX="138.0" layoutY="14.0" text="Choose your Pasta and defeat enemies :)">
                <font>
-                  <Font size="64.0" />
+                  <Font size="32.0" />
                </font>
             </Label>
             <Button fx:id="Spaghetti" layoutX="51.0" layoutY="146.0" mnemonicParsing="false" onAction="#chooseCharacterBtnClick">
@@ -89,6 +89,7 @@
             </Label>
             <Label layoutX="100.0" layoutY="530.0" text="Choose Name:" />
             <TextField fx:id="playerNameTextField" layoutX="100.0" layoutY="550.0" />
+            <Label layoutX="280.0" layoutY="550.0" text="Defeat all the enemies before the current time is 40" />
          </children>
       </AnchorPane>
       <AnchorPane fx:id="idahoViewPane" prefHeight="600.0" prefWidth="800.0">
@@ -196,7 +197,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <ImageView fx:id="playerImg" fitHeight="195.0" fitWidth="110.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="playerImg" fitHeight="195.0" fitWidth="110.0" layoutX="15.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" />
 
 
       <Button fx:id="goBackBtn" layoutX="152.0" layoutY="36.0" mnemonicParsing="false" onMouseClicked="#goBack" text="Go Back" />

@@ -9,10 +9,10 @@ public class PC extends LivingBeing implements Serializable {
         super(name, "mainMap", 0, 0, 0, 0);
         this.pastaType = pastaType;
         if (pastaType.equals(PastaType.SPAGHETTI)) {
-            getStats().setMaxHealth(40);
-            getStats().setCurHealth(40);
+            getStats().setMaxHealth(50);
+            getStats().setCurHealth(50);
             getStats().setStrength(5);
-            getStats().setDefense(5);
+            getStats().setDefense(9);
             getStats().setAwesomeness(2);
             getActions().add(PossibleActions.BASIC_SWORD.getAction());
             getEquippedArmor().add(new Item(PossibleActions.BASIC_ARMOR.getAction(), 1));
@@ -41,9 +41,12 @@ public class PC extends LivingBeing implements Serializable {
         Stats stats = getStatModifiersOwned().getTotalStatModif(getStats());
         return "Your stats:" + "\n"
                 + "Health, " + stats.getCurHealth() + "/" + stats.getMaxHealth() + "\n"
-                + "Strength, " + stats.getStrength() + "\n"
-                + "Defense, " + stats.getDefense() + "\n"
-                + "Awesomeness, " + stats.getAwesomeness() + "\n";
+                + "Strength, " + stats.getStrength()
+                + " (" + getStats().getStrength() + ")" + "\n"
+                + "Defense, " + stats.getDefense()
+                + " (" + getStats().getDefense() + ")" + "\n"
+                + "Awesomeness, " + stats.getAwesomeness()
+                + " (" + getStats().getAwesomeness() + ")" + "\n";
     }
 
     public PastaType getPastaType() {

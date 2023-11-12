@@ -147,12 +147,19 @@ public class GameController {
         return min + (int) (Math.random()*((max - min) + 1));
     }
 
+    private void updateTime() {
+        timePassedLbl.setText("Time: " + world.getTime());
+        if (world.ends()) {
+            initEndGame(false);
+        }
+    }
+
     private void playerTravelTo(String place) {
         world.tickTime();
-        timePassedLbl.setText("Time: " + world.getTime());
         world.getPlayer().travelTo(place);
         fakeScreenController.activate(place);
         displayImage(playerImg, "Player/" + world.getPlayer().getPastaType().getName() + ".png");
+        updateTime();
     }
 
     @FXML
@@ -209,7 +216,7 @@ public class GameController {
 
     private void updateBattleView() {
         battleTurnNumLbl.setText("Turn Num: " + world.getCurBattle().getTurnNum());
-        timePassedLbl.setText("Time: " + world.getTime());
+        updateTime();
         playerStatsTxtArea.setText(world.getPlayer().getStatsText());
         playerStatsTxtArea.appendText("\n" + world.getPlayer().getStatModifiersOwned().getAllStatModifierText());
         enemyStatsTextArea.setText(world.getCurBattle().getEnemy().getStatsText());
@@ -345,7 +352,7 @@ public class GameController {
                 }
                 world.setAllEnemies(tempAllEnemies);
                 playerTravelTo("mainView");
-                timePassedLbl.setText("Time: " + world.getTime());
+                updateTime();
                 playerStatsTxtArea.setText(world.getPlayer().getStatsText());
                 break;
             }
@@ -422,7 +429,7 @@ public class GameController {
     public void inventoryBtnClick(ActionEvent actionEvent) {
         fakeScreenController.activate("inventoryView");
         world.tickTime();
-        timePassedLbl.setText("Time: " + world.getTime());
+        updateTime();
         initInventoryView();
         updateInventoryView();
     }

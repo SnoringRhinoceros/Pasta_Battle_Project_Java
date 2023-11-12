@@ -12,6 +12,7 @@ public class World implements Serializable {
     private int time;
     private ArrayList<Enemy> allAliveEnemies;
     private ArrayList<Enemy> allEnemies;
+    private final int END_TIME = 40;
 
     World(PC player) {
         this.player = player;
@@ -85,5 +86,9 @@ public class World implements Serializable {
 
     public boolean allEnemiesAreDead() {
         return allAliveEnemies.isEmpty();
+    }
+
+    public boolean ends() {
+        return getTime() >= END_TIME;
     }
 }

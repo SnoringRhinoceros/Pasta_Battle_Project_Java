@@ -21,7 +21,7 @@ public class Battle {
         result = "";
         StatModifier statModifier = new StatModifier("Armor", 0, 0, 0, 0, 0);
         for (Item armor: getOpp(curBeing).getEquippedArmor()) {
-            statModifier.modify(armor.getAction().statModifier());
+            armor.getAction().statModifier().modify(statModifier);
         }
         getOpp(curBeing).getStatModifiersOwned().addStatModif(new StatModifier(statModifier));
         if (chosenAction.grouping().equals(ActionGroupings.SPELLS)) {
